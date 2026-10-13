@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 500,
+
+  "projection": {
+    "type": "mercator"
+  },
+
+  "layer": [
+    {
+      "data": {
+        "url": "data/manningham_boundary.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e5e7eb",
+        "stroke": "white",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/playgrounds_combined_manningham.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.council === 'Manningham'"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 45,
+        "opacity": 0.85,
+        "stroke": "white",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+
+        "color": {
+          "field": "classification",
+          "type": "nominal",
+          "title": "Playground classification",
+          "scale": {
+            "domain": [
+              "Small Playground",
+              "Large Playground",
+              "District Playground",
+              "Regional Playground"
+            ],
+            "range": ["#4C78A8", "#F2A541", "#54A24B", "#B279A2"]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "Playground"
+          },
+          {
+            "field": "council",
+            "type": "nominal",
+            "title": "Council"
+          },
+          {
+            "field": "suburb",
+            "type": "nominal",
+            "title": "Suburb"
+          },
+          {
+            "field": "classification",
+            "type": "nominal",
+            "title": "Classification"
+          }
+        ]
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

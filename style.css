@@ -1,0 +1,19 @@
+body {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+#australia_map {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#playground_map {
+    width: 100%;
+    max-width: 700px;
+}
+
