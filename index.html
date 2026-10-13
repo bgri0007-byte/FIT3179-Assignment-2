@@ -42,6 +42,15 @@
       accessible playgrounds are to residents.
     </p>
 
+    <h2>Which Playground Types Are Most Common?</h2>
+
+    <p>
+      Manningham's playgrounds are classified into four categories. This chart
+      compares the number of recorded playgrounds in each category.
+    </p>
+
+    <div id="playground_classifications"></div>
+
     <script>
       vegaEmbed("#australia_map", "js/australia_overview.vg.json").catch(
         console.error,
@@ -49,6 +58,11 @@
 
       vegaEmbed("#playground_map", "js/playground_map.vg.json").catch(
         console.error,
+      );
+
+      vegaEmbed(
+        "#playground_classifications",
+        "js/playground_classifications.vg.json",
       );
     </script>
   </body>

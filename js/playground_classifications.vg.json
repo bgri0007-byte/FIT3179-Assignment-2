@@ -1,0 +1,33 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 250,
+
+  "data": {
+    "url": "data/playgrounds_combined_manningham.csv"
+  },
+
+  "transform": [
+    {
+      "filter": "datum.council === 'Manningham'"
+    }
+  ],
+
+  "mark": {
+    "type": "bar"
+  },
+
+  "encoding": {
+    "x": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Number of playgrounds"
+    },
+    "y": {
+      "field": "classification",
+      "type": "nominal",
+      "title": "Type of Playgrounds",
+      "sort": "-x"
+    }
+  }
+}
