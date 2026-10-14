@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 350,
+  "height": 300,
+
+  "data": {
+    "url": "data/playgrounds_combined_act.csv"
+  },
+
+  "transform": [
+    {
+      "filter": "datum.council === 'ACT'"
+    },
+    {
+      "calculate": "toNumber(datum.surface_area)",
+      "as": "area_m2"
+    },
+    {
+      "filter": "isValid(datum.area_m2) && datum.area_m2 > 0"
+    }
+  ],
+
+  "mark": {
+    "type": "bar",
+    "color": "#4C78A8",
+    "tooltip": true
+  },
+
+  "encoding": {
+    "x": {
+      "field": "area_m2",
+      "type": "quantitative",
+      "bin": {
+        "step": 200
+      },
+      "title": "Playground surface area (m²)"
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Number of playgrounds"
+    }
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

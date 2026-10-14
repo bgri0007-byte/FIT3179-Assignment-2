@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 350,
+  "height": 230,
+
+  "data": {
+    "url": "data/ACTGOV_Playground_Assets_20260926.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+
+  "transform": [
+    {
+      "filter": "datum.properties.operational_state === 'ACTIVE'"
+    },
+    {
+      "calculate": "toNumber(datum.properties.surface_area)",
+      "as": "area"
+    },
+    {
+      "filter": "isValid(datum.area) && datum.area > 0"
+    },
+    {
+      "calculate": "datum.area < 200 ? '0–200' : datum.area < 400 ? '200–400' : datum.area < 600 ? '400–600' : datum.area < 1000 ? '600–1000' : '1000+'",
+      "as": "size_group"
+    },
+    {
+      "calculate": "datum.properties.shade_level == null || datum.properties.shade_level === '' ? 'Not recorded' : datum.properties.shade_level",
+      "as": "raw_shade"
+    },
+    {
+      "calculate": "indexof(['GOOD', 'FAIR', 'POOR', 'NO SHADE'], datum.raw_shade) >= 0 ? datum.raw_shade : datum.raw_shade === 'Not recorded' ? 'Not recorded' : 'Other'",
+      "as": "shade"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "playground_count"
+        }
+      ],
+      "groupby": ["size_group", "shade"]
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "playground_count",
+          "as": "size_total"
+        }
+      ],
+      "groupby": ["size_group"]
+    },
+    {
+      "calculate": "datum.playground_count / datum.size_total * 100",
+      "as": "percentage"
+    }
+  ],
+
+  "mark": {
+    "type": "rect",
+    "stroke": "#FFFFFF",
+    "strokeWidth": 2
+  },
+
+  "encoding": {
+    "x": {
+      "field": "size_group",
+      "type": "ordinal",
+      "sort": ["0–200", "200–400", "400–600", "600–1000", "1000+"],
+      "title": "Playground area (m²)",
+      "axis": {
+        "labelAngle": -35,
+        "labelFontSize": 10
+      }
+    },
+    "y": {
+      "field": "shade",
+      "type": "nominal",
+      "sort": ["GOOD", "FAIR", "POOR", "NO SHADE", "Other", "Not recorded"],
+      "title": null,
+      "axis": {
+        "labelFontSize": 11
+      }
+    },
+
+    "color": {
+      "field": "percentage",
+      "type": "quantitative",
+      "title": "Within size group (%)",
+      "scale": {
+        "scheme": "blues",
+        "domain": [0, 100]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "gradientLength": 200
+      }
+    },
+
+    "tooltip": [
+      {
+        "field": "size_group",
+        "type": "ordinal",
+        "title": "Area (m²)"
+      },
+      {
+        "field": "shade",
+        "type": "nominal",
+        "title": "Shade classification"
+      },
+
+      {
+        "field": "percentage",
+        "type": "quantitative",
+        "title": "Within size group",
+        "format": ".1f"
+      },
+      {
+        "field": "playground_count",
+        "type": "quantitative",
+        "title": "Playgrounds"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

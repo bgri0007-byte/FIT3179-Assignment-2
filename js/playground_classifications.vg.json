@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
+  "width": 350,
   "height": 250,
 
   "data": {
@@ -28,6 +28,18 @@
       "type": "nominal",
       "title": "Type of Playgrounds",
       "sort": "-x"
-    }
+    },
+    "tooltip": [
+      {
+        "field": "classification",
+        "type": "nominal",
+        "title": "Playground type"
+      },
+      {
+        "aggregate": "count",
+        "type": "quantitative",
+        "title": "Number of playgrounds"
+      }
+    ]
   }
 }

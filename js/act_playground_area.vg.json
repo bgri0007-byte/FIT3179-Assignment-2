@@ -1,0 +1,121 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 450,
+  "height": 450,
+
+  "projection": {
+    "type": "mercator",
+    "center": [149.13, -35.3],
+    "scale": 55000
+  },
+
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia_states_optimised.json",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "feature_index"
+            }
+          ]
+        },
+        {
+          "filter": "datum.feature_index === 8"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F1F5F9",
+        "stroke": "#94A3B8",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/playgrounds_combined_act.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.council === 'ACT'"
+        },
+        {
+          "calculate": "toNumber(datum.surface_area)",
+          "as": "area_m2"
+        },
+        {
+          "filter": "isValid(datum.area_m2) && datum.area_m2 > 0"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "color": "#4C78A8",
+        "opacity": 0.55,
+        "stroke": "#ffffff",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "area_m2",
+          "type": "quantitative",
+          "title": "Playground surface area (m²)",
+          "scale": {
+            "type": "linear",
+            "range": [20, 700]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "title": "Playground surface area (m²)",
+            "values": [250, 750, 1500, 2500, 3300],
+            "format": ",.0f",
+            "symbolType": "circle",
+            "symbolFillColor": "#4C78A8",
+            "labelFontSize": 11,
+            "titleFontSize": 12,
+            "offset": 15
+          }
+        },
+        "tooltip": [
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "Playground"
+          },
+          {
+            "field": "suburb",
+            "type": "nominal",
+            "title": "Suburb"
+          },
+          {
+            "field": "area_m2",
+            "type": "quantitative",
+            "title": "Surface area (m²)",
+            "format": ",.0f"
+          }
+        ]
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

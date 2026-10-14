@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 310,
+  "height": 310,
+
+  "data": {
+    "url": "data/ACTGOV_Playground_Assets_20260926.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+
+  "transform": [
+    {
+      "filter": "datum.properties.operational_state === 'ACTIVE'"
+    },
+    {
+      "calculate": "datum.properties.shade_level == null || datum.properties.shade_level === '' ? 'Not recorded' : datum.properties.shade_level",
+      "as": "raw_shade"
+    },
+    {
+      "calculate": "indexof(['FAIR', 'GOOD', 'NO SHADE', 'POOR'], datum.raw_shade) >= 0 ? datum.raw_shade : datum.raw_shade === 'Not recorded' ? 'Not recorded' : 'Other'",
+      "as": "shade"
+    },
+    {
+      "calculate": "indexof(['FAIR', 'GOOD', 'NO SHADE', 'POOR', 'Not recorded', 'Other'], datum.shade)",
+      "as": "shade_order"
+    }
+  ],
+
+  "mark": {
+    "type": "arc",
+    "innerRadius": 85,
+    "outerRadius": 150,
+    "stroke": "white",
+    "strokeWidth": 2
+  },
+
+  "encoding": {
+    "theta": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "stack": true
+    },
+    "order": {
+      "field": "shade_order",
+      "type": "quantitative",
+      "sort": "ascending"
+    },
+    "color": {
+      "field": "shade",
+      "type": "nominal",
+      "title": "Shade classification",
+      "scale": {
+        "domain": ["FAIR", "GOOD", "NO SHADE", "POOR", "Not recorded", "Other"],
+        "range": [
+          "#D8A24C",
+          "#4477AA",
+          "#CC79A7",
+          "#88CCEE",
+          "#999999",
+          "#AA4499"
+        ]
+      },
+      "legend": {
+        "orient": "right",
+        "direction": "vertical",
+        "title": null,
+        "labelFontSize": 11,
+        "symbolSize": 110,
+        "offset": 12,
+        "padding": 5
+      }
+    },
+    "tooltip": [
+      {
+        "field": "shade",
+        "type": "nominal",
+        "title": "Shade classification"
+      },
+      {
+        "aggregate": "count",
+        "type": "quantitative",
+        "title": "Playgrounds"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

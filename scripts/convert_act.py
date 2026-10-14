@@ -43,7 +43,7 @@ for feature in features:
         "latitude": latitude,
         "suburb": properties.get("suburb", ""),
         "classification": properties.get("asset_sub_type", ""),
-        "facilities": ""
+        "surface_area": properties.get("surface_area", "")
     })
 
 
@@ -59,7 +59,9 @@ output_file = data_folder / "playgrounds_combined_act.csv"
 with open(input_file, "r", encoding="utf-8-sig", newline="") as f:
     reader = csv.DictReader(f)
     existing_playgrounds = list(reader)
-    columns = reader.fieldnames
+    for playground in existing_playgrounds:
+        playground["surface_area"] = ""
+    columns = reader.fieldnames + ["surface_area"]
 
 # Combine existing playgrounds with ACT playgrounds
 combined_playgrounds = existing_playgrounds + playgrounds

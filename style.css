@@ -1,19 +1,176 @@
 body {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 24px;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+  font-family: Arial, sans-serif;
+  background-color: #f5f3ea;
+  color: #263f35;
+
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 40px 24px;
+
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Georgia, serif;
+  color: #263f35;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 3.2rem;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-top: 64px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-top: 40px;
+}
+
+p {
+  max-width: 800px;
+  color: #52645c;
 }
 
 #australia_map {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 #playground_map {
-    width: 100%;
-    max-width: 700px;
+  width: 100%;
+  max-width: 700px;
 }
 
+.chart-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin: 32px 0;
+  box-shadow: 0 4px 18px rgba(38, 63, 53, 0.06);
+}
+
+.chart-card h2,
+.chart-card h3 {
+  margin-top: 0;
+}
+
+.chart-card p {
+  margin-bottom: 24px;
+}
+
+.hero {
+  background-color: #e2ead9;
+  padding: 64px 56px;
+  border-radius: 20px;
+  margin-bottom: 48px;
+}
+
+.hero-eyebrow {
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #527a66;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin: 0 0 24px;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  max-width: 650px;
+  line-height: 1.7;
+  color: #426052;
+}
+
+.hero-accent {
+  display: flex;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.hero-accent span {
+  width: 36px;
+  height: 6px;
+  border-radius: 10px;
+}
+
+.hero-accent span:nth-child(1) {
+  background-color: #d8a24c;
+}
+
+.hero-accent span:nth-child(2) {
+  background-color: #527a66;
+}
+
+.hero-accent span:nth-child(3) {
+  background-color: #a9bdd1;
+}
+
+.chapter-heading {
+  margin: 72px 0 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #c5d0c4;
+}
+
+.chapter-number {
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #527a66;
+  margin-bottom: 12px;
+}
+
+.chapter-heading h2 {
+  font-size: 2.6rem;
+  margin: 0 0 12px;
+}
+
+.chapter-heading p {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.dashboard-column {
+  min-width: 0;
+}
+
+.dashboard-column > h2 {
+  font-size: 1.5rem;
+  margin: 0 0 24px;
+}
+
+.dashboard-column .chart-card {
+  margin: 0 0 24px;
+  padding: 20px;
+}
+
+.dashboard-column .chart-card h2 {
+  font-size: 1.35rem;
+}
+
+.dashboard-column .chart-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
