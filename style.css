@@ -1,98 +1,73 @@
+/* =========================================================
+   WHERE AUSTRALIA PLAYS — STYLESHEET
+   Sections: Base, Hero, Chapters, Cards, Featured layout,
+             Map controls, Insights, Responsive layouts.
+   ========================================================= */
+
+/* 01. BASE ------------------------------------------------ */
 body {
-  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  max-width: none;
   background-color: #f5f3ea;
   color: #263f35;
-
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 40px 24px;
-
+  font-family: Arial, sans-serif;
   line-height: 1.7;
 }
 
 h1,
 h2,
 h3 {
-  font-family: Georgia, serif;
   color: #263f35;
+  font-family: Georgia, serif;
   line-height: 1.25;
 }
 
 h1 {
-  font-size: 3.2rem;
   margin-bottom: 24px;
+  font-size: 3.2rem;
 }
-
 h2 {
+  margin: 64px 0 20px;
   font-size: 2rem;
-  margin-top: 64px;
-  margin-bottom: 20px;
 }
-
 h3 {
-  font-size: 1.5rem;
   margin-top: 40px;
+  font-size: 1.5rem;
 }
-
 p {
   max-width: 800px;
   color: #52645c;
 }
 
-#australia_map {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-#playground_map {
-  width: 100%;
-  max-width: 700px;
-}
-
-.chart-card {
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 28px 32px;
-  margin: 32px 0;
-  box-shadow: 0 4px 18px rgba(38, 63, 53, 0.06);
-}
-
-.chart-card h2,
-.chart-card h3 {
-  margin-top: 0;
-}
-
-.chart-card p {
-  margin-bottom: 24px;
-}
-
+/* 02. HERO ------------------------------------------------ */
 .hero {
+  margin: 0;
+  max-width: none;
+  padding: 64px max(40px, calc((100vw - 1500px) / 2));
+  border-radius: 0;
   background-color: #e2ead9;
-  padding: 64px 56px;
-  border-radius: 20px;
-  margin-bottom: 48px;
 }
 
 .hero-eyebrow {
+  margin-bottom: 20px;
+  color: #527a66;
   font-family: Arial, sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 2px;
-  color: #527a66;
-  margin-bottom: 20px;
 }
 
 .hero h1 {
-  font-size: 4rem;
   margin: 0 0 24px;
+  font-size: 4rem;
 }
 
 .hero-description {
-  font-size: 1.2rem;
   max-width: 650px;
-  line-height: 1.7;
   color: #426052;
+  font-size: 1.2rem;
+  line-height: 1.7;
 }
 
 .hero-accent {
@@ -100,77 +75,330 @@ p {
   gap: 8px;
   margin-top: 32px;
 }
-
 .hero-accent span {
   width: 36px;
   height: 6px;
   border-radius: 10px;
 }
-
 .hero-accent span:nth-child(1) {
   background-color: #d8a24c;
 }
-
 .hero-accent span:nth-child(2) {
   background-color: #527a66;
 }
-
 .hero-accent span:nth-child(3) {
   background-color: #a9bdd1;
 }
 
-.chapter-heading {
-  margin: 72px 0 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #c5d0c4;
+/* 03. FULL-WIDTH CHAPTERS ---------------------------------- */
+.atlas-chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.atlas-chapter {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 64px max(40px, calc((100vw - 1500px) / 2));
+  border-radius: 0;
+}
+
+#chapter-geography {
+  background-color: #e7ede3;
+}
+#chapter-characteristics {
+  background-color: #f1e8d9;
+}
+#chapter-shade {
+  background-color: #e5edf2;
+}
+
+.atlas-chapter + .atlas-chapter {
+  border-top: 1px solid rgba(38, 63, 53, 0.18);
+}
+
+.chapter-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 2px solid #d8e2d6;
 }
 
 .chapter-number {
-  display: block;
-  font-family: Arial, sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 2px;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background-color: #d8a24c;
+  color: #263f35;
+  font-family: Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.chapter-eyebrow {
+  margin: 0 0 8px;
   color: #527a66;
-  margin-bottom: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
-.chapter-heading h2 {
-  font-size: 2.6rem;
+.chapter-intro h2 {
   margin: 0 0 12px;
+  font-size: 2.4rem;
 }
-
-.chapter-heading p {
-  font-size: 1.05rem;
+.chapter-description {
   margin: 0;
+  max-width: 760px;
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
-.dashboard-grid {
+/* 04. CHART GRIDS & CARDS ---------------------------------- */
+.chapter-charts {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
   align-items: start;
 }
 
-.dashboard-column {
+/* Default three-chart chapter layout; Chapter 2 overrides below. */
+#chapter-characteristics .chapter-charts {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.chart-card {
+  margin: 32px 0;
+  padding: 28px 32px;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 4px 18px rgba(38, 63, 53, 0.06);
+}
+
+.chart-card h2,
+.chart-card h3 {
+  margin-top: 0;
+}
+.chart-card p {
+  margin-bottom: 24px;
+}
+
+.chapter-charts .chart-card {
+  min-width: 0;
+  margin: 0;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.chapter-charts .chart-card h2 {
+  margin: 0 0 16px;
+  font-size: 1.4rem;
+}
+.chapter-charts .chart-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Map containers must have measurable widths for Vega-Lite's
+   "width": "container" sizing to work reliably. */
+#australia_map {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+#playground_map {
+  width: 100%;
+  max-width: 700px;
+}
+#act_playground_area {
+  width: 100%;
+  min-width: 0;
+}
+#playground_classifications {
+  display: block;
+  width: 100%;
   min-width: 0;
 }
 
-.dashboard-column > h2 {
-  font-size: 1.5rem;
-  margin: 0 0 24px;
+/* 05. CHAPTER 2 — FEATURED MAP ----------------------------- */
+#chapter-characteristics .chapter-two-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: 24px;
+  align-items: stretch;
 }
 
-.dashboard-column .chart-card {
-  margin: 0 0 24px;
-  padding: 20px;
+#chapter-characteristics .chart-featured {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+  grid-column: 1;
+  grid-row: 1 / 3;
 }
 
-.dashboard-column .chart-card h2 {
-  font-size: 1.35rem;
+#chapter-characteristics .chart-classifications {
+  box-sizing: border-box;
+  grid-column: 2;
+  grid-row: 1;
 }
 
-.dashboard-column .chart-card p {
-  font-size: 0.9rem;
+#chapter-characteristics .chart-distribution {
+  box-sizing: border-box;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* 06. VEGA-LITE FILTER CONTROLS ---------------------------- */
+/* Vega inserts .vega-bindings inside the chart container.
+   Flex order places the controls above the SVG, not below it. */
+#playground_map,
+#act_playground_area {
+  display: flex;
+  flex-direction: column;
+}
+
+#playground_map .vega-bindings,
+#act_playground_area .vega-bindings {
+  order: -1;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background-color: #e8eee6;
+  color: #263f35;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+#playground_map .vega-bind,
+#act_playground_area .vega-bind {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+#playground_map .vega-bind select,
+#act_playground_area .vega-bind select {
+  box-sizing: border-box;
+  width: 260px;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 6px 16px;
+  border: 1px solid #b8c8bb;
+  border-radius: 8px;
+  appearance: auto;
+  background-color: #fff;
+  color: #263f35;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+#playground_map .vega-bind select option,
+#act_playground_area .vega-bind select option {
+  background-color: #fff;
+  color: #263f35;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* 07. FEATURED MAP INSIGHT --------------------------------- */
+#chapter-characteristics .chart-featured .map-insight {
+  margin-top: auto;
+  padding: 24px;
+  border-left: 5px solid #d8a24c;
+  border-radius: 12px;
+  background-color: #e7ede3;
+}
+
+.insight-label {
+  display: block;
+  margin-bottom: 10px;
+  color: #527a66;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Specificity keeps these headings distinct from chart-card paragraph text. */
+.chapter-charts .chart-card .insight-headline {
+  margin: 0 0 10px;
+  color: #263f35;
+  font-family: Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+.highlight-text {
+  color: #b37d25;
+}
+
+.chapter-charts .chart-card .insight-detail {
+  margin: 0;
+  color: #52645c;
+  font-size: 0.95rem;
   line-height: 1.6;
+}
+
+/* 08. RESPONSIVE LAYOUTS ----------------------------------- */
+@media (max-width: 1100px) {
+  .chapter-charts,
+  #chapter-characteristics .chapter-charts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  #chapter-characteristics .chapter-two-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+
+  #chapter-characteristics .chart-featured,
+  #chapter-characteristics .chart-classifications,
+  #chapter-characteristics .chart-distribution {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 40px 20px;
+  }
+  .atlas-chapter {
+    padding: 40px 20px;
+  }
+  .chapter-charts,
+  #chapter-characteristics .chapter-charts {
+    grid-template-columns: 1fr;
+  }
+  .chapter-number {
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
+  }
+  .chapter-intro {
+    gap: 16px;
+  }
+  .chapter-intro h2 {
+    font-size: 1.8rem;
+  }
+  #playground_map .vega-bind,
+  #act_playground_area .vega-bind {
+    flex-wrap: wrap;
+  }
 }

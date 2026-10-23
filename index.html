@@ -6,17 +6,19 @@
 
     <title>Where Australia Plays | Australian Playground Atlas</title>
 
-    <!-- Stylesheet -->
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css?v=2" />
 
-    <!-- Vega-Lite libraries -->
+    <!-- Vega-Lite dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   </head>
 
   <body>
-    <!-- HERO -->
+    <!-- ========================================
+         HERO
+         ======================================== -->
     <header class="hero">
       <p class="hero-eyebrow">AN AUSTRALIAN PLAYGROUND ATLAS</p>
 
@@ -27,180 +29,252 @@
         characteristics differ, and what makes each play space unique.
       </p>
 
-      <div class="hero-accent">
+      <!-- Decorative colour accents -->
+      <div class="hero-accent" aria-hidden="true">
         <span></span>
         <span></span>
         <span></span>
       </div>
     </header>
 
-    <!-- THREE-COLUMN DASHBOARD -->
-    <main class="dashboard-grid">
-      <!-- COLUMN 1: GEOGRAPHY -->
-      <section class="dashboard-column">
-        <h2>01 / Australia's Play Spaces</h2>
+    <!-- ========================================
+         INTERACTIVE PLAYGROUND ATLAS
+         ======================================== -->
+    <main class="atlas-chapters">
+      <!-- ======================================
+           CHAPTER 1 — GEOGRAPHY
+           ====================================== -->
+      <section class="atlas-chapter" id="chapter-geography">
+        <div class="chapter-intro">
+          <span class="chapter-number">01</span>
 
-        <!-- Visualisation 1 -->
-        <div class="chart-card">
-          <h2>Where Are Our Study Regions?</h2>
-
-          <div id="australia_map"></div>
-
-          <p>
-            This project explores public playgrounds across selected communities
-            in southeastern Australia, drawing on datasets from local councils
-            and government agencies. These regions provide opportunities to
-            investigate playground distribution, classification, size, shade and
-            available facilities. The datasets differ in geographic coverage and
-            recorded attributes. Rather than treating them as a complete picture
-            of Australian playgrounds, we use regional case studies to explore
-            the characteristics of public play spaces.
-          </p>
+          <div>
+            <p class="chapter-eyebrow">THE GEOGRAPHY OF PLAY</p>
+            <h2>Where are Australia's playgrounds?</h2>
+            <p class="chapter-description">
+              Explore our study regions and discover how playgrounds are
+              distributed across Manningham.
+            </p>
+          </div>
         </div>
 
-        <!-- Visualisation 2 -->
-        <div class="chart-card">
-          <h2>Where Are Manningham's Different Playground Types?</h2>
+        <div class="chapter-charts">
+          <!-- Chart 1: Australian study regions -->
+          <div class="chart-card">
+            <h2>Where Are Our Study Regions?</h2>
 
-          <div id="playground_map"></div>
+            <div id="australia_map"></div>
 
-          <p>
-            Playgrounds in Manningham are not evenly distributed. The mapped
-            locations are concentrated in the western part of the city, while
-            relatively few appear in the east. Small playgrounds appear
-            particularly common, with larger classifications scattered across
-            the region. The map shows recorded playground locations and
-            classifications, rather than measuring how accessible playgrounds
-            are to residents.
-          </p>
-        </div>
-      </section>
+            <p>
+              This project explores public playgrounds across selected
+              communities in southeastern Australia, drawing on datasets from
+              local councils and government agencies. These regions provide
+              opportunities to investigate playground distribution,
+              classification, size, shade and available facilities. The datasets
+              differ in geographic coverage and recorded attributes. Rather than
+              treating them as a complete picture of Australian playgrounds, we
+              use regional case studies to explore the characteristics of public
+              play spaces.
+            </p>
+          </div>
 
-      <!-- COLUMN 2: CHARACTERISTICS -->
-      <section class="dashboard-column">
-        <h2>02 / Not All Playgrounds Are Equal</h2>
+          <!-- Chart 2: Manningham playground locations and classifications -->
+          <div class="chart-card">
+            <h2>Where Are Manningham's Different Playground Types?</h2>
 
-        <!-- Visualisation 3 -->
-        <div class="chart-card">
-          <h2>Which Playground Types Are Most Common?</h2>
+            <div id="playground_map"></div>
 
-          <p>
-            Manningham's playgrounds are classified into four categories. This
-            chart compares the number of recorded playgrounds in each category.
-          </p>
-
-          <div id="playground_classifications"></div>
-        </div>
-
-        <!-- Visualisation 4 -->
-        <div class="chart-card">
-          <h2>How Large Are Canberra's Playgrounds?</h2>
-
-          <p>
-            This close-up of Canberra's urban areas shows how playground sizes
-            vary across the city. Larger circles represent playgrounds with
-            greater recorded surface areas, measured in square metres. Hover
-            over a circle to explore individual playgrounds.
-          </p>
-
-          <div id="act_playground_area"></div>
-        </div>
-
-        <!-- Visualisation 5 -->
-        <div class="chart-card">
-          <h2>Are Most Canberra Playgrounds Small or Large?</h2>
-
-          <p>
-            Most recorded Canberra playgrounds have relatively small surface
-            areas, with the greatest concentration between 200 and 400 m². The
-            distribution is strongly right-skewed.
-          </p>
-
-          <div id="act_playground_distribution"></div>
+            <p>
+              Playgrounds in Manningham are not evenly distributed. The mapped
+              locations are concentrated in the western part of the city, while
+              relatively few appear in the east. Small playgrounds appear
+              particularly common, with larger classifications scattered across
+              the region. The map shows recorded playground locations and
+              classifications, rather than measuring how accessible playgrounds
+              are to residents.
+            </p>
+          </div>
         </div>
       </section>
 
-      <!-- COLUMN 3: FACILITIES -->
-      <section class="dashboard-column">
-        <h2>03 / What Makes a Great Playground?</h2>
+      <!-- ======================================
+           CHAPTER 2 — SIZE & CLASSIFICATION
+           ====================================== -->
+      <section class="atlas-chapter" id="chapter-characteristics">
+        <div class="chapter-intro">
+          <span class="chapter-number">02</span>
 
-        <div class="chart-card">
-          <h2>How Shaded Are Canberra's Playgrounds?</h2>
-
-          <p>
-            More than half of active ACT playgrounds are classified as having
-            FAIR shade. GOOD is the next most common classification, while
-            smaller proportions are recorded as POOR or NO SHADE. Missing shade
-            information is shown separately.
-          </p>
-
-          <div id="act_playground_shade"></div>
+          <div>
+            <p class="chapter-eyebrow">SIZE & CLASSIFICATION</p>
+            <h2>Not all playgrounds are equal.</h2>
+            <p class="chapter-description">
+              From neighbourhood play spaces to larger regional playgrounds,
+              explore how playground classifications and surface areas vary
+              across our study regions.
+            </p>
+          </div>
         </div>
 
-        <div class="chart-card">
-          <h2>How Does Shade Provision Vary with Playground Size?</h2>
+        <!-- Featured map with two supporting charts -->
+        <div class="chapter-charts chapter-two-layout">
+          <!-- Chart 3: Manningham playground classifications -->
+          <div class="chart-card chart-classifications">
+            <h2>Which Playground Types Are Most Common?</h2>
 
-          <p>
-            This heatmap compares shade classifications across different
-            playground size ranges in Canberra. Darker cells indicate a higher
-            percentage of playgrounds within that size range, allowing shade
-            provision to be compared regardless of how many playgrounds each
-            group contains.
-          </p>
+            <p>
+              Manningham's playgrounds are classified into four categories. This
+              chart compares the number of recorded playgrounds in each
+              category.
+            </p>
 
-          <div id="act_shade_size_heatmap"></div>
+            <div id="playground_classifications"></div>
+          </div>
+
+          <!-- Chart 4: Canberra proportional-symbol map -->
+          <div class="chart-card chart-featured">
+            <h2>How Large Are Canberra's Playgrounds?</h2>
+
+            <p>
+              This close-up of Canberra's urban areas shows how playground sizes
+              vary across the city. Larger circles represent playgrounds with
+              greater recorded surface areas, measured in square metres. Hover
+              over a circle to explore individual playgrounds.
+            </p>
+
+            <div id="act_playground_area"></div>
+
+            <!-- Highlighted narrative insight -->
+            <div class="map-insight">
+              <span class="insight-label">THE BIGGER PICTURE</span>
+
+              <p class="insight-headline">
+                Most playgrounds are
+                <span class="highlight-text">small</span>. A few are
+                substantially larger.
+              </p>
+
+              <p class="insight-detail">
+                Across Canberra, recorded playground areas cluster around
+                200–400 m². Explore the map to discover where the larger spaces
+                are located.
+              </p>
+            </div>
+          </div>
+
+          <!-- Chart 5: Canberra playground surface-area distribution -->
+          <div class="chart-card chart-distribution">
+            <h2>Are Most Canberra Playgrounds Small or Large?</h2>
+
+            <p>
+              Most recorded Canberra playgrounds have relatively small surface
+              areas, with the greatest concentration between 200 and 400 m². The
+              distribution is strongly right-skewed.
+            </p>
+
+            <div id="act_playground_distribution"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================
+           CHAPTER 3 — SHADE & FACILITIES
+           ====================================== -->
+      <section class="atlas-chapter" id="chapter-shade">
+        <div class="chapter-intro">
+          <span class="chapter-number">03</span>
+
+          <div>
+            <p class="chapter-eyebrow">SHADE & PLAYGROUND FEATURES</p>
+            <h2>A place in the shade.</h2>
+            <p class="chapter-description">
+              Shade is an important characteristic of outdoor play spaces.
+              Explore how shade classifications vary across Canberra's
+              playgrounds and whether they differ with playground size.
+            </p>
+          </div>
+        </div>
+
+        <div class="chapter-charts">
+          <!-- Chart 6: Canberra shade classifications -->
+          <div class="chart-card">
+            <h2>How Shaded Are Canberra's Playgrounds?</h2>
+
+            <p>
+              More than half of active ACT playgrounds are classified as having
+              FAIR shade. GOOD is the next most common classification, while
+              smaller proportions are recorded as POOR or NO SHADE. Missing
+              shade information is shown separately.
+            </p>
+
+            <div id="act_playground_shade"></div>
+          </div>
+
+          <!-- Chart 7: Shade classifications by playground size -->
+          <div class="chart-card">
+            <h2>How Does Shade Provision Vary with Playground Size?</h2>
+
+            <p>
+              This heatmap compares shade classifications across different
+              playground size ranges in Canberra. Darker cells indicate a higher
+              percentage of playgrounds within that size range, allowing shade
+              provision to be compared regardless of how many playgrounds each
+              group contains.
+            </p>
+
+            <div id="act_shade_size_heatmap"></div>
+          </div>
         </div>
       </section>
     </main>
 
-    <!-- VEGA-LITE EMBEDS -->
+    <!-- ========================================
+         VEGA-LITE VISUALISATIONS
+         ======================================== -->
     <script>
+      // Shared rendering configuration
       const embedOptions = {
         renderer: "svg",
         actions: false,
       };
 
-      vegaEmbed(
-        "#australia_map",
-        "js/australia_overview.vg.json",
-        embedOptions,
-      ).catch(console.error);
+      // Each entry maps an HTML container to a Vega-Lite specification.
+      const charts = [
+        {
+          selector: "#australia_map",
+          spec: "js/australia_overview.vg.json",
+        },
+        {
+          selector: "#playground_map",
+          spec: "js/playground_map.vg.json",
+        },
+        {
+          selector: "#playground_classifications",
+          spec: "js/playground_classifications.vg.json",
+        },
+        {
+          selector: "#act_playground_area",
+          spec: "js/act_playground_area.vg.json",
+        },
+        {
+          selector: "#act_playground_distribution",
+          spec: "js/act_playground_distribution.vg.json",
+        },
+        {
+          selector: "#act_playground_shade",
+          spec: "js/act_playground_shade.vg.json",
+        },
+        {
+          selector: "#act_shade_size_heatmap",
+          spec: "js/act_shade_size_heatmap.vg.json",
+        },
+      ];
 
-      vegaEmbed(
-        "#playground_map",
-        "js/playground_map.vg.json",
-        embedOptions,
-      ).catch(console.error);
-
-      vegaEmbed(
-        "#playground_classifications",
-        "js/playground_classifications.vg.json",
-        embedOptions,
-      ).catch(console.error);
-
-      vegaEmbed(
-        "#act_playground_area",
-        "js/act_playground_area.vg.json",
-        embedOptions,
-      ).catch(console.error);
-
-      vegaEmbed(
-        "#act_playground_distribution",
-        "js/act_playground_distribution.vg.json",
-        embedOptions,
-      ).catch(console.error);
-
-      vegaEmbed(
-        "#act_playground_shade",
-        "js/act_playground_shade.vg.json",
-        embedOptions,
-      ).catch(console.error);
-
-      vegaEmbed(
-        "#act_shade_size_heatmap",
-        "js/act_shade_size_heatmap.vg.json",
-        embedOptions,
-      ).catch(console.error);
+      // Render each chart and identify any failed embeds.
+      charts.forEach(({ selector, spec }) => {
+        vegaEmbed(selector, spec, embedOptions).catch((error) => {
+          console.error(`Failed to render ${selector} (${spec}):`, error);
+        });
+      });
     </script>
   </body>
 </html>

@@ -1,13 +1,34 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 450,
-  "height": 450,
+  "description": "Proportional-symbol map of Canberra playgrounds, with interactive highlighting by surface-area range.",
+
+  "width": "container",
+  "height": 550,
 
   "projection": {
     "type": "mercator",
     "center": [149.13, -35.3],
     "scale": 55000
   },
+
+  "params": [
+    {
+      "name": "selectedArea",
+      "value": "All playground sizes",
+      "bind": {
+        "input": "select",
+        "name": "Surface area: ",
+        "options": [
+          "All playground sizes",
+          "Under 200 m²",
+          "200–400 m²",
+          "400–800 m²",
+          "800–1,600 m²",
+          "Over 1,600 m²"
+        ]
+      }
+    }
+  ],
 
   "layer": [
     {
@@ -18,6 +39,7 @@
           "property": "features"
         }
       },
+
       "transform": [
         {
           "window": [
@@ -31,6 +53,7 @@
           "filter": "datum.feature_index === 8"
         }
       ],
+
       "mark": {
         "type": "geoshape",
         "fill": "#F1F5F9",
@@ -42,6 +65,7 @@
       "data": {
         "url": "data/playgrounds_combined_act.csv"
       },
+
       "transform": [
         {
           "filter": "datum.council === 'ACT'"
@@ -52,15 +76,20 @@
         },
         {
           "filter": "isValid(datum.area_m2) && datum.area_m2 > 0"
+        },
+        {
+          "calculate": "selectedArea === 'All playground sizes' || (selectedArea === 'Under 200 m²' && datum.area_m2 < 200) || (selectedArea === '200–400 m²' && datum.area_m2 >= 200 && datum.area_m2 < 400) || (selectedArea === '400–800 m²' && datum.area_m2 >= 400 && datum.area_m2 < 800) || (selectedArea === '800–1,600 m²' && datum.area_m2 >= 800 && datum.area_m2 < 1600) || (selectedArea === 'Over 1,600 m²' && datum.area_m2 >= 1600)",
+          "as": "isSelected"
         }
       ],
+
       "mark": {
         "type": "circle",
-        "color": "#4C78A8",
-        "opacity": 0.55,
+        "opacity": 0.75,
         "stroke": "#ffffff",
         "strokeWidth": 0.5
       },
+
       "encoding": {
         "longitude": {
           "field": "longitude",
@@ -70,6 +99,15 @@
           "field": "latitude",
           "type": "quantitative"
         },
+
+        "color": {
+          "condition": {
+            "test": "datum.isSelected",
+            "value": "#4477AA"
+          },
+          "value": "#D5DAD8"
+        },
+
         "size": {
           "field": "area_m2",
           "type": "quantitative",
@@ -85,12 +123,13 @@
             "values": [250, 750, 1500, 2500, 3300],
             "format": ",.0f",
             "symbolType": "circle",
-            "symbolFillColor": "#4C78A8",
+            "symbolFillColor": "#4477AA",
             "labelFontSize": 11,
             "titleFontSize": 12,
             "offset": 15
           }
         },
+
         "tooltip": [
           {
             "field": "name",

@@ -1,11 +1,31 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Interactive map of Manningham playgrounds, coloured and filtered by playground classification.",
+
   "width": "container",
   "height": 500,
 
   "projection": {
     "type": "mercator"
   },
+
+  "params": [
+    {
+      "name": "selectedClassification",
+      "value": "All playgrounds",
+      "bind": {
+        "input": "select",
+        "name": "Show: ",
+        "options": [
+          "All playgrounds",
+          "Small Playground",
+          "Large Playground",
+          "District Playground",
+          "Regional Playground"
+        ]
+      }
+    }
+  ],
 
   "layer": [
     {
@@ -19,7 +39,7 @@
       "mark": {
         "type": "geoshape",
         "fill": "#e5e7eb",
-        "stroke": "white",
+        "stroke": "#ffffff",
         "strokeWidth": 1
       }
     },
@@ -27,18 +47,24 @@
       "data": {
         "url": "data/playgrounds_combined_manningham.csv"
       },
+
       "transform": [
         {
           "filter": "datum.council === 'Manningham'"
+        },
+        {
+          "filter": "selectedClassification === 'All playgrounds' || datum.classification === selectedClassification"
         }
       ],
+
       "mark": {
         "type": "circle",
         "size": 45,
         "opacity": 0.85,
-        "stroke": "white",
+        "stroke": "#ffffff",
         "strokeWidth": 0.5
       },
+
       "encoding": {
         "longitude": {
           "field": "longitude",
@@ -60,9 +86,10 @@
               "District Playground",
               "Regional Playground"
             ],
-            "range": ["#4C78A8", "#F2A541", "#54A24B", "#B279A2"]
+            "range": ["#4477AA", "#D8A24C", "#AA4499", "#66CCEE"]
           }
         },
+
         "tooltip": [
           {
             "field": "name",

@@ -1,5 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Map of the five Australian study regions, with labelled locations and dataset information.",
+
   "width": "container",
   "height": 430,
 
@@ -60,13 +62,7 @@
           }
         ]
       },
-      "mark": {
-        "type": "circle",
-        "size": 160,
-        "color": "#2878B5",
-        "stroke": "white",
-        "strokeWidth": 1.5
-      },
+
       "encoding": {
         "longitude": {
           "field": "longitude",
@@ -75,74 +71,51 @@
         "latitude": {
           "field": "latitude",
           "type": "quantitative"
-        },
-        "tooltip": [
-          {
-            "field": "region",
-            "type": "nominal",
-            "title": "Study region"
-          },
-          {
-            "field": "datasets",
-            "type": "nominal",
-            "title": "Datasets"
-          }
-        ]
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "region": "Greater Melbourne",
-            "longitude": 144.96332,
-            "latitude": -37.814
-          },
-          {
-            "region": "ACT",
-            "longitude": 149.12807,
-            "latitude": -35.28346
-          },
-          {
-            "region": "Adelaide",
-            "longitude": 138.59863,
-            "latitude": -34.92866
-          },
-          {
-            "region": "Hobart",
-            "longitude": 147.32941,
-            "latitude": -42.87936
-          },
-          {
-            "region": "Greater Shepparton",
-            "longitude": 145.39867,
-            "latitude": -36.38047
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "dx": 12,
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "color": "#374151"
-      },
-      "encoding": {
-        "longitude": {
-          "field": "longitude",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "latitude",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "region",
-          "type": "nominal"
         }
-      }
+      },
+
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 160,
+            "color": "#2878B5",
+            "stroke": "#ffffff",
+            "strokeWidth": 1.5
+          },
+          "encoding": {
+            "tooltip": [
+              {
+                "field": "region",
+                "type": "nominal",
+                "title": "Study region"
+              },
+              {
+                "field": "datasets",
+                "type": "nominal",
+                "title": "Datasets"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 12,
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#374151"
+          },
+          "encoding": {
+            "text": {
+              "field": "region",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
     }
   ],
 

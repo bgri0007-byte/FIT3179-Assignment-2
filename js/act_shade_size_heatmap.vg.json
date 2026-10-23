@@ -1,5 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap comparing shade classifications across Canberra playground size groups, normalised as percentages within each size group.",
+
   "width": 350,
   "height": 230,
 
@@ -27,11 +29,7 @@
       "as": "size_group"
     },
     {
-      "calculate": "datum.properties.shade_level == null || datum.properties.shade_level === '' ? 'Not recorded' : datum.properties.shade_level",
-      "as": "raw_shade"
-    },
-    {
-      "calculate": "indexof(['GOOD', 'FAIR', 'POOR', 'NO SHADE'], datum.raw_shade) >= 0 ? datum.raw_shade : datum.raw_shade === 'Not recorded' ? 'Not recorded' : 'Other'",
+      "calculate": "datum.properties.shade_level == null || datum.properties.shade_level === '' ? 'Not recorded' : indexof(['GOOD', 'FAIR', 'POOR', 'NO SHADE'], datum.properties.shade_level) >= 0 ? datum.properties.shade_level : 'Other'",
       "as": "shade"
     },
     {
@@ -61,7 +59,7 @@
 
   "mark": {
     "type": "rect",
-    "stroke": "#FFFFFF",
+    "stroke": "#ffffff",
     "strokeWidth": 2
   },
 
@@ -76,6 +74,7 @@
         "labelFontSize": 10
       }
     },
+
     "y": {
       "field": "shade",
       "type": "nominal",
@@ -112,7 +111,6 @@
         "type": "nominal",
         "title": "Shade classification"
       },
-
       {
         "field": "percentage",
         "type": "quantitative",

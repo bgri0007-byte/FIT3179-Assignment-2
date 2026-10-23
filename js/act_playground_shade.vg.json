@@ -1,5 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Donut chart showing shade classifications for active Canberra playgrounds, including missing and unexpected values.",
+
   "width": 310,
   "height": 310,
 
@@ -16,11 +18,7 @@
       "filter": "datum.properties.operational_state === 'ACTIVE'"
     },
     {
-      "calculate": "datum.properties.shade_level == null || datum.properties.shade_level === '' ? 'Not recorded' : datum.properties.shade_level",
-      "as": "raw_shade"
-    },
-    {
-      "calculate": "indexof(['FAIR', 'GOOD', 'NO SHADE', 'POOR'], datum.raw_shade) >= 0 ? datum.raw_shade : datum.raw_shade === 'Not recorded' ? 'Not recorded' : 'Other'",
+      "calculate": "datum.properties.shade_level == null || datum.properties.shade_level === '' ? 'Not recorded' : indexof(['FAIR', 'GOOD', 'NO SHADE', 'POOR'], datum.properties.shade_level) >= 0 ? datum.properties.shade_level : 'Other'",
       "as": "shade"
     },
     {
@@ -33,7 +31,7 @@
     "type": "arc",
     "innerRadius": 85,
     "outerRadius": 150,
-    "stroke": "white",
+    "stroke": "#ffffff",
     "strokeWidth": 2
   },
 
@@ -43,11 +41,13 @@
       "type": "quantitative",
       "stack": true
     },
+
     "order": {
       "field": "shade_order",
       "type": "quantitative",
       "sort": "ascending"
     },
+
     "color": {
       "field": "shade",
       "type": "nominal",
@@ -73,6 +73,7 @@
         "padding": 5
       }
     },
+
     "tooltip": [
       {
         "field": "shade",
