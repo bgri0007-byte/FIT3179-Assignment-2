@@ -149,7 +149,7 @@ body {
 }
 
 .atlas-chapter {
-  padding: 75px max(40px, calc((100vw - 1500px) / 2));
+  padding: 75px max(40px, 6vw);
 }
 
 #chapter-overview {
