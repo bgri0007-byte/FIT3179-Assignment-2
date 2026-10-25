@@ -1,14 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Interactive map of Manningham playgrounds, coloured and filtered by playground classification.",
-
   "width": "container",
   "height": 500,
-
   "projection": {
     "type": "mercator"
   },
-
   "params": [
     {
       "name": "selectedClassification",
@@ -26,7 +23,6 @@
       }
     }
   ],
-
   "layer": [
     {
       "data": {
@@ -47,7 +43,6 @@
       "data": {
         "url": "data/playgrounds_combined_manningham.csv"
       },
-
       "transform": [
         {
           "filter": "datum.council === 'Manningham'"
@@ -56,15 +51,13 @@
           "filter": "selectedClassification === 'All playgrounds' || datum.classification === selectedClassification"
         }
       ],
-
       "mark": {
         "type": "circle",
-        "size": 45,
-        "opacity": 0.85,
+        "size": 50,
+        "opacity": 0.9,
         "stroke": "#ffffff",
-        "strokeWidth": 0.5
+        "strokeWidth": 0.9
       },
-
       "encoding": {
         "longitude": {
           "field": "longitude",
@@ -74,7 +67,6 @@
           "field": "latitude",
           "type": "quantitative"
         },
-
         "color": {
           "field": "classification",
           "type": "nominal",
@@ -87,9 +79,28 @@
               "Regional Playground"
             ],
             "range": ["#4477AA", "#D8A24C", "#AA4499", "#66CCEE"]
+          },
+          "legend": {
+            "orient": "top-left",
+            "direction": "vertical",
+            "title": "Playground classification",
+            "titleFont": "Segoe UI",
+            "titleFontSize": 14,
+            "titleFontWeight": "bold",
+            "titleColor": "#173D32",
+            "titlePadding": 12,
+            "labelFont": "Segoe UI",
+            "labelFontSize": 13,
+            "labelColor": "#334155",
+            "symbolType": "circle",
+            "symbolSize": 140,
+            "symbolStrokeColor": "#FFFFFF",
+            "symbolStrokeWidth": 0.8,
+            "rowPadding": 8,
+            "padding": 12,
+            "offset": 12
           }
         },
-
         "tooltip": [
           {
             "field": "name",
@@ -115,7 +126,6 @@
       }
     }
   ],
-
   "config": {
     "view": {
       "stroke": null

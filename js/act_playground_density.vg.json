@@ -1,0 +1,131 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Choropleth map of playground density across Canberra suburbs, with urban district boundaries.",
+  "width": "container",
+  "height": 470,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": null,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/act_districts.json",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "field": "properties.DISTRICT_NAME",
+            "oneOf": [
+              "BELCONNEN",
+              "GUNGAHLIN",
+              "CANBERRA CENTRAL",
+              "WODEN VALLEY",
+              "WESTON CREEK",
+              "TUGGERANONG",
+              "MOLONGLO VALLEY",
+              "JERRABOMBERRA",
+              "MAJURA"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F3F5F4",
+        "stroke": "#64748B",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/act_playground_density.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.DIVISION_NAME !== 'URIARRA VILLAGE' && datum.properties.DIVISION_NAME !== 'THARWA'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#334155",
+        "strokeWidth": 0.6
+      },
+      "encoding": {
+        "color": {
+          "field": "properties.playground_density",
+          "type": "quantitative",
+          "title": "Playground records per km²",
+          "scale": {
+            "type": "threshold",
+            "domain": [1, 2, 3, 4],
+            "range": ["#deebf7", "#b3d2e9", "#79b2d8", "#3d8fc4", "#08519c"],
+            "unknown": "#d9dedb"
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "title": "Playground records per km²",
+            "titleFont": "Segoe UI",
+            "titleFontSize": 13,
+            "titleFontWeight": "bold",
+            "titleColor": "#263f35",
+            "labelFont": "Segoe UI",
+            "labelFontSize": 12,
+            "labelColor": "#263f35",
+            "gradientThickness": 16,
+            "gradientLength": 280,
+            "symbolSize": 150,
+            "columnPadding": 12,
+            "rowPadding": 8,
+            "padding": 12,
+            "offset": 14
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.DIVISION_NAME",
+            "type": "nominal",
+            "title": "Suburb"
+          },
+          {
+            "field": "properties.playground_count",
+            "type": "quantitative",
+            "title": "Playground records",
+            "format": ",d"
+          },
+          {
+            "field": "properties.area_km2",
+            "type": "quantitative",
+            "title": "Area (km²)",
+            "format": ".2f"
+          },
+          {
+            "field": "properties.playground_density",
+            "type": "quantitative",
+            "title": "Records per km²",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

@@ -1,0 +1,206 @@
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Manningham playgrounds within and outside mapped recreational open spaces.",
+  "width": "container",
+  "height": 350,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "background": null,
+  "params": [
+    {
+      "name": "playgroundFilter",
+      "value": "All playgrounds",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All playgrounds",
+          "Within mapped open space",
+          "Outside mapped open space"
+        ],
+        "labels": [
+          "All playgrounds (159)",
+          "Within mapped open space (150)",
+          "Outside mapped open space (9)"
+        ],
+        "name": "Show: "
+      }
+    }
+  ],
+  "projection": {
+    "type": "mercator",
+    "fit": {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [145.08, -37.83]
+          },
+          "properties": {}
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [145.32, -37.68]
+          },
+          "properties": {}
+        }
+      ]
+    }
+  },
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/manningham_boundary.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F8FAFC",
+        "stroke": "#334155",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "shape": {
+          "field": "geometry",
+          "type": "geojson"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/manningham_open_space.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": "indexof(['Parks and gardens', 'Natural and semi-natural open space', 'Sportsfields and organised recreation', 'Conservation reserves', 'Recreation corridor'], datum.properties.OS_CATEGOR) >= 0 && datum.properties.OS_ACCESS === 'Open'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#C7DEC4",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.25,
+        "opacity": 0.85
+      },
+      "encoding": {
+        "shape": {
+          "field": "geometry",
+          "type": "geojson"
+        },
+        "tooltip": [
+          {
+            "field": "properties.PARK_NAME",
+            "type": "nominal",
+            "title": "Open space"
+          },
+          {
+            "field": "properties.OS_CATEGOR",
+            "type": "nominal",
+            "title": "Category"
+          },
+          {
+            "field": "properties.OS_ACCESS",
+            "type": "nominal",
+            "title": "Access"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/manningham_playground_open_space.csv"
+      },
+      "transform": [
+        {
+          "filter": "playgroundFilter === 'All playgrounds' || datum.open_space_status === playgroundFilter"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.95,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "open_space_status",
+          "type": "nominal",
+          "title": "Playground location",
+          "scale": {
+            "domain": [
+              "Within mapped open space",
+              "Outside mapped open space"
+            ],
+            "range": ["#2563EB", "#EA580C"]
+          },
+          "legend": null
+        },
+        "size": {
+          "field": "open_space_status",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Within mapped open space",
+              "Outside mapped open space"
+            ],
+            "range": [65, 170]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "Playground"
+          },
+          {
+            "field": "suburb",
+            "type": "nominal",
+            "title": "Suburb"
+          },
+          {
+            "field": "classification",
+            "type": "nominal",
+            "title": "Classification"
+          },
+          {
+            "field": "open_space_status",
+            "type": "nominal",
+            "title": "Open-space status"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

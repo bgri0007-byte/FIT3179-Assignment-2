@@ -1,10 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Heatmap comparing shade classifications across Canberra playground size groups, normalised as percentages within each size group.",
-
-  "width": 350,
-  "height": 230,
-
+  "width": "container",
+  "height": 260,
   "data": {
     "url": "data/ACTGOV_Playground_Assets_20260926.geojson",
     "format": {
@@ -12,7 +10,6 @@
       "property": "features"
     }
   },
-
   "transform": [
     {
       "filter": "datum.properties.operational_state === 'ACTIVE'"
@@ -56,13 +53,11 @@
       "as": "percentage"
     }
   ],
-
   "mark": {
     "type": "rect",
     "stroke": "#ffffff",
     "strokeWidth": 2
   },
-
   "encoding": {
     "x": {
       "field": "size_group",
@@ -74,7 +69,6 @@
         "labelFontSize": 10
       }
     },
-
     "y": {
       "field": "shade",
       "type": "nominal",
@@ -84,7 +78,6 @@
         "labelFontSize": 11
       }
     },
-
     "color": {
       "field": "percentage",
       "type": "quantitative",
@@ -95,11 +88,17 @@
       },
       "legend": {
         "orient": "bottom",
-        "direction": "horizontal",
-        "gradientLength": 200
+        "title": "Within size group (%)",
+        "titleFontSize": 12,
+        "titleFontWeight": "bold",
+        "titleColor": "#263F35",
+        "labelFontSize": 11,
+        "labelColor": "#56665D",
+        "gradientLength": 200,
+        "gradientThickness": 12,
+        "offset": 18
       }
     },
-
     "tooltip": [
       {
         "field": "size_group",
@@ -124,7 +123,6 @@
       }
     ]
   },
-
   "config": {
     "view": {
       "stroke": null

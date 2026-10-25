@@ -1,0 +1,127 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "ACT population density from 2021 Census; excludes Tharwa and Uriarra Village.",
+  "width": "container",
+  "height": 470,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": null,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/act_districts.json",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "field": "properties.DISTRICT_NAME",
+            "oneOf": [
+              "BELCONNEN",
+              "GUNGAHLIN",
+              "CANBERRA CENTRAL",
+              "WODEN VALLEY",
+              "WESTON CREEK",
+              "TUGGERANONG",
+              "MOLONGLO VALLEY",
+              "JERRABOMBERRA",
+              "MAJURA"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F3F5F4",
+        "stroke": "#64748B",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/act_playground_population.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.DIVISION_NAME !== 'URIARRA VILLAGE' && datum.properties.DIVISION_NAME !== 'THARWA'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#334155",
+        "strokeWidth": 0.6
+      },
+      "encoding": {
+        "color": {
+          "field": "properties.population_density_2021",
+          "type": "quantitative",
+          "title": "Residents per km² (2021)",
+          "scale": {
+            "type": "threshold",
+            "domain": [500, 1500, 3000, 5000],
+            "range": ["#fff1e6", "#fdd0a2", "#fdae6b", "#e6550d", "#a63603"],
+            "unknown": "#d9dedb"
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "title": "Residents per km² (2021)",
+            "titleFontSize": 12,
+            "labelFontSize": 11,
+            "padding": 10,
+            "offset": 12
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.DIVISION_NAME",
+            "type": "nominal",
+            "title": "Suburb"
+          },
+          {
+            "field": "properties.population_2021",
+            "type": "quantitative",
+            "title": "2021 population",
+            "format": ",d"
+          },
+          {
+            "field": "properties.area_km2",
+            "type": "quantitative",
+            "title": "Area (km²)",
+            "format": ".2f"
+          },
+          {
+            "field": "properties.playground_count",
+            "type": "quantitative",
+            "title": "Playground records",
+            "format": ",d"
+          },
+          {
+            "field": "properties.population_density_2021",
+            "type": "quantitative",
+            "title": "Residents per km² (2021)",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

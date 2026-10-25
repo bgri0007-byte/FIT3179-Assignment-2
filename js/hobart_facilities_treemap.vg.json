@@ -1,0 +1,248 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Treemap of 43 Hobart playgrounds by the number of six recorded facilities.",
+  "width": "container",
+  "height": 360,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "data": {
+    "values": [
+      {
+        "amenities": 1,
+        "count": 13,
+        "x0": 0,
+        "x1": 46.51,
+        "y0": 0,
+        "y1": 65
+      },
+      {
+        "amenities": 3,
+        "count": 7,
+        "x0": 0,
+        "x1": 46.51,
+        "y0": 65,
+        "y1": 100
+      },
+      {
+        "amenities": 4,
+        "count": 6,
+        "x0": 46.51,
+        "x1": 73.26,
+        "y0": 0,
+        "y1": 52.17
+      },
+      {
+        "amenities": 6,
+        "count": 6,
+        "x0": 73.26,
+        "x1": 100,
+        "y0": 0,
+        "y1": 52.17
+      },
+      {
+        "amenities": 2,
+        "count": 5,
+        "x0": 46.51,
+        "x1": 70.82,
+        "y0": 52.17,
+        "y1": 100
+      },
+      {
+        "amenities": 5,
+        "count": 5,
+        "x0": 70.82,
+        "x1": 100,
+        "y0": 52.17,
+        "y1": 92.03
+      },
+      {
+        "amenities": 0,
+        "count": 1,
+        "x0": 70.82,
+        "x1": 100,
+        "y0": 92.03,
+        "y1": 100
+      }
+    ]
+  },
+  "transform": [
+    {
+      "calculate": "datum.amenities == 1 ? '1 amenity' : datum.amenities + ' amenities'",
+      "as": "facilityLabel"
+    },
+    {
+      "calculate": "format(datum.count / 43, '.1%')",
+      "as": "share"
+    },
+    {
+      "calculate": "(datum.x0 + datum.x1) / 2",
+      "as": "centerX"
+    },
+    {
+      "calculate": "(datum.y0 + datum.y1) / 2",
+      "as": "centerY"
+    },
+    {
+      "calculate": "datum.amenities == 0 ? '' : datum.facilityLabel",
+      "as": "displayLabel"
+    },
+    {
+      "calculate": "datum.amenities == 0 ? '' : datum.count + ' playgrounds'",
+      "as": "displayCount"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 4,
+        "cornerRadius": 5
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "nice": false
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "amenities",
+          "type": "ordinal",
+          "scale": {
+            "domain": [0, 1, 2, 3, 4, 5, 6],
+            "range": [
+              "#e5e8e2",
+              "#c4d6c5",
+              "#a8c4ad",
+              "#86ad92",
+              "#67977a",
+              "#497d63",
+              "#285d46"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "facilityLabel",
+            "title": "Recorded facilities"
+          },
+          {
+            "field": "count",
+            "title": "Playgrounds"
+          },
+          {
+            "field": "share",
+            "title": "Share of playgrounds"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "baseline": "bottom",
+        "dy": -3
+      },
+      "encoding": {
+        "x": {
+          "field": "centerX",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "centerY",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "displayLabel"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.amenities >= 4",
+            "value": "white"
+          },
+          "value": "#263f35"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "baseline": "top",
+        "dy": 4
+      },
+      "encoding": {
+        "x": {
+          "field": "centerX",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "centerY",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "displayCount"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.amenities >= 4",
+            "value": "white"
+          },
+          "value": "#263f35"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

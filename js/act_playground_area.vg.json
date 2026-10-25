@@ -1,23 +1,21 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Proportional-symbol map of Canberra playgrounds, with interactive highlighting by surface-area range.",
-
+  "description": "Responsive proportional-symbol map of Canberra playgrounds with interactive surface-area filtering.",
   "width": "container",
-  "height": 550,
-
+  "height": 470,
+  "background": null,
   "projection": {
     "type": "mercator",
     "center": [149.13, -35.3],
     "scale": 55000
   },
-
   "params": [
     {
       "name": "selectedArea",
       "value": "All playground sizes",
       "bind": {
         "input": "select",
-        "name": "Surface area: ",
+        "name": "FILTER BY SIZE",
         "options": [
           "All playground sizes",
           "Under 200 m²",
@@ -29,7 +27,6 @@
       }
     }
   ],
-
   "layer": [
     {
       "data": {
@@ -39,7 +36,6 @@
           "property": "features"
         }
       },
-
       "transform": [
         {
           "window": [
@@ -53,7 +49,6 @@
           "filter": "datum.feature_index === 8"
         }
       ],
-
       "mark": {
         "type": "geoshape",
         "fill": "#F1F5F9",
@@ -65,7 +60,6 @@
       "data": {
         "url": "data/playgrounds_combined_act.csv"
       },
-
       "transform": [
         {
           "filter": "datum.council === 'ACT'"
@@ -78,18 +72,16 @@
           "filter": "isValid(datum.area_m2) && datum.area_m2 > 0"
         },
         {
-          "calculate": "selectedArea === 'All playground sizes' || (selectedArea === 'Under 200 m²' && datum.area_m2 < 200) || (selectedArea === '200–400 m²' && datum.area_m2 >= 200 && datum.area_m2 < 400) || (selectedArea === '400–800 m²' && datum.area_m2 >= 400 && datum.area_m2 < 800) || (selectedArea === '800–1,600 m²' && datum.area_m2 >= 800 && datum.area_m2 < 1600) || (selectedArea === 'Over 1,600 m²' && datum.area_m2 >= 1600)",
-          "as": "isSelected"
+          "filter": "selectedArea === 'All playground sizes' || (selectedArea === 'Under 200 m²' && datum.area_m2 < 200) || (selectedArea === '200–400 m²' && datum.area_m2 >= 200 && datum.area_m2 < 400) || (selectedArea === '400–800 m²' && datum.area_m2 >= 400 && datum.area_m2 < 800) || (selectedArea === '800–1,600 m²' && datum.area_m2 >= 800 && datum.area_m2 < 1600) || (selectedArea === 'Over 1,600 m²' && datum.area_m2 >= 1600)"
         }
       ],
-
       "mark": {
         "type": "circle",
-        "opacity": 0.75,
+        "color": "#4477AA",
+        "opacity": 0.85,
         "stroke": "#ffffff",
         "strokeWidth": 0.5
       },
-
       "encoding": {
         "longitude": {
           "field": "longitude",
@@ -99,37 +91,18 @@
           "field": "latitude",
           "type": "quantitative"
         },
-
-        "color": {
-          "condition": {
-            "test": "datum.isSelected",
-            "value": "#4477AA"
-          },
-          "value": "#D5DAD8"
-        },
-
         "size": {
           "field": "area_m2",
           "type": "quantitative",
-          "title": "Playground surface area (m²)",
           "scale": {
             "type": "linear",
-            "range": [20, 700]
+            "domain": [0, 3300],
+            "range": [20, 700],
+            "clamp": true,
+            "zero": true
           },
-          "legend": {
-            "orient": "bottom",
-            "direction": "horizontal",
-            "title": "Playground surface area (m²)",
-            "values": [250, 750, 1500, 2500, 3300],
-            "format": ",.0f",
-            "symbolType": "circle",
-            "symbolFillColor": "#4477AA",
-            "labelFontSize": 11,
-            "titleFontSize": 12,
-            "offset": 15
-          }
+          "legend": null
         },
-
         "tooltip": [
           {
             "field": "name",
@@ -151,7 +124,6 @@
       }
     }
   ],
-
   "config": {
     "view": {
       "stroke": null

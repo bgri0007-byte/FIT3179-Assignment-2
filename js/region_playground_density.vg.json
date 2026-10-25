@@ -1,0 +1,131 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Ranked recorded playground density across seven Australian study regions, with linked selection highlighting.",
+  "width": "container",
+  "height": 350,
+  "params": [
+    {
+      "name": "selectedRegion",
+      "value": ""
+    }
+  ],
+  "data": {
+    "url": "data/region_playground_density.csv"
+  },
+  "encoding": {
+    "y": {
+      "field": "region",
+      "type": "nominal",
+      "sort": {
+        "field": "density_per_km2",
+        "order": "descending"
+      },
+      "title": null,
+      "axis": {
+        "labelFontSize": 14,
+        "labelLimit": 180,
+        "labelPadding": 10,
+        "ticks": false,
+        "domain": false
+      }
+    },
+    "x": {
+      "field": "density_per_km2",
+      "type": "quantitative",
+      "title": "Recorded playgrounds per km²",
+      "scale": {
+        "zero": true
+      },
+      "axis": {
+        "grid": true,
+        "tickCount": 7,
+        "labelFontSize": 13,
+        "labelPadding": 8,
+        "titleFontSize": 15,
+        "titleFontWeight": "bold",
+        "titlePadding": 14,
+        "domain": false,
+        "tickColor": "#cbd5d1"
+      }
+    },
+    "color": {
+      "condition": {
+        "test": "selectedRegion === '' || datum.region === selectedRegion || (selectedRegion === 'Greater Melbourne' && indexof(['Melbourne', 'Manningham', 'Greater Dandenong'], datum.region) >= 0)",
+        "value": "#527a66"
+      },
+      "value": "#c3cdc5"
+    },
+    "opacity": {
+      "condition": {
+        "test": "selectedRegion === '' || datum.region === selectedRegion || (selectedRegion === 'Greater Melbourne' && indexof(['Melbourne', 'Manningham', 'Greater Dandenong'], datum.region) >= 0)",
+        "value": 1
+      },
+      "value": 0.4
+    },
+    "tooltip": [
+      {
+        "field": "region",
+        "type": "nominal",
+        "title": "Study region"
+      },
+      {
+        "field": "playground_count",
+        "type": "quantitative",
+        "title": "Recorded playgrounds",
+        "format": ",d"
+      },
+      {
+        "field": "area_km2",
+        "type": "quantitative",
+        "title": "Administrative area (km²)",
+        "format": ",.1f"
+      },
+      {
+        "field": "density_per_km2",
+        "type": "quantitative",
+        "title": "Playgrounds per km²",
+        "format": ".3f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 4,
+        "cursor": "pointer"
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 7,
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "#263f35",
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "text": {
+          "field": "density_per_km2",
+          "type": "quantitative",
+          "format": ".2f"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Arial",
+      "titleFont": "Arial",
+      "labelColor": "#263f35",
+      "titleColor": "#263f35",
+      "gridColor": "#e5e7eb"
+    }
+  }
+}

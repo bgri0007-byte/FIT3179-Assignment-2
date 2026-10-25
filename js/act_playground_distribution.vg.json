@@ -1,14 +1,23 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Histogram showing the distribution of recorded playground surface areas across Canberra.",
-
-  "width": 350,
-  "height": 300,
-
+  "description": "Interactive histogram of recorded playground surface areas across Canberra, highlighting the most common 200–400 m² range.",
+  "width": "container",
+  "height": 220,
+  "padding": {
+    "top": 5,
+    "right": 10,
+    "bottom": 5,
+    "left": 5
+  },
+  "background": null,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
   "data": {
     "url": "data/playgrounds_combined_act.csv"
   },
-
   "transform": [
     {
       "filter": "datum.council === 'ACT'"
@@ -19,32 +28,105 @@
     },
     {
       "filter": "isValid(datum.area_m2) && datum.area_m2 > 0"
+    },
+    {
+      "bin": {
+        "step": 200,
+        "extent": [0, 3400]
+      },
+      "field": "area_m2",
+      "as": ["bin_start", "bin_end"]
+    },
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "playground_count"
+        }
+      ],
+      "groupby": ["bin_start", "bin_end"]
+    },
+    {
+      "calculate": "format(datum.bin_start, ',.0f') + '–' + format(datum.bin_end, ',.0f') + ' m²'",
+      "as": "area_range"
     }
   ],
-
   "mark": {
     "type": "bar",
-    "color": "#4477AA",
-    "tooltip": true
+    "orient": "vertical",
+    "stroke": null,
+    "opacity": 0.95
   },
-
   "encoding": {
     "x": {
-      "field": "area_m2",
+      "field": "bin_start",
       "type": "quantitative",
-      "bin": {
-        "step": 200
+      "title": "Playground surface area (m²)",
+      "scale": {
+        "domain": [0, 3400],
+        "nice": false
       },
-      "title": "Playground surface area (m²)"
+      "axis": {
+        "labelFont": "Segoe UI",
+        "labelFontSize": 11,
+        "labelColor": "#64748B",
+        "labelAngle": 0,
+        "tickCount": 6,
+        "format": ",.0f",
+        "titleFont": "Segoe UI",
+        "titleFontSize": 12,
+        "titleColor": "#263F35",
+        "titlePadding": 12,
+        "grid": false,
+        "domain": false
+      }
     },
-
+    "x2": {
+      "field": "bin_end"
+    },
     "y": {
-      "aggregate": "count",
+      "field": "playground_count",
       "type": "quantitative",
-      "title": "Number of playgrounds"
-    }
+      "title": "Number of playgrounds",
+      "scale": {
+        "zero": true
+      },
+      "axis": {
+        "labelFont": "Segoe UI",
+        "labelFontSize": 11,
+        "labelColor": "#64748B",
+        "titleFont": "Segoe UI",
+        "titleFontSize": 12,
+        "titleColor": "#263F35",
+        "titlePadding": 12,
+        "grid": true,
+        "gridColor": "#E7ECE9",
+        "domain": false,
+        "ticks": false,
+        "tickMinStep": 1
+      }
+    },
+    "color": {
+      "condition": {
+        "test": "datum.bin_start === 200",
+        "value": "#315B45"
+      },
+      "value": "#4477AA"
+    },
+    "tooltip": [
+      {
+        "field": "area_range",
+        "type": "nominal",
+        "title": "Surface area"
+      },
+      {
+        "field": "playground_count",
+        "type": "quantitative",
+        "title": "Playgrounds",
+        "format": ",d"
+      }
+    ]
   },
-
   "config": {
     "view": {
       "stroke": null

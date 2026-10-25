@@ -6,30 +6,26 @@
 
     <title>Where Australia Plays | Australian Playground Atlas</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=2" />
+    <link rel="stylesheet" href="style.css?v=7" />
 
-    <!-- Vega-Lite dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   </head>
 
-  <body>
-    <!-- ========================================
-         HERO
-         ======================================== -->
+  <body id="top">
+    <!-- HERO -->
     <header class="hero">
       <p class="hero-eyebrow">AN AUSTRALIAN PLAYGROUND ATLAS</p>
 
       <h1>Where Australia Plays.</h1>
 
-      <p class="hero-description">
-        An exploration of where public playgrounds are located, how their
-        characteristics differ, and what makes each play space unique.
+      <p class="hero-subtitle">
+        <strong>Not all playgrounds are created equal.</strong>
+        Explore where Australia's public playgrounds are located, how they
+        differ, and what their data reveals about the places we play.
       </p>
 
-      <!-- Decorative colour accents -->
       <div class="hero-accent" aria-hidden="true">
         <span></span>
         <span></span>
@@ -37,215 +33,1665 @@
       </div>
     </header>
 
-    <!-- ========================================
-         INTERACTIVE PLAYGROUND ATLAS
-         ======================================== -->
     <main class="atlas-chapters">
-      <!-- ======================================
-           CHAPTER 1 — GEOGRAPHY
-           ====================================== -->
-      <section class="atlas-chapter" id="chapter-geography">
+      <!-- CHAPTER 1: NATIONAL OVERVIEW -->
+      <section class="atlas-chapter" id="chapter-overview">
         <div class="chapter-intro">
           <span class="chapter-number">01</span>
-
           <div>
-            <p class="chapter-eyebrow">THE GEOGRAPHY OF PLAY</p>
-            <h2>Where are Australia's playgrounds?</h2>
+            <p class="chapter-eyebrow">THE NATIONAL PICTURE</p>
+            <h2>Australia's Playgrounds.</h2>
+
             <p class="chapter-description">
-              Explore our study regions and discover how playgrounds are
-              distributed across Manningham.
+              <strong
+                >Seven Australian regions, seven different playground
+                landscapes.</strong
+              >
+              Discover where our study regions are located, how their recorded
+              playground densities compare, and what their datasets reveal about
+              public play spaces.
             </p>
           </div>
         </div>
 
-        <div class="chapter-charts">
-          <!-- Chart 1: Australian study regions -->
+        <div class="chapter-charts chapter-overview-layout">
+          <!-- Australian map -->
           <div class="chart-card">
-            <h2>Where Are Our Study Regions?</h2>
+            <h3>Where Are Our Study Regions?</h3>
+
+            <p>
+              This atlas brings together playground datasets from
+              <strong>seven Australian study regions</strong>, represented by
+              <strong>five locations</strong> on the map. Greater Melbourne
+              groups Melbourne, Manningham and Greater Dandenong.
+            </p>
 
             <div id="australia_map"></div>
 
-            <p>
-              This project explores public playgrounds across selected
-              communities in southeastern Australia, drawing on datasets from
-              local councils and government agencies. These regions provide
-              opportunities to investigate playground distribution,
-              classification, size, shade and available facilities. The datasets
-              differ in geographic coverage and recorded attributes. Rather than
-              treating them as a complete picture of Australian playgrounds, we
-              use regional case studies to explore the characteristics of public
-              play spaces.
+            <p class="map-instruction">
+              Select a location on the map or a bar in the density chart to
+              explore its playground records.
             </p>
           </div>
 
-          <!-- Chart 2: Manningham playground locations and classifications -->
+          <!-- Regional density -->
           <div class="chart-card">
-            <h2>Where Are Manningham's Different Playground Types?</h2>
-
-            <div id="playground_map"></div>
+            <h3>Which Regions Have the Highest Recorded Playground Density?</h3>
 
             <p>
-              Playgrounds in Manningham are not evenly distributed. The mapped
-              locations are concentrated in the western part of the city, while
-              relatively few appear in the east. Small playgrounds appear
-              particularly common, with larger classifications scattered across
-              the region. The map shows recorded playground locations and
-              classifications, rather than measuring how accessible playgrounds
-              are to residents.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======================================
-           CHAPTER 2 — SIZE & CLASSIFICATION
-           ====================================== -->
-      <section class="atlas-chapter" id="chapter-characteristics">
-        <div class="chapter-intro">
-          <span class="chapter-number">02</span>
-
-          <div>
-            <p class="chapter-eyebrow">SIZE & CLASSIFICATION</p>
-            <h2>Not all playgrounds are equal.</h2>
-            <p class="chapter-description">
-              From neighbourhood play spaces to larger regional playgrounds,
-              explore how playground classifications and surface areas vary
-              across our study regions.
-            </p>
-          </div>
-        </div>
-
-        <!-- Featured map with two supporting charts -->
-        <div class="chapter-charts chapter-two-layout">
-          <!-- Chart 3: Manningham playground classifications -->
-          <div class="chart-card chart-classifications">
-            <h2>Which Playground Types Are Most Common?</h2>
-
-            <p>
-              Manningham's playgrounds are classified into four categories. This
-              chart compares the number of recorded playgrounds in each
-              category.
+              <strong>Playground counts alone can be misleading.</strong>
+              Regions vary considerably in size, so this chart compares recorded
+              playgrounds per square kilometre of administrative land area.
             </p>
 
-            <div id="playground_classifications"></div>
-          </div>
+            <div id="region_playground_density"></div>
 
-          <!-- Chart 4: Canberra proportional-symbol map -->
-          <div class="chart-card chart-featured">
-            <h2>How Large Are Canberra's Playgrounds?</h2>
-
-            <p>
-              This close-up of Canberra's urban areas shows how playground sizes
-              vary across the city. Larger circles represent playgrounds with
-              greater recorded surface areas, measured in square metres. Hover
-              over a circle to explore individual playgrounds.
-            </p>
-
-            <div id="act_playground_area"></div>
-
-            <!-- Highlighted narrative insight -->
             <div class="map-insight">
-              <span class="insight-label">THE BIGGER PICTURE</span>
-
+              <span class="insight-label"
+                >DENSITY DOESN'T TELL THE WHOLE STORY</span
+              >
               <p class="insight-headline">
-                Most playgrounds are
-                <span class="highlight-text">small</span>. A few are
-                substantially larger.
+                Manningham has approximately
+                <span class="highlight-text">27 times</span>
+                the recorded playground density of Greater Shepparton.
               </p>
 
               <p class="insight-detail">
-                Across Canberra, recorded playground areas cluster around
-                200–400 m². Explore the map to discover where the larger spaces
-                are located.
+                <strong
+                  >Higher recorded density does not necessarily mean better
+                  playground access.</strong
+                >
+                Comparing compact urban councils with larger rural regions shows
+                why land area alone cannot capture accessibility.
               </p>
             </div>
           </div>
 
-          <!-- Chart 5: Canberra playground surface-area distribution -->
-          <div class="chart-card chart-distribution">
-            <h2>Are Most Canberra Playgrounds Small or Large?</h2>
+          <!-- Data completeness -->
+          <div class="chart-card chart-wide">
+            <h3>How Much Do We Know About Each Region's Playgrounds?</h3>
 
             <p>
-              Most recorded Canberra playgrounds have relatively small surface
-              areas, with the greatest concentration between 200 and 400 m². The
-              distribution is strongly right-skewed.
+              <strong
+                >Not every playground dataset tells the same story.</strong
+              >
+              This heatmap compares the availability of usable information
+              across five categories and seven study regions. Darker green
+              indicates more complete records, while grey identifies information
+              not collected in the source dataset.
             </p>
 
-            <div id="act_playground_distribution"></div>
+            <div id="region_data_completeness"></div>
+
+            <div class="map-insight">
+              <span class="insight-label">THE INFORMATION GAP</span>
+              <p class="insight-headline">
+                Every region tells us
+                <span class="highlight-text">where</span>
+                playgrounds are, but not always what they offer.
+              </p>
+
+              <p class="insight-detail">
+                <strong
+                  >Location information is available across all seven study
+                  regions.</strong
+                >
+                However, details about playground size, type, shade and
+                facilities vary considerably. These gaps help explain why the
+                following chapters examine different regions.
+              </p>
+            </div>
+
+            <p class="chapter-source-note">
+              <strong>How to read this heatmap:</strong>
+              Categories group related, but not always identical, attributes.
+              For example, Hobart records shade trees, while the ACT records
+              shade classifications. The facilities category includes amenities
+              or features, and ACT parking information. A dash (—) indicates
+              that information was not collected.
+            </p>
           </div>
         </div>
       </section>
 
-      <!-- ======================================
-           CHAPTER 3 — SHADE & FACILITIES
-           ====================================== -->
-      <section class="atlas-chapter" id="chapter-shade">
+      <!-- CHAPTER 2: GEOGRAPHY -->
+      <section class="atlas-chapter" id="chapter-geography">
         <div class="chapter-intro">
-          <span class="chapter-number">03</span>
-
+          <span class="chapter-number">02</span>
           <div>
-            <p class="chapter-eyebrow">SHADE & PLAYGROUND FEATURES</p>
-            <h2>A place in the shade.</h2>
+            <p class="chapter-eyebrow">SPATIAL DISTRIBUTION</p>
+            <h2>The Geography of Play.</h2>
             <p class="chapter-description">
-              Shade is an important characteristic of outdoor play spaces.
-              Explore how shade classifications vary across Canberra's
-              playgrounds and whether they differ with playground size.
+              <strong
+                >Where playgrounds are located is only half the story.</strong
+              >
+              Comparing their distribution with where people live reveals a
+              different perspective on access to play spaces.
             </p>
           </div>
         </div>
 
         <div class="chapter-charts">
-          <!-- Chart 6: Canberra shade classifications -->
-          <div class="chart-card">
-            <h2>How Shaded Are Canberra's Playgrounds?</h2>
+          <!-- MANNINGHAM MAP -->
+          <div class="chart-card manningham-feature">
+            <h3>Where Are Manningham's Different Playground Types?</h3>
 
-            <p>
-              More than half of active ACT playgrounds are classified as having
-              FAIR shade. GOOD is the next most common classification, while
-              smaller proportions are recorded as POOR or NO SHADE. Missing
-              shade information is shown separately.
-            </p>
+            <div class="manningham-feature-layout">
+              <div class="manningham-map-column">
+                <div id="playground_map"></div>
+              </div>
 
-            <div id="act_playground_shade"></div>
+              <div class="manningham-story-column">
+                <!-- MAP INSTRUCTIONS -->
+                <div class="explore-prompt">
+                  <div class="explore-prompt-heading">
+                    <span class="explore-prompt-icon">↗</span>
+                    <span>EXPLORE THE MAP</span>
+                  </div>
+
+                  <p>
+                    <strong>Which playground types dominate Manningham?</strong>
+                    Filter the map by classification to discover where different
+                    playgrounds are located. Hover over a point to identify an
+                    individual playground.
+                  </p>
+                </div>
+
+                <!-- KEY INSIGHT -->
+                <div class="map-insight">
+                  <span class="insight-label">A WEST–EAST DIVIDE</span>
+
+                  <p class="insight-headline">
+                    Manningham's playgrounds are
+                    <span class="highlight-text">concentrated in the west</span
+                    >, with fewer recorded locations in the east.
+                  </p>
+
+                  <p class="insight-detail">
+                    <strong>
+                      A concentration of playgrounds does not necessarily mean
+                      better access.
+                    </strong>
+                    The map shows their locations, but not the number of nearby
+                    residents or how easily they can reach each playground.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- Chart 7: Shade classifications by playground size -->
-          <div class="chart-card">
-            <h2>How Does Shade Provision Vary with Playground Size?</h2>
-
+          <!-- CANBERRA CASE STUDY -->
+          <div class="comparison-intro">
+            <p class="chapter-eyebrow">CANBERRA CASE STUDY</p>
+            <h3>Do Playgrounds Follow the Population?</h3>
             <p>
-              This heatmap compares shade classifications across different
-              playground size ranges in Canberra. Darker cells indicate a higher
-              percentage of playgrounds within that size range, allowing shade
-              provision to be compared regardless of how many playgrounds each
-              group contains.
+              <strong
+                >More playgrounds doesn't always mean better provision.</strong
+              >
+              Comparing playground density, population density and playgrounds
+              per 1,000 residents reveals how different measures can tell
+              different stories about the same neighbourhoods.
+            </p>
+          </div>
+
+          <!-- THREE-MAP COMPARISON -->
+          <div class="canberra-triple-comparison">
+            <!-- MAP 1: PLAYGROUND DENSITY -->
+            <div class="chart-card canberra-map-card">
+              <span class="map-number">01 / LAND AREA</span>
+              <h3>Playground Density</h3>
+
+              <p>
+                <strong>Where are playgrounds most concentrated?</strong>
+                Darker blue indicates more recorded playgrounds per square
+                kilometre.
+              </p>
+
+              <div id="act_playground_density"></div>
+            </div>
+
+            <!-- MAP 2: POPULATION DENSITY -->
+            <div class="chart-card canberra-map-card">
+              <span class="map-number">02 / POPULATION</span>
+              <h3>Population Density</h3>
+
+              <p>
+                <strong>Where do more people live?</strong>
+                Darker orange indicates more residents per square kilometre,
+                based on the 2021 Australian Census.
+              </p>
+
+              <div id="act_population_density"></div>
+            </div>
+
+            <!-- MAP 3: PLAYGROUNDS PER RESIDENT -->
+            <div class="chart-card canberra-map-card">
+              <span class="map-number">03 / PROVISION</span>
+              <h3>Playgrounds per 1,000 Residents</h3>
+
+              <p>
+                <strong>How does provision compare with population?</strong>
+                Darker green indicates more recorded playgrounds relative to the
+                number of residents.
+              </p>
+
+              <div id="act_playgrounds_per_resident"></div>
+            </div>
+          </div>
+
+          <!-- CANBERRA INSIGHT -->
+          <div class="map-insight canberra-comparison-insight">
+            <span class="insight-label">THREE MAPS, THREE PERSPECTIVES</span>
+
+            <p class="insight-headline">
+              A suburb with a high concentration of playgrounds does not
+              necessarily have
+              <span class="highlight-text">
+                more playgrounds relative to its residents.
+              </span>
             </p>
 
-            <div id="act_shade_size_heatmap"></div>
+            <p class="insight-detail">
+              <strong>Each map answers a different question.</strong>
+              Blue shows playgrounds per square kilometre, orange shows
+              population density, and green shows playgrounds per 1,000
+              residents. Together, they demonstrate why playground concentration
+              alone cannot describe provision.
+            </p>
+          </div>
+        </div>
+
+        <!-- CHAPTER 2 TAKEAWAY -->
+        <div class="chapter-takeaway">
+          <p class="chapter-takeaway-label">WHAT THE MAPS CAN'T TELL US</p>
+
+          <p class="chapter-takeaway-headline">
+            Playground provision is about
+            <span class="highlight-text"
+              >more than location and population.</span
+            >
+          </p>
+
+          <p class="chapter-takeaway-text">
+            These maps cannot tell us whether playgrounds are large enough, well
+            equipped or suitable for the communities they serve. The following
+            chapters examine
+            <strong>playground size, shade and facilities</strong>
+            to build a more complete picture.
+          </p>
+
+          <p class="chapter-method-note">
+            Population figures are from the 2021 Australian Census. The
+            population and playground datasets may represent different reference
+            dates. Suburbs without matched population data or with zero
+            residents cannot be assigned a meaningful playgrounds-per-resident
+            ratio.
+          </p>
+        </div>
+      </section>
+
+      <!-- CHAPTER 3: SIZE AND CLASSIFICATION -->
+
+      <section class="atlas-chapter" id="chapter-characteristics">
+        <!-- CHAPTER INTRODUCTION -->
+        <div class="chapter-intro">
+          <span class="chapter-number">03</span>
+
+          <div>
+            <p class="chapter-eyebrow">SIZE & CLASSIFICATION</p>
+
+            <h2>Not All Playgrounds Are Equal.</h2>
+
+            <p class="chapter-description">
+              <strong>Playgrounds come in all shapes and sizes.</strong>
+              From small neighbourhood play spaces to larger destinations, this
+              chapter explores how playground classifications and recorded
+              surface areas differ across our study regions.
+            </p>
+          </div>
+        </div>
+
+        <!-- MAIN CHAPTER LAYOUT -->
+        <div class="chapter-three-layout">
+          <!-- FULL-WIDTH CANBERRA FEATURE -->
+          <div class="chart-card chapter-three-map">
+            <!-- FEATURE HEADING -->
+            <div class="chapter-three-feature-heading">
+              <p class="chapter-eyebrow">CANBERRA CASE STUDY</p>
+
+              <h3>How Large Are Canberra's Playgrounds?</h3>
+
+              <p>
+                <strong
+                  >Canberra's playgrounds vary considerably in size.</strong
+                >
+                This map reveals where larger and smaller playgrounds are
+                located across the city's urban areas. Circle size represents
+                recorded playground surface area in square metres. Hover over a
+                circle to explore individual playgrounds.
+              </p>
+            </div>
+
+            <!-- MAP + CONTROLS GRID -->
+            <div class="chapter-three-feature-grid">
+              <!-- LEFT: INTERACTIVE CANBERRA MAP -->
+              <div class="chapter-three-map-visual">
+                <!-- EXISTING VEGA-LITE MAP -->
+                <div id="act_playground_area"></div>
+              </div>
+
+              <!-- RIGHT: CONTROLS, STATISTICS AND INSIGHT -->
+              <div class="chapter-three-feature-sidebar">
+                <!-- PLAYGROUND SIZE LEGEND AND FILTER -->
+                <div class="playground-size-panel">
+                  <p class="playground-size-panel-title">
+                    PLAYGROUND SURFACE AREA (m²)
+                  </p>
+
+                  <div class="playground-size-legend">
+                    <div class="playground-size-item">
+                      <span
+                        class="playground-size-symbol"
+                        data-area="200"
+                      ></span>
+                      <span>200</span>
+                    </div>
+
+                    <div class="playground-size-item">
+                      <span
+                        class="playground-size-symbol"
+                        data-area="800"
+                      ></span>
+                      <span>800</span>
+                    </div>
+
+                    <div class="playground-size-item">
+                      <span
+                        class="playground-size-symbol"
+                        data-area="1600"
+                      ></span>
+                      <span>1,600</span>
+                    </div>
+
+                    <div class="playground-size-item">
+                      <span
+                        class="playground-size-symbol"
+                        data-area="3300"
+                      ></span>
+                      <span>3,300</span>
+                    </div>
+                  </div>
+
+                  <!-- EXISTING VEGA-LITE FILTER MOVED HERE BY JS -->
+                  <div
+                    id="playground-size-filter"
+                    class="playground-size-filter"
+                  ></div>
+                </div>
+
+                <!-- LIVE PLAYGROUND SIZE PROFILE -->
+                <div class="playground-selection-summary" aria-live="polite">
+                  <div class="selection-profile-header">
+                    <p class="selection-summary-label">
+                      LIVE SELECTION PROFILE
+                    </p>
+
+                    <span id="selected-playground-range">
+                      All playground sizes
+                    </span>
+                  </div>
+
+                  <!-- THREE LIVE STATISTICS -->
+                  <div class="selection-summary-stats">
+                    <div>
+                      <span id="selected-playground-count">—</span>
+                      <p>Playgrounds</p>
+                    </div>
+
+                    <div>
+                      <span id="selected-playground-percentage">—</span>
+                      <p>Of recorded playgrounds</p>
+                    </div>
+
+                    <div>
+                      <span id="selected-playground-median">—</span>
+                      <p>Median area (m²)</p>
+                    </div>
+                  </div>
+
+                  <!-- SELECTION PROGRESS BAR -->
+                  <div class="selection-profile-progress">
+                    <div class="selection-progress-heading">
+                      <span> SHARE OF RECORDED PLAYGROUNDS </span>
+
+                      <span id="selected-playground-fraction"> — </span>
+                    </div>
+
+                    <div
+                      class="selection-progress-track"
+                      id="selected-playground-progress"
+                      role="progressbar"
+                      aria-label="Percentage of playgrounds in selected size range"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      aria-valuenow="0"
+                    >
+                      <div id="selected-playground-progress-fill"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- DYNAMIC MAP INSIGHT -->
+                <div class="map-insight playground-dynamic-insight">
+                  <span class="insight-label">
+                    WHAT THIS SELECTION REVEALS
+                  </span>
+
+                  <p class="insight-headline" id="playground-dynamic-headline">
+                    Most playgrounds are small. A few are substantially larger.
+                  </p>
+
+                  <p class="insight-detail" id="playground-dynamic-detail">
+                    Use the size filter to explore how Canberra's recorded
+                    playgrounds are distributed across different surface-area
+                    ranges.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUPPORTING CHARTS: TWO-COLUMN LAYOUT -->
+          <div class="chapter-three-side">
+            <!-- MANNINGHAM CLASSIFICATION CHART -->
+            <div class="chart-card chart-classifications">
+              <p class="chapter-eyebrow">MANNINGHAM CASE STUDY</p>
+
+              <h3>Which Playground Types Are Most Common?</h3>
+
+              <p>
+                <strong>Not all playgrounds serve the same purpose.</strong>
+                Manningham classifies its recorded playgrounds into four
+                categories: Small, Large, District and Regional. This chart
+                reveals how frequently each classification occurs.
+              </p>
+
+              <!-- EXISTING VEGA-LITE CHART -->
+              <div id="playground_classifications"></div>
+
+              <!-- CLASSIFICATION INSIGHT -->
+              <div class="map-insight">
+                <span class="insight-label">SMALL SPACES DOMINATE</span>
+
+                <p class="insight-headline">
+                  <span class="highlight-text">Nearly 68%</span>
+                  of Manningham's recorded playgrounds are classified as Small
+                  Playgrounds.
+                </p>
+
+                <p class="insight-detail">
+                  <strong
+                    >108 of 159 playgrounds are classified as Small.</strong
+                  >
+                  In contrast, just four are classified as Regional Playgrounds.
+                  These categories describe their designated roles, rather than
+                  directly measuring their surface areas.
+                </p>
+              </div>
+            </div>
+
+            <!-- CANBERRA SIZE DISTRIBUTION CHART -->
+            <div class="chart-card chart-distribution">
+              <p class="chapter-eyebrow">CANBERRA CASE STUDY</p>
+
+              <h3>Are Most Canberra Playgrounds Small or Large?</h3>
+
+              <p>
+                <strong
+                  >Most Canberra playgrounds occupy relatively small
+                  areas.</strong
+                >
+                The greatest concentration falls between 200 and 400 m², while a
+                small number of much larger playgrounds create a long tail in
+                the distribution.
+              </p>
+
+              <!-- EXISTING VEGA-LITE HISTOGRAM -->
+              <div id="act_playground_distribution"></div>
+
+              <!-- DISTRIBUTION INSIGHT -->
+              <div class="map-insight">
+                <span class="insight-label">SMALL PLAYGROUNDS, LONG TAIL</span>
+
+                <p class="insight-headline">
+                  A small number of
+                  <span class="highlight-text"
+                    >exceptionally large playgrounds</span
+                  >
+                  extend the distribution.
+                </p>
+
+                <p class="insight-detail">
+                  <strong>Some recorded playgrounds exceed 2,000 m².</strong>
+                  These larger spaces are uncommon compared with the many
+                  smaller playgrounds. Hover over the bars to explore the number
+                  of playgrounds in each size range.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHAPTER 3 TAKEAWAY -->
+        <div class="chapter-takeaway chapter-three-takeaway">
+          <p class="chapter-takeaway-label">WHAT SIZE TELLS US</p>
+
+          <p class="chapter-takeaway-headline">
+            Playground provision is about
+            <span class="highlight-text">
+              more than the number of locations.
+            </span>
+          </p>
+
+          <p class="chapter-takeaway-text">
+            Manningham's classification data shows that
+            <strong>Small Playgrounds dominate its recorded network</strong>,
+            while Canberra's surface-area data reveals a concentration of
+            smaller spaces alongside a few substantially larger ones. Although
+            these datasets measure different characteristics, both demonstrate
+            why
+            <strong>playground size and type matter</strong>
+            when understanding the spaces available to communities.
+          </p>
+        </div>
+      </section>
+
+      <!-- CHAPTER 4: SHADE AND FACILITIES -->
+      <section class="atlas-chapter" id="chapter-shade">
+        <!-- CHAPTER INTRODUCTION -->
+        <div class="chapter-intro">
+          <span class="chapter-number">04</span>
+
+          <div>
+            <p class="chapter-eyebrow">COMFORT & AMENITIES</p>
+            <h2>A Place in the Shade.</h2>
+
+            <p class="chapter-description">
+              What makes a playground comfortable and welcoming? Explore shade
+              provision across Canberra's playgrounds and the facilities
+              recorded in Hobart's public play spaces.
+            </p>
+          </div>
+        </div>
+
+        <div class="chapter-charts chapter-four-layout">
+          <!-- =========================================
+     PART 1: CANBERRA SHADE
+     ========================================= -->
+
+          <!-- CANBERRA SHADE OVERVIEW -->
+          <div class="chart-card chapter-four-shade-card shade-overview-card">
+            <p class="chapter-eyebrow">CANBERRA CASE STUDY</p>
+
+            <h3>How Shaded Are Canberra's Playgrounds?</h3>
+
+            <p>
+              <strong>
+                FAIR shade is the most common classification across Canberra's
+                active playgrounds.
+              </strong>
+              GOOD shade is the next most frequent, while smaller proportions
+              are classified as POOR or NO SHADE. Playgrounds without recorded
+              shade information are shown separately.
+            </p>
+
+            <div class="shade-overview-content">
+              <!-- TOP: DOUGHNUT AND LEGEND -->
+              <div class="shade-chart-layout">
+                <!-- EXISTING VEGA-LITE DOUGHNUT -->
+                <div class="shade-doughnut-container">
+                  <div id="act_playground_shade"></div>
+                </div>
+
+                <!-- CUSTOM SHADE LEGEND -->
+                <div class="shade-custom-legend">
+                  <p class="shade-legend-title">SHADE CLASSIFICATION</p>
+
+                  <div class="shade-legend-items">
+                    <div class="shade-legend-item">
+                      <span
+                        class="shade-legend-dot"
+                        style="background: #dba44a"
+                      ></span>
+                      <span>FAIR</span>
+                    </div>
+
+                    <div class="shade-legend-item">
+                      <span
+                        class="shade-legend-dot"
+                        style="background: #4477aa"
+                      ></span>
+                      <span>GOOD</span>
+                    </div>
+
+                    <div class="shade-legend-item">
+                      <span
+                        class="shade-legend-dot"
+                        style="background: #cb75a1"
+                      ></span>
+                      <span>NO SHADE</span>
+                    </div>
+
+                    <div class="shade-legend-item">
+                      <span
+                        class="shade-legend-dot"
+                        style="background: #82c5e7"
+                      ></span>
+                      <span>POOR</span>
+                    </div>
+
+                    <div class="shade-legend-item">
+                      <span
+                        class="shade-legend-dot"
+                        style="background: #9b9b9b"
+                      ></span>
+                      <span>Not recorded</span>
+                    </div>
+
+                    <div class="shade-legend-item">
+                      <span
+                        class="shade-legend-dot"
+                        style="background: #af3e9e"
+                      ></span>
+                      <span>Other</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BOTTOM: SHADE SUMMARY -->
+              <div class="shade-overview-summary">
+                <p class="shade-summary-eyebrow">SHADE AT A GLANCE</p>
+
+                <div class="shade-summary-grid">
+                  <!-- FAIR SHADE -->
+                  <div class="shade-summary-item">
+                    <span class="shade-summary-label">
+                      MOST COMMON CLASSIFICATION
+                    </span>
+
+                    <strong class="shade-summary-value">
+                      <span class="shade-summary-dot shade-fair"></span>
+                      FAIR shade
+                    </strong>
+
+                    <p>More than half of active playgrounds.</p>
+                  </div>
+
+                  <!-- GOOD SHADE -->
+                  <div class="shade-summary-item">
+                    <span class="shade-summary-label">
+                      SECOND MOST COMMON
+                    </span>
+
+                    <strong class="shade-summary-value">
+                      <span class="shade-summary-dot shade-good"></span>
+                      GOOD shade
+                    </strong>
+
+                    <p>The next largest recorded shade category.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CANBERRA SHADE BY PLAYGROUND SIZE -->
+          <div class="chart-card chapter-four-shade-card shade-size-card">
+            <p class="chapter-eyebrow">CANBERRA CASE STUDY</p>
+
+            <h3>Does Playground Size Make a Difference to Shade?</h3>
+
+            <p>
+              <strong>
+                Shade provision differs across playground size groups.
+              </strong>
+              This heatmap shows the percentage of playgrounds in each shade
+              classification within each size range. Darker cells indicate a
+              greater share of that size group, rather than a greater number of
+              playgrounds.
+            </p>
+
+            <!-- EXISTING VEGA-LITE HEATMAP -->
+            <div class="chapter-four-chart-area">
+              <div id="act_shade_size_heatmap"></div>
+            </div>
+
+            <!-- SUPPORTING HEATMAP INSIGHT -->
+            <div class="map-insight shade-size-insight">
+              <span class="insight-label">
+                SIZE DOESN'T TELL THE WHOLE STORY
+              </span>
+
+              <p class="insight-headline">
+                Playground size does not guarantee
+                <span class="highlight-text">
+                  a better shade classification.
+                </span>
+              </p>
+
+              <p class="insight-detail">
+                FAIR shade is prominent across several size groups, but the
+                distribution of shade classifications varies with playground
+                area. Compare the cells within each column to see how the
+                proportions change between smaller and larger playgrounds.
+              </p>
+            </div>
+          </div>
+
+          <!-- =========================================
+     PART 2: HOBART FACILITIES
+     ========================================= -->
+
+          <!-- HOBART CASE STUDY INTRODUCTION -->
+          <div class="case-study-intro chapter-four-hobart-intro">
+            <p class="chapter-eyebrow">CASE STUDY · HOBART</p>
+
+            <h3>Beyond the Playground Equipment.</h3>
+
+            <p>
+              <strong>
+                A playground's value extends beyond its equipment.
+              </strong>
+              Seating, shade, toilets and shelter all contribute to how
+              comfortable and welcoming a public play space can be.
+            </p>
+
+            <p>
+              To explore this, we turn to historical records of
+              <strong>43 Hobart playgrounds</strong>, examining both where
+              amenities are recorded and which facilities are most common. This
+              case study considers a different aspect of playground provision
+              rather than directly comparing Hobart with Canberra.
+            </p>
+          </div>
+
+          <!-- =========================================
+     HOBART — LOCATION AND FACILITIES
+     ========================================= -->
+
+          <!-- HOBART PLAYGROUND MAP -->
+          <div class="chart-card chapter-four-hobart-card hobart-map-card">
+            <p class="chapter-eyebrow">HOBART CASE STUDY · LOCATION</p>
+
+            <h3>Where Are Hobart's Playgrounds Located?</h3>
+
+            <p>
+              <strong>
+                Recorded amenities vary between Hobart's playgrounds.
+              </strong>
+              This map shows the locations of 43 playgrounds, with darker green
+              markers representing more recorded amenities. Hover over a point
+              to explore the facilities available in the historical dataset.
+            </p>
+
+            <!-- INTERACTIVE MAP AND TASMANIA LOCATOR -->
+            <div class="hobart-map-visual">
+              <div class="hobart-map-stage">
+                <!-- EXISTING VEGA-LITE MAP -->
+                <div id="hobart_playground_map"></div>
+
+                <!-- TASMANIA LOCATOR INSET -->
+                <div
+                  class="hobart-locator"
+                  aria-label="Hobart is located in south-eastern Tasmania"
+                >
+                  <p class="hobart-locator-title">WHERE IS HOBART?</p>
+
+                  <div id="hobart_locator_map"></div>
+
+                  <p class="hobart-locator-caption">TASMANIA · AUSTRALIA</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- MAP CONTEXT -->
+            <div class="hobart-map-context">
+              <div class="hobart-map-stat">
+                <strong>43</strong>
+                <span>Recorded playgrounds</span>
+              </div>
+
+              <div class="hobart-map-context-text">
+                <strong>Explore the distribution</strong>
+
+                <p>
+                  Each marker represents one playground. Its colour indicates
+                  how many of the six selected amenities are recorded at that
+                  location.
+                </p>
+              </div>
+            </div>
+
+            <!-- DATA NOTE -->
+            <p class="chapter-four-source-note">
+              <small>
+                Based on 2014 records. Marker colour represents recorded amenity
+                count, not playground quality, condition or current
+                availability.
+              </small>
+            </p>
+          </div>
+
+          <!-- HOBART FACILITY FREQUENCY -->
+          <div
+            class="chart-card chapter-four-hobart-card hobart-facilities-card"
+          >
+            <p class="chapter-eyebrow">HOBART CASE STUDY · FACILITIES</p>
+
+            <h3>Which Facilities Are Most Common?</h3>
+
+            <p>
+              <strong>
+                Seating is widespread, but shelter is far less common.
+              </strong>
+              This chart compares six recorded amenities across Hobart's 43
+              playgrounds. Each value represents the percentage of playgrounds
+              with that facility recorded.
+            </p>
+
+            <!-- EXISTING VEGA-LITE FACILITY CHART -->
+            <div class="hobart-facilities-visual">
+              <div id="hobart_facility_frequency"></div>
+            </div>
+
+            <!-- FACILITY INSIGHT -->
+            <div class="map-insight hobart-facilities-insight">
+              <span class="insight-label"> THE COMFORT GAP </span>
+
+              <p class="insight-headline">
+                <span class="highlight-text">42 of 43</span>
+                playgrounds record seating, but only
+                <span class="highlight-text">10 of 43</span>
+                record shelter.
+              </p>
+
+              <p class="insight-detail">
+                <strong>
+                  Basic seating is almost universal in these records.
+                </strong>
+                Shelter, however, appears at fewer than one in four playgrounds.
+                These figures describe recorded facility presence, not the
+                condition or current availability of those amenities.
+              </p>
+            </div>
+          </div>
+
+          <!-- =========================================
+     HOBART FACILITY TREEMAP
+     ========================================= -->
+
+          <div class="chart-card chart-wide chapter-four-treemap-card">
+            <p class="chart-kicker">HOBART · AMENITY COMBINATIONS</p>
+
+            <h3>How Well Equipped Are Hobart's Playgrounds?</h3>
+
+            <p>
+              <strong>
+                Hobart's playgrounds vary considerably in their recorded
+                amenities.
+              </strong>
+              Of the 43 playgrounds, 13 have just one of the six selected
+              amenities recorded, while six have all six. This treemap groups
+              playgrounds by their number of recorded amenities. Larger
+              rectangles represent more playgrounds, while darker colours
+              indicate a greater number of amenities.
+            </p>
+
+            <!-- EXISTING VEGA-LITE TREEMAP -->
+            <div id="hobart_facilities_treemap"></div>
+
+            <!-- =========================================
+     TREEMAP LEGENDS
+     ========================================= -->
+
+            <div class="treemap-legends">
+              <!-- FACILITY DEFINITIONS -->
+              <div class="treemap-legend-group">
+                <h4>What counts as a facility?</h4>
+
+                <p>Six amenities are included in the analysis:</p>
+
+                <div class="facility-tags">
+                  <span>Seating</span>
+                  <span>Shelter</span>
+                  <span>Toilets</span>
+                  <span>Barbecues</span>
+                  <span>Shade trees</span>
+                  <span>Universal access</span>
+                </div>
+              </div>
+
+              <!-- COLOUR LEGEND -->
+              <div class="treemap-legend-group">
+                <h4>How to read the colours</h4>
+
+                <p>
+                  Darker green indicates more recorded amenities. Rectangle area
+                  represents the number of playgrounds in each group.
+                </p>
+
+                <div class="treemap-colour-legend">
+                  <div class="treemap-colour-item">
+                    <span style="background: #e5e8e2"></span>
+                    <small>0</small>
+                  </div>
+
+                  <div class="treemap-colour-item">
+                    <span style="background: #c4d6c5"></span>
+                    <small>1</small>
+                  </div>
+
+                  <div class="treemap-colour-item">
+                    <span style="background: #a8c4ad"></span>
+                    <small>2</small>
+                  </div>
+
+                  <div class="treemap-colour-item">
+                    <span style="background: #86ad92"></span>
+                    <small>3</small>
+                  </div>
+
+                  <div class="treemap-colour-item">
+                    <span style="background: #67977a"></span>
+                    <small>4</small>
+                  </div>
+
+                  <div class="treemap-colour-item">
+                    <span style="background: #497d63"></span>
+                    <small>5</small>
+                  </div>
+
+                  <div class="treemap-colour-item">
+                    <span style="background: #285d46"></span>
+                    <small>6</small>
+                  </div>
+                </div>
+
+                <div class="treemap-legend-caption">
+                  <span>Fewer amenities</span>
+                  <span>More amenities</span>
+                </div>
+
+                <!-- ZERO-AMENITY EXPLANATION -->
+                <p class="treemap-zero-note">
+                  <strong>Note:</strong>
+                  One playground has none of the six selected amenities
+                  recorded. It appears as the thin, light-grey rectangle at the
+                  bottom-right of the treemap.
+                </p>
+              </div>
+            </div>
+
+            <!-- =========================================
+     TREEMAP INSIGHT
+     ========================================= -->
+
+            <div class="map-insight">
+              <span class="insight-label"> BEYOND THE PLAY EQUIPMENT </span>
+
+              <p class="insight-headline">
+                Seating is common, but
+                <span class="highlight-text">
+                  a broader range of amenities is not guaranteed.
+                </span>
+              </p>
+
+              <p class="insight-detail">
+                <strong>
+                  All 13 playgrounds with just one recorded amenity have seating
+                  alone.
+                </strong>
+                Meanwhile, six playgrounds record all six selected amenities,
+                and one records none. This reveals considerable variation in the
+                range of facilities documented across Hobart's playgrounds,
+                without establishing their overall quality or accessibility.
+              </p>
+            </div>
+
+            <!-- DATA SOURCE -->
+            <p class="chapter-four-source-note">
+              <small>
+                Source: Hobart Parks and Playgrounds 2014 dataset, 43
+                playgrounds. Historical facility records.
+              </small>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================
+     CHAPTER 5: PUBLIC OPEN SPACE
+     ========================================= -->
+
+      <section class="atlas-chapter" id="chapter-open-space">
+        <!-- CHAPTER INTRODUCTION -->
+        <div class="chapter-intro">
+          <span class="chapter-number">05</span>
+
+          <div>
+            <p class="chapter-eyebrow">PLAYGROUNDS & COMMUNITY</p>
+
+            <h2>Playgrounds & Public Open Space.</h2>
+
+            <p class="chapter-description">
+              <strong>
+                Playgrounds form part of a wider network of recreational spaces.
+              </strong>
+              This final chapter examines how Manningham's playgrounds relate to
+              mapped public open space and where that relationship differs
+              between suburbs.
+            </p>
+          </div>
+        </div>
+
+        <!-- MAIN TWO-COLUMN LAYOUT -->
+        <div class="chapter-five-layout">
+          <!-- =====================================
+         MANNINGHAM PLAYGROUND MAP
+         ===================================== -->
+
+          <div class="chart-card chapter-five-map-card">
+            <p class="chapter-eyebrow">MANNINGHAM CASE STUDY · LOCATION</p>
+
+            <h3>
+              Where Are Manningham's Playgrounds Outside Mapped Open Space?
+            </h3>
+
+            <p>
+              <strong>
+                Most of Manningham's recorded playgrounds fall within mapped
+                recreational open space.
+              </strong>
+              Explore the distribution of playgrounds across the municipality
+              and identify the nine locations outside these mapped areas.
+            </p>
+
+            <!-- INTERACTIVE MAP -->
+            <div class="chapter-five-map-visual">
+              <div id="manningham_open_space_map"></div>
+            </div>
+
+            <!-- MAP LEGEND -->
+            <div class="chapter-five-map-legend">
+              <span>
+                <i class="chapter-five-legend-dot within"></i>
+                Within mapped open space
+              </span>
+
+              <span>
+                <i class="chapter-five-legend-dot outside"></i>
+                Outside mapped open space
+              </span>
+            </div>
+
+            <!-- SUMMARY STATISTICS -->
+            <div class="chapter-five-map-summary">
+              <div class="chapter-five-stat">
+                <span class="chapter-five-stat-number">159</span>
+                <span class="chapter-five-stat-label">
+                  Recorded playgrounds
+                </span>
+              </div>
+
+              <div class="chapter-five-stat">
+                <span class="chapter-five-stat-number">150</span>
+                <span class="chapter-five-stat-label">
+                  Within mapped open space
+                </span>
+              </div>
+
+              <div class="chapter-five-stat chapter-five-stat-exception">
+                <span class="chapter-five-stat-number">9</span>
+                <span class="chapter-five-stat-label">
+                  Outside mapped open space
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- =====================================
+         SUBURB COMPARISON
+         ===================================== -->
+
+          <div class="chart-card chapter-five-suburb-card">
+            <p class="chapter-eyebrow">MANNINGHAM CASE STUDY · SUBURBS</p>
+
+            <h3>
+              How Does the Relationship to Open Space Vary Across Suburbs?
+            </h3>
+
+            <p>
+              <strong>
+                The proportion of playgrounds within mapped open space differs
+                between suburbs.
+              </strong>
+              This chart compares the percentage of playgrounds inside and
+              outside mapped recreational open space, revealing differences that
+              are less apparent at the municipality level.
+            </p>
+
+            <!-- SUBURB COMPARISON CHART -->
+            <div class="chapter-five-suburb-visual">
+              <div id="manningham_suburb_open_space"></div>
+            </div>
+
+            <!-- SUBURB COMPARISON INSIGHT -->
+            <div class="chapter-five-suburb-insight">
+              <p class="chapter-five-insight-eyebrow">PROPORTION VS COUNT</p>
+
+              <div class="chapter-five-insight-grid">
+                <div>
+                  <span class="chapter-five-insight-label">
+                    HIGHEST PROPORTION
+                  </span>
+
+                  <strong>Warrandyte</strong>
+
+                  <p>25% · 1 of 4 playgrounds</p>
+                </div>
+
+                <div>
+                  <span class="chapter-five-insight-label">
+                    MOST EXCEPTIONS
+                  </span>
+
+                  <strong>Doncaster</strong>
+
+                  <p>3 of 33 playgrounds</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- =====================================
+         CHAPTER 5 TAKEAWAY
+         ===================================== -->
+
+          <div class="chapter-five-takeaway">
+            <span class="insight-label">THE BIGGER PICTURE</span>
+
+            <p class="insight-headline">
+              Most playgrounds are part of Manningham's mapped open-space
+              network, but
+              <span class="highlight-text">local exceptions matter.</span>
+            </p>
+
+            <p class="insight-detail">
+              <strong>
+                Looking beyond the municipality-wide figure reveals important
+                differences between suburbs.
+              </strong>
+              Warrandyte has the highest proportion of playgrounds outside
+              mapped recreational open space, while Doncaster has the greatest
+              number. Considering both counts and percentages provides a more
+              complete picture of these differences.
+            </p>
+
+            <p class="chapter-method-note">
+              Outside mapped open space means outside the recreational
+              open-space boundaries in the source dataset. It does not
+              necessarily indicate a lack of public access.
+            </p>
+          </div>
+        </div>
+        <!-- END chapter-five-layout -->
+      </section>
+      <!-- END chapter-open-space -->
+
+      <!-- =====================================
+     CONCLUSION
+     ===================================== -->
+
+      <section class="atlas-conclusion" id="conclusion">
+        <div class="conclusion-inner">
+          <p class="chapter-eyebrow">THE BIG PICTURE</p>
+
+          <h2>What Have We Learned?</h2>
+
+          <p class="conclusion-lead">
+            <strong>
+              Australia's playgrounds are more than dots on a map.
+            </strong>
+            Their distribution, size, facilities and relationship to surrounding
+            open space reveal different dimensions of public recreation.
+          </p>
+
+          <div class="conclusion-grid">
+            <!-- FINDING 01 -->
+            <div class="conclusion-point">
+              <span class="conclusion-number">01</span>
+
+              <h3>Location matters.</h3>
+
+              <p>
+                <strong>
+                  Playground density varies considerably between regions.
+                </strong>
+                However, the number of playgrounds per square kilometre cannot
+                tell us how easily residents can reach them.
+              </p>
+            </div>
+
+            <!-- FINDING 02 -->
+            <div class="conclusion-point">
+              <span class="conclusion-number">02</span>
+
+              <h3>Playgrounds offer different experiences.</h3>
+
+              <p>
+                <strong>
+                  Not all playgrounds offer the same recorded features.
+                </strong>
+                Canberra's playgrounds vary in area and shade provision, while
+                Hobart's amenity records show that seating is common but shelter
+                is far less frequently documented.
+              </p>
+            </div>
+
+            <!-- FINDING 03 -->
+            <div class="conclusion-point">
+              <span class="conclusion-number">03</span>
+
+              <h3>Context changes the picture.</h3>
+
+              <p>
+                <strong>
+                  Most Manningham playgrounds fall within mapped recreational
+                  open space.
+                </strong>
+                Yet differences in data availability and collection methods
+                limit what can be concluded across regions.
+              </p>
+            </div>
+          </div>
+
+          <!-- FINAL TAKEAWAY -->
+          <div class="conclusion-takeaway">
+            <p>
+              <strong>
+                Understanding playground provision requires more than counting
+                locations.
+              </strong>
+              Geographic context, available facilities and the quality of public
+              data all shape what we can learn.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================
+     METHODOLOGY AND LIMITATIONS
+     ===================================== -->
+
+      <section class="atlas-methodology" id="methodology">
+        <div class="methodology-inner">
+          <p class="chapter-eyebrow">ABOUT THE DATA</p>
+
+          <h2>Methodology & Limitations.</h2>
+
+          <p class="methodology-intro">
+            The findings in this atlas depend on how playgrounds are recorded,
+            classified and mapped. These considerations are important when
+            interpreting comparisons across regions.
+          </p>
+
+          <div class="methodology-grid">
+            <!-- DATA COVERAGE -->
+            <div class="methodology-item">
+              <h3>Data coverage</h3>
+
+              <p>
+                This atlas combines public playground records from seven
+                Australian study regions. These datasets differ in geographic
+                coverage, collection dates, available attributes and
+                definitions.
+              </p>
+
+              <p>
+                The national overview represents the study regions, not a
+                complete inventory of every playground across Australia.
+              </p>
+            </div>
+
+            <!-- GEOGRAPHIC ANALYSIS -->
+            <div class="methodology-item">
+              <h3>Geographic analysis</h3>
+
+              <p>
+                Regional playground density is calculated by dividing recorded
+                playground counts by the corresponding administrative land area.
+                Canberra's suburb-level density similarly accounts for suburb
+                area.
+              </p>
+
+              <p>
+                These measures describe spatial concentration, not walking
+                distance, population-adjusted access or the quality of
+                playground provision.
+              </p>
+            </div>
+
+            <!-- PLAYGROUND CHARACTERISTICS -->
+            <div class="methodology-item">
+              <h3>Playground characteristics</h3>
+
+              <p>
+                Playground size, classification, shade and amenities are
+                analysed only where the source datasets provide the relevant
+                information. Similar attributes collected by different
+                authorities may not be directly equivalent.
+              </p>
+
+              <p>
+                Hobart's amenity analysis uses 2014 records for 43 playgrounds
+                and counts six selected facilities. These historical records do
+                not necessarily describe present-day conditions.
+              </p>
+            </div>
+
+            <!-- INTERPRETATION -->
+            <div class="methodology-item">
+              <h3>Interpretation</h3>
+
+              <p>
+                Recorded absence of a facility should not be interpreted as a
+                comprehensive assessment of playground quality or accessibility.
+                Missing information is distinguished from recorded values where
+                possible.
+              </p>
+
+              <p>
+                Manningham's open-space analysis measures whether playground
+                locations fall within mapped recreational open-space boundaries.
+                Locations outside those boundaries are not necessarily
+                inaccessible to the public.
+              </p>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- ========================================
-         VEGA-LITE VISUALISATIONS
-         ======================================== -->
+    <!-- =========================================
+         WHERE AUSTRALIA PLAYS — PROJECT FOOTER
+         ========================================= -->
+
+    <footer class="atlas-footer" id="about-project">
+      <!-- CLOSING STATEMENT -->
+      <div class="footer-opening">
+        <p class="footer-eyebrow">ONE LAST THING...</p>
+
+        <h2>
+          The story doesn't end
+          <span class="footer-title-accent">at the playground.</span>
+        </h2>
+
+        <p class="footer-opening-text">
+          Behind every dot on the map is a dataset, a community, and a different
+          way of understanding public space. Thanks for exploring Where
+          Australia Plays.
+        </p>
+
+        <div class="footer-accent-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <!-- PROJECT INFORMATION -->
+      <div class="footer-content">
+        <!-- ABOUT THE AUTHOR -->
+        <div class="footer-section footer-about">
+          <span class="footer-section-number">01 / THE PERSON</span>
+
+          <h3>Behind the Atlas</h3>
+
+          <p>
+            Hi, I'm Ben, an Aerospace Engineering and Computer Science student
+            at Monash University.
+          </p>
+
+          <p>
+            I created this atlas for FIT3179 Data Visualisation to explore how
+            public playgrounds differ across Australian communities, from their
+            locations and sizes to their facilities and surrounding spaces.
+          </p>
+        </div>
+
+        <!-- DEVELOPMENT & AI ACKNOWLEDGEMENT -->
+        <div class="footer-section footer-process">
+          <span class="footer-section-number">02 / THE PROCESS</span>
+
+          <h3>How It Came Together</h3>
+
+          <p>
+            Built using HTML, CSS, JavaScript and Vega-Lite, with publicly
+            available government datasets.
+          </p>
+
+          <p>
+            AI tools, including ChatGPT, assisted with coding, design refinement
+            and written presentation. The analysis, interpretation and final
+            design decisions were reviewed by the author.
+          </p>
+        </div>
+
+        <!-- DATA SOURCES -->
+        <div class="footer-section footer-data">
+          <span class="footer-section-number">03 / THE EVIDENCE</span>
+
+          <h3>Follow the Data</h3>
+
+          <p>
+            Every playground has a location, but the data behind it tells a much
+            bigger story. This atlas brings together publicly available datasets
+            from local and territory governments, alongside population and
+            geographic data. Explore the sources behind the maps.
+          </p>
+
+          <div class="footer-source-grid">
+            <!-- PLAYGROUND DATASETS -->
+            <div class="footer-source-group">
+              <h4>Where the playgrounds are</h4>
+
+              <ul>
+                <li>
+                  <a
+                    href="https://data.sa.gov.au/data/dataset/park-land-playgrounds"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Adelaide — Park Land Playgrounds
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://data-1-hobartcc.opendata.arcgis.com/datasets/4f506437de1745e3b0873dd8d3f9cdc4_0/explore"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Hobart — Playgrounds
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://data.gov.au/geoserver/greater-dandenong-playgrounds/wfs?request=GetFeature&amp;typeName=ckan_badbb6e7_1e48_47b1_b104_77f240ae5fd6&amp;outputFormat=json"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Greater Dandenong — Playgrounds
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://data.gov.au/geoserver/manningham-playgrounds/wfs?request=GetFeature&amp;typeName=ckan_9563f59a_54c6_4c35_b54f_9dc21fbddda7&amp;outputFormat=json"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Manningham — Playgrounds
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://data.melbourne.vic.gov.au/explore/dataset/playgrounds/export/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Melbourne — Playgrounds
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://www.data.act.gov.au/dataset/ACTGOV-Playground-Assets/e4ug-7r3x/data_preview"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    ACT — Playground Assets
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://data.gov.au/geoserver/playgrounds-greater-shepparton/wfs?request=GetFeature&amp;typeName=ckan_3e940611_062a_4b6a_b5e0_1dba321646e6&amp;outputFormat=json"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Greater Shepparton — Playgrounds
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- SUPPORTING DATASETS -->
+            <div class="footer-source-group">
+              <h4>What surrounds them</h4>
+
+              <ul>
+                <li>
+                  <a
+                    href="https://services1.arcgis.com/E5n4f1VY84i0xSjy/ArcGIS/rest/services/ACTGOV_DIVISIONS/FeatureServer/0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    ACT Government — Suburb Boundaries
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://www.abs.gov.au/census/find-census-data/datapacks?release=2021&amp;product=GCP&amp;geography=SAL"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    ABS — 2021 Census, G01 Population (Suburbs and Localities)
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://data.melbourne.vic.gov.au/explore/dataset/small-areas-for-census-of-land-use-and-employment-clue/export/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Melbourne — CLUE Small Area Boundaries
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://discover.data.vic.gov.au/en_AU/dataset/open-space"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Manningham — Public Open Space
+                  </a>
+                </li>
+              </ul>
+
+              <h4>Coordinate references</h4>
+
+              <ul>
+                <li>
+                  <a
+                    href="https://www.geonames.org/2158177/melbourne.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GeoNames — Melbourne
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://www.geonames.org/7839801/manningham.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GeoNames — Manningham
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM SIGN-OFF -->
+      <div class="footer-bottom">
+        <span> WHERE AUSTRALIA PLAYS · FIT3179 · 2026 </span>
+
+        <span class="footer-bottom-message">
+          Made with curiosity, powered by data.
+        </span>
+
+        <a href="#top" class="footer-back-to-top"> Back to top ↑ </a>
+      </div>
+    </footer>
+
+    <!-- VEGA-LITE VISUALISATIONS -->
     <script>
-      // Shared rendering configuration
       const embedOptions = {
         renderer: "svg",
         actions: false,
       };
 
-      // Each entry maps an HTML container to a Vega-Lite specification.
       const charts = [
         {
           selector: "#australia_map",
           spec: "js/australia_overview.vg.json",
         },
         {
+          selector: "#region_playground_density",
+          spec: "js/region_playground_density.vg.json",
+        },
+        {
+          selector: "#region_data_completeness",
+          spec: "js/region_data_completeness.vg.json",
+        },
+        {
           selector: "#playground_map",
           spec: "js/playground_map.vg.json",
+        },
+        {
+          selector: "#act_playground_density",
+          spec: "js/act_playground_density.vg.json",
         },
         {
           selector: "#playground_classifications",
@@ -267,14 +1713,343 @@
           selector: "#act_shade_size_heatmap",
           spec: "js/act_shade_size_heatmap.vg.json",
         },
+        {
+          selector: "#manningham_open_space_map",
+          spec: "js/manningham_open_space_map.vg.json",
+        },
+        {
+          selector: "#manningham_suburb_open_space",
+          spec: "js/manningham_suburb_open_space.vg.json",
+        },
+
+        {
+          selector: "#hobart_facilities_treemap",
+          spec: "js/hobart_facilities_treemap.vg.json",
+        },
+
+        {
+          selector: "#hobart_playground_map",
+          spec: "js/hobart_playground_map.vg.json",
+        },
+        {
+          selector: "#hobart_locator_map",
+          spec: "js/hobart_locator.vg.json",
+        },
+        {
+          selector: "#hobart_facility_frequency",
+          spec: "js/hobart_facility_frequency.vg.json",
+        },
+
+        {
+          selector: "#act_population_density",
+          spec: "js/act_population_density.vg.json",
+        },
+        {
+          selector: "#act_playgrounds_per_resident",
+          spec: "js/act_playgrounds_per_resident.vg.json",
+        },
       ];
 
-      // Render each chart and identify any failed embeds.
-      charts.forEach(({ selector, spec }) => {
-        vegaEmbed(selector, spec, embedOptions).catch((error) => {
-          console.error(`Failed to render ${selector} (${spec}):`, error);
+      // Preserve the working linked interaction.
+      const embeddedCharts = {};
+
+      Promise.all(
+        charts.map(async ({ selector, spec }) => {
+          try {
+            const result = await vegaEmbed(selector, spec, embedOptions);
+            embeddedCharts[selector] = result;
+          } catch (error) {
+            console.error(`Failed to render ${selector} (${spec}):`, error);
+          }
+        }),
+      ).then(() => {
+        const map = embeddedCharts["#australia_map"]?.view;
+        const density = embeddedCharts["#region_playground_density"]?.view;
+
+        if (!map || !density) {
+          console.warn("Linked map or density chart is unavailable.");
+          return;
+        }
+
+        let selectedRegion = "";
+
+        async function selectRegion(region) {
+          selectedRegion = selectedRegion === region ? "" : region;
+
+          await Promise.all([
+            map.signal("selectedRegion", selectedRegion).runAsync(),
+            density.signal("selectedRegion", selectedRegion).runAsync(),
+          ]);
+        }
+
+        map.addEventListener("click", (event, item) => {
+          const region = item?.datum?.region;
+
+          if (region) {
+            selectRegion(region);
+          }
+        });
+
+        density.addEventListener("click", (event, item) => {
+          const region = item?.datum?.region;
+
+          if (region) {
+            selectRegion(region);
+          }
         });
       });
+
+      /* =========================================
+   CHAPTER 3 — LIVE PROFILE + DYNAMIC INSIGHT
+   ========================================= */
+
+      async function initialisePlaygroundSizeSummary() {
+        const mapElement = document.getElementById("act_playground_area");
+        const filterContainer = document.getElementById(
+          "playground-size-filter",
+        );
+
+        const countElement = document.getElementById(
+          "selected-playground-count",
+        );
+        const percentageElement = document.getElementById(
+          "selected-playground-percentage",
+        );
+        const medianElement = document.getElementById(
+          "selected-playground-median",
+        );
+        const rangeElement = document.getElementById(
+          "selected-playground-range",
+        );
+        const fractionElement = document.getElementById(
+          "selected-playground-fraction",
+        );
+        const progressElement = document.getElementById(
+          "selected-playground-progress",
+        );
+        const progressFill = document.getElementById(
+          "selected-playground-progress-fill",
+        );
+        const headlineElement = document.getElementById(
+          "playground-dynamic-headline",
+        );
+        const detailElement = document.getElementById(
+          "playground-dynamic-detail",
+        );
+
+        if (
+          !mapElement ||
+          !filterContainer ||
+          !countElement ||
+          !percentageElement ||
+          !medianElement ||
+          !rangeElement ||
+          !fractionElement ||
+          !progressElement ||
+          !progressFill ||
+          !headlineElement ||
+          !detailElement
+        ) {
+          console.warn(
+            "Chapter 3 profile: required HTML elements are missing.",
+          );
+          return;
+        }
+
+        const response = await fetch("data/playgrounds_combined_act.csv");
+
+        if (!response.ok) {
+          throw new Error("Could not load ACT playground data.");
+        }
+
+        const records = vega.read(await response.text(), { type: "csv" });
+
+        const areas = records
+          .filter((row) => row.council === "ACT")
+          .map((row) => Number(row.surface_area))
+          .filter((area) => Number.isFinite(area) && area > 0);
+
+        const total = areas.length;
+
+        function matchesSelection(area, selection) {
+          switch (selection) {
+            case "Under 200 m²":
+              return area < 200;
+
+            case "200–400 m²":
+              return area >= 200 && area < 400;
+
+            case "400–800 m²":
+              return area >= 400 && area < 800;
+
+            case "800–1,600 m²":
+              return area >= 800 && area < 1600;
+
+            case "Over 1,600 m²":
+              return area >= 1600;
+
+            default:
+              return true;
+          }
+        }
+
+        function calculateMedian(values) {
+          if (values.length === 0) return null;
+
+          const sorted = [...values].sort((a, b) => a - b);
+          const middle = Math.floor(sorted.length / 2);
+
+          if (sorted.length % 2 === 1) {
+            return sorted[middle];
+          }
+
+          return (sorted[middle - 1] + sorted[middle]) / 2;
+        }
+
+        function getInsight(selection, count, percentage) {
+          const formattedCount = count.toLocaleString("en-AU");
+          const formattedPercentage = percentage.toFixed(1);
+
+          switch (selection) {
+            case "Under 200 m²":
+              return {
+                headline:
+                  "The smallest playgrounds form part of Canberra's local play network.",
+                detail:
+                  `${formattedCount} playgrounds (${formattedPercentage}%) have ` +
+                  `recorded surface areas below 200 m². These are the smallest ` +
+                  `spaces represented in the dataset.`,
+              };
+
+            case "200–400 m²":
+              return {
+                headline:
+                  "This is Canberra's most common playground size range.",
+                detail:
+                  `${formattedCount} playgrounds (${formattedPercentage}%) fall ` +
+                  `between 200 and 400 m², making this the dominant size category ` +
+                  `in the recorded dataset.`,
+              };
+
+            case "400–800 m²":
+              return {
+                headline: "Mid-sized playgrounds are less common.",
+                detail:
+                  `${formattedCount} playgrounds (${formattedPercentage}%) have ` +
+                  `recorded surface areas between 400 and 800 m². The map shows ` +
+                  `where these spaces are distributed across Canberra.`,
+              };
+
+            case "800–1,600 m²":
+              return {
+                headline: "Larger playgrounds become increasingly uncommon.",
+                detail:
+                  `Only ${formattedCount} playgrounds (${formattedPercentage}%) ` +
+                  `fall between 800 and 1,600 m². Compare their locations with ` +
+                  `the smaller categories using the filter above.`,
+              };
+
+            case "Over 1,600 m²":
+              return {
+                headline: "Canberra's largest playgrounds are rare.",
+                detail:
+                  `Just ${formattedCount} of ${total.toLocaleString("en-AU")} ` +
+                  `playgrounds (${formattedPercentage}%) have recorded surface ` +
+                  `areas of at least 1,600 m². Their locations stand out when ` +
+                  `the smaller playgrounds are hidden.`,
+              };
+
+            default:
+              return {
+                headline:
+                  "Most playgrounds are small. A few are substantially larger.",
+                detail:
+                  `Across ${total.toLocaleString("en-AU")} Canberra playgrounds ` +
+                  `with valid surface-area data, smaller spaces dominate the ` +
+                  `distribution. Select a size range to explore the pattern ` +
+                  `in greater detail.`,
+              };
+          }
+        }
+
+        function updateProfile(selection) {
+          const selectedAreas = areas.filter((area) =>
+            matchesSelection(area, selection),
+          );
+
+          const count = selectedAreas.length;
+          const percentage = total > 0 ? (count / total) * 100 : 0;
+          const median = calculateMedian(selectedAreas);
+
+          countElement.textContent = count.toLocaleString("en-AU");
+
+          percentageElement.textContent = `${percentage.toFixed(1)}%`;
+
+          medianElement.textContent =
+            median === null
+              ? "—"
+              : median.toLocaleString("en-AU", {
+                  maximumFractionDigits: 1,
+                });
+
+          rangeElement.textContent = selection;
+
+          fractionElement.textContent =
+            `${count.toLocaleString("en-AU")} of ` +
+            `${total.toLocaleString("en-AU")}`;
+
+          progressFill.style.width = `${percentage}%`;
+
+          progressElement.setAttribute("aria-valuenow", percentage.toFixed(1));
+
+          const insight = getInsight(selection, count, percentage);
+
+          headlineElement.textContent = insight.headline;
+          detailElement.textContent = insight.detail;
+        }
+
+        function connectFilter() {
+          const bindings =
+            filterContainer.querySelector(".vega-bindings") ||
+            mapElement.querySelector(".vega-bindings");
+
+          if (!bindings) return false;
+
+          if (bindings.parentElement !== filterContainer) {
+            filterContainer.appendChild(bindings);
+          }
+
+          const dropdown = bindings.querySelector("select");
+
+          if (!dropdown) return false;
+
+          if (dropdown.dataset.profileConnected !== "true") {
+            dropdown.addEventListener("change", () => {
+              updateProfile(dropdown.value);
+            });
+
+            dropdown.dataset.profileConnected = "true";
+          }
+
+          updateProfile(dropdown.value);
+          return true;
+        }
+
+        if (connectFilter()) return;
+
+        const observer = new MutationObserver(() => {
+          if (connectFilter()) {
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(mapElement, {
+          childList: true,
+          subtree: true,
+        });
+      }
+
+      initialisePlaygroundSizeSummary().catch(console.error);
     </script>
   </body>
 </html>

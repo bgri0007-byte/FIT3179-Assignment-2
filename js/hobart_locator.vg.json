@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Geographically accurate Tasmania locator showing Hobart.",
+  "width": 100,
+  "height": 110,
+  "background": null,
+  "projection": {
+    "type": "mercator",
+    "center": [146.7, -42.0],
+    "scale": 1100
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia_states_optimised.json",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.shapeISO === 'AU-TAS'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e5eee6",
+        "stroke": "#789180",
+        "strokeWidth": 1.5
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "city": "Hobart",
+            "longitude": 147.3272,
+            "latitude": -42.8821
+          }
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "size": 1100,
+        "fill": "#f4a340",
+        "opacity": 0.3
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "city": "Hobart",
+            "longitude": 147.3272,
+            "latitude": -42.8821
+          }
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "size": 330,
+        "fill": "#f5a623",
+        "stroke": "#263f35",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "city",
+            "title": "Location"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "city": "Hobart",
+            "longitude": 147.3272,
+            "latitude": -42.8821
+          }
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "size": 45,
+        "fill": "#ffffff"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

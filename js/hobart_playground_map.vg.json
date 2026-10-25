@@ -1,0 +1,128 @@
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Playground amenities across the City of Hobart.",
+  "width": "container",
+  "height": 420,
+  "projection": {
+    "type": "mercator",
+    "center": [147.28, -42.895],
+    "scale": 105000
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/hobart_boundary.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#edf1e9",
+        "stroke": "#789180",
+        "strokeWidth": 1.5
+      }
+    },
+    {
+      "data": {
+        "url": "data/Parks_Playgrounds_2014.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.geometry != null && datum.geometry.type == 'Point'"
+        },
+        {
+          "calculate": "datum.geometry.coordinates[0]",
+          "as": "longitude"
+        },
+        {
+          "calculate": "datum.geometry.coordinates[1]",
+          "as": "latitude"
+        },
+        {
+          "calculate": "datum.properties.Park_Name",
+          "as": "playground"
+        },
+        {
+          "calculate": "datum.properties.FULLADDR",
+          "as": "address"
+        },
+        {
+          "calculate": "(datum.properties.Seating == 'Yes' ? 1 : 0) + (datum.properties.Shelter == 'Yes' ? 1 : 0) + (datum.properties.Toilets == 'Yes' ? 1 : 0) + (datum.properties.Barbecues == 'Yes' ? 1 : 0) + (datum.properties.Shade_trees == 'Yes' ? 1 : 0) + (datum.properties.Universal_access == 'Yes' ? 1 : 0)",
+          "as": "amenityCount"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 105,
+        "opacity": 0.9,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "amenityCount",
+          "type": "ordinal",
+          "title": "Recorded amenities",
+          "scale": {
+            "domain": [0, 1, 2, 3, 4, 5, 6],
+            "range": [
+              "#e5e8e2",
+              "#c4d6c5",
+              "#a8c4ad",
+              "#86ad92",
+              "#67977a",
+              "#497d63",
+              "#285d46"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "title": "Recorded amenities",
+            "titleFontSize": 12,
+            "titleColor": "#263f35",
+            "labelFontSize": 12,
+            "labelColor": "#56665d",
+            "symbolType": "circle",
+            "symbolSize": 110,
+            "rowPadding": 6,
+            "offset": 12
+          }
+        },
+        "tooltip": [
+          {
+            "field": "playground",
+            "title": "Playground"
+          },
+          {
+            "field": "address",
+            "title": "Address"
+          },
+          {
+            "field": "amenityCount",
+            "title": "Recorded amenities"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

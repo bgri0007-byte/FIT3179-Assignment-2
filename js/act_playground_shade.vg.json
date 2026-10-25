@@ -1,10 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Donut chart showing shade classifications for active Canberra playgrounds, including missing and unexpected values.",
-
   "width": 310,
   "height": 310,
-
   "data": {
     "url": "data/ACTGOV_Playground_Assets_20260926.geojson",
     "format": {
@@ -12,7 +10,6 @@
       "property": "features"
     }
   },
-
   "transform": [
     {
       "filter": "datum.properties.operational_state === 'ACTIVE'"
@@ -26,7 +23,6 @@
       "as": "shade_order"
     }
   ],
-
   "mark": {
     "type": "arc",
     "innerRadius": 85,
@@ -34,20 +30,16 @@
     "stroke": "#ffffff",
     "strokeWidth": 2
   },
-
   "encoding": {
     "theta": {
       "aggregate": "count",
-      "type": "quantitative",
-      "stack": true
+      "type": "quantitative"
     },
-
     "order": {
       "field": "shade_order",
       "type": "quantitative",
       "sort": "ascending"
     },
-
     "color": {
       "field": "shade",
       "type": "nominal",
@@ -63,17 +55,8 @@
           "#AA4499"
         ]
       },
-      "legend": {
-        "orient": "right",
-        "direction": "vertical",
-        "title": null,
-        "labelFontSize": 11,
-        "symbolSize": 110,
-        "offset": 12,
-        "padding": 5
-      }
+      "legend": null
     },
-
     "tooltip": [
       {
         "field": "shade",
@@ -87,7 +70,6 @@
       }
     ]
   },
-
   "config": {
     "view": {
       "stroke": null

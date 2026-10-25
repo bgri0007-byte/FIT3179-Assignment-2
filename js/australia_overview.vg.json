@@ -1,16 +1,19 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Map of the five Australian study regions, with labelled locations and dataset information.",
-
+  "description": "Australian playground study regions with linked selection highlighting.",
   "width": "container",
   "height": 430,
-
+  "params": [
+    {
+      "name": "selectedRegion",
+      "value": ""
+    }
+  ],
   "projection": {
     "type": "mercator",
     "center": [143, -38],
     "scale": 1400
   },
-
   "layer": [
     {
       "data": {
@@ -32,37 +35,41 @@
         "values": [
           {
             "region": "Greater Melbourne",
+            "regions": "Melbourne, Manningham, Greater Dandenong",
             "datasets": "Melbourne, Manningham, Greater Dandenong",
             "longitude": 144.96332,
             "latitude": -37.814
           },
           {
             "region": "ACT",
+            "regions": "ACT",
             "datasets": "ACT Government",
             "longitude": 149.12807,
             "latitude": -35.28346
           },
           {
             "region": "Adelaide",
+            "regions": "Adelaide",
             "datasets": "City of Adelaide",
             "longitude": 138.59863,
             "latitude": -34.92866
           },
           {
             "region": "Hobart",
+            "regions": "Hobart",
             "datasets": "City of Hobart",
             "longitude": 147.32941,
             "latitude": -42.87936
           },
           {
             "region": "Greater Shepparton",
+            "regions": "Greater Shepparton",
             "datasets": "Greater Shepparton City Council",
             "longitude": 145.39867,
             "latitude": -36.38047
           }
         ]
       },
-
       "encoding": {
         "longitude": {
           "field": "longitude",
@@ -73,27 +80,35 @@
           "type": "quantitative"
         }
       },
-
       "layer": [
         {
           "mark": {
             "type": "circle",
-            "size": 160,
-            "color": "#2878B5",
+            "size": 190,
             "stroke": "#ffffff",
-            "strokeWidth": 1.5
+            "strokeWidth": 1.8,
+            "cursor": "pointer"
           },
           "encoding": {
+            "color": {
+              "condition": {
+                "test": "selectedRegion === '' || datum.region === selectedRegion || (datum.region === 'Greater Melbourne' && indexof(['Melbourne', 'Manningham', 'Greater Dandenong'], selectedRegion) >= 0)",
+                "value": "#2878B5"
+              },
+              "value": "#b8c1c8"
+            },
+            "opacity": {
+              "condition": {
+                "test": "selectedRegion === '' || datum.region === selectedRegion || (datum.region === 'Greater Melbourne' && indexof(['Melbourne', 'Manningham', 'Greater Dandenong'], selectedRegion) >= 0)",
+                "value": 1
+              },
+              "value": 0.35
+            },
             "tooltip": [
               {
                 "field": "region",
                 "type": "nominal",
                 "title": "Study region"
-              },
-              {
-                "field": "datasets",
-                "type": "nominal",
-                "title": "Datasets"
               }
             ]
           }
@@ -103,25 +118,42 @@
             "type": "text",
             "align": "left",
             "baseline": "middle",
-            "dx": 12,
-            "fontSize": 12,
+            "dx": 14,
+            "fontSize": 15,
             "fontWeight": "bold",
-            "color": "#374151"
+            "color": "#263f35",
+            "cursor": "pointer"
           },
           "encoding": {
             "text": {
               "field": "region",
               "type": "nominal"
-            }
+            },
+            "opacity": {
+              "condition": {
+                "test": "selectedRegion === '' || datum.region === selectedRegion || (datum.region === 'Greater Melbourne' && indexof(['Melbourne', 'Manningham', 'Greater Dandenong'], selectedRegion) >= 0)",
+                "value": 1
+              },
+              "value": 0.3
+            },
+            "tooltip": [
+              {
+                "field": "region",
+                "type": "nominal",
+                "title": "Study region"
+              }
+            ]
           }
         }
       ]
     }
   ],
-
   "config": {
     "view": {
       "stroke": null
+    },
+    "text": {
+      "font": "Arial"
     }
   }
 }

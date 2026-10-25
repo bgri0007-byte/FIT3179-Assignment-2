@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Percentage of playgrounds within and outside mapped recreational open spaces across Manningham suburbs.",
+  "width": "container",
+  "height": 420,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": null,
+  "data": {
+    "url": "data/manningham_suburb_open_space.csv"
+  },
+  "transform": [
+    {
+      "fold": ["Within mapped open space", "Outside mapped open space"],
+      "as": ["status", "count"]
+    },
+    {
+      "calculate": "datum.count / datum.total",
+      "as": "proportion"
+    }
+  ],
+  "mark": {
+    "type": "bar"
+  },
+  "encoding": {
+    "y": {
+      "field": "suburb",
+      "type": "nominal",
+      "sort": {
+        "field": "outside_pct",
+        "order": "descending"
+      },
+      "title": null,
+      "axis": {
+        "labelFontSize": 11,
+        "labelLimit": 150
+      }
+    },
+    "x": {
+      "field": "proportion",
+      "type": "quantitative",
+      "stack": "zero",
+      "title": "Percentage of playgrounds",
+      "axis": {
+        "format": ".0%",
+        "values": [0, 0.25, 0.5, 0.75, 1]
+      },
+      "scale": {
+        "domain": [0, 1]
+      }
+    },
+    "color": {
+      "field": "status",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": ["Within mapped open space", "Outside mapped open space"],
+        "range": ["#2563EB", "#EA580C"]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal"
+      }
+    },
+    "order": {
+      "field": "status",
+      "sort": "descending"
+    },
+    "tooltip": [
+      {
+        "field": "suburb",
+        "type": "nominal",
+        "title": "Suburb"
+      },
+      {
+        "field": "status",
+        "type": "nominal",
+        "title": "Location"
+      },
+      {
+        "field": "count",
+        "type": "quantitative",
+        "title": "Playgrounds"
+      },
+      {
+        "field": "total",
+        "type": "quantitative",
+        "title": "Total playgrounds"
+      },
+      {
+        "field": "proportion",
+        "type": "quantitative",
+        "format": ".1%",
+        "title": "Share"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "bar": {
+      "continuousBandSize": 20
+    }
+  }
+}

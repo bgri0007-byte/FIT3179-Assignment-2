@@ -1,0 +1,36 @@
+region,attribute,total_records,recorded_records,completeness_pct,status,source_fields
+Adelaide,Location,13,13,100,Recorded,@geometry
+Adelaide,Playground area,13,13,100,Recorded,shape_STAr
+Adelaide,Playground type,13,0,,Not collected,Not present in source dataset
+Adelaide,Shade,13,0,,Not collected,Not present in source dataset
+Adelaide,Facilities,13,0,,Not collected,Not present in source dataset
+Hobart,Location,43,43,100,Recorded,@geometry
+Hobart,Playground area,43,0,,Not collected,Not present in source dataset
+Hobart,Playground type,43,0,,Not collected,Not present in source dataset
+Hobart,Shade,43,43,100,Recorded,Shade_trees
+Hobart,Facilities,43,43,100,Recorded,"Toilets, Shelter, Seating, Drinking_fountain, Barbecues, Universal_access"
+Greater Dandenong,Location,154,154,100,Recorded,@geometry
+Greater Dandenong,Playground area,154,154,100,Recorded,Area
+Greater Dandenong,Playground type,154,0,,Not collected,Not present in source dataset
+Greater Dandenong,Shade,154,0,,Not collected,Not present in source dataset
+Greater Dandenong,Facilities,154,0,,Not collected,Not present in source dataset
+Manningham,Location,159,159,100,Recorded,@geometry
+Manningham,Playground area,159,0,,Not collected,Not present in source dataset
+Manningham,Playground type,159,159,100,Recorded,classif
+Manningham,Shade,159,0,,Not collected,Not present in source dataset
+Manningham,Facilities,159,0,,Not collected,Not present in source dataset
+Melbourne,Location,45,45,100,Recorded,@geometry
+Melbourne,Playground area,45,0,,Not collected,Not present in source dataset
+Melbourne,Playground type,45,0,,Not collected,Not present in source dataset
+Melbourne,Shade,45,0,,Not collected,Not present in source dataset
+Melbourne,Facilities,45,39,86.7,Partially recorded,features
+ACT,Location,537,537,100,Recorded,@geometry
+ACT,Playground area,537,537,100,Recorded,surface_area
+ACT,Playground type,537,537,100,Recorded,asset_sub_type
+ACT,Shade,537,514,95.7,Partially recorded,shade_level
+ACT,Facilities,537,131,24.4,Partially recorded,parking
+Greater Shepparton,Location,127,127,100,Recorded,@geometry
+Greater Shepparton,Playground area,127,0,,Not collected,Not present in source dataset
+Greater Shepparton,Playground type,127,127,100,Recorded,type
+Greater Shepparton,Shade,127,0,,Not collected,Not present in source dataset
+Greater Shepparton,Facilities,127,0,,Not collected,Not present in source dataset

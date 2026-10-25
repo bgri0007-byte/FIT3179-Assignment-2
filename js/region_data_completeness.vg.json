@@ -1,0 +1,172 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Completeness of available playground attributes across seven Australian study regions. Grey denotes attributes not present in source datasets.",
+  "data": {
+    "url": "data/region_data_completeness.csv"
+  },
+  "width": "container",
+  "height": 350,
+  "transform": [
+    {
+      "calculate": "datum.status === 'Not collected' ? 'Not collected' : toNumber(datum.completeness_pct) < 50 ? '1–49%' : toNumber(datum.completeness_pct) < 90 ? '50–89%' : '90–100%'",
+      "as": "completeness_band"
+    },
+    {
+      "calculate": "datum.status === 'Not collected' ? -1 : toNumber(datum.completeness_pct)",
+      "as": "value"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "attribute",
+      "type": "nominal",
+      "sort": [
+        "Location",
+        "Playground area",
+        "Playground type",
+        "Shade",
+        "Facilities"
+      ],
+      "axis": {
+        "title": null,
+        "labelAngle": -30,
+        "labelFontSize": 14,
+        "labelFontWeight": "normal",
+        "labelPadding": 10,
+        "labelLimit": 170,
+        "ticks": false,
+        "domain": false
+      }
+    },
+    "y": {
+      "field": "region",
+      "type": "nominal",
+      "sort": [
+        "Adelaide",
+        "Hobart",
+        "Greater Dandenong",
+        "Manningham",
+        "Melbourne",
+        "ACT",
+        "Greater Shepparton"
+      ],
+      "axis": {
+        "title": null,
+        "labelFontSize": 14,
+        "labelFontWeight": "normal",
+        "labelPadding": 9,
+        "labelLimit": 190,
+        "ticks": false,
+        "domain": false
+      }
+    },
+    "tooltip": [
+      {
+        "field": "region",
+        "title": "Study region"
+      },
+      {
+        "field": "attribute",
+        "title": "Information category"
+      },
+      {
+        "field": "status",
+        "title": "Availability"
+      },
+      {
+        "field": "recorded_records",
+        "type": "quantitative",
+        "title": "Records with information"
+      },
+      {
+        "field": "total_records",
+        "type": "quantitative",
+        "title": "Total records"
+      },
+      {
+        "field": "completeness_pct",
+        "type": "quantitative",
+        "title": "Completeness (%)",
+        "format": ".1f"
+      },
+      {
+        "field": "source_fields",
+        "title": "Source fields"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 3,
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "color": {
+          "field": "completeness_band",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Not collected", "1–49%", "50–89%", "90–100%"],
+            "range": ["#d9dedb", "#d5e5d5", "#8cb59b", "#2f7055"]
+          },
+          "legend": {
+            "title": "Records with information",
+            "orient": "right",
+            "symbolType": "square",
+            "symbolSize": 220,
+            "labelFontSize": 13,
+            "labelPadding": 7,
+            "titleFontSize": 14,
+            "titleFontWeight": "bold",
+            "titlePadding": 12,
+            "titleLimit": 220,
+            "labelLimit": 160
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 14,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "condition": {
+            "test": "datum.value < 0",
+            "value": "—"
+          },
+          "field": "value",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.value >= 90",
+            "value": "white"
+          },
+          "value": "#263f35"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Arial",
+      "labelColor": "#263f35",
+      "titleColor": "#263f35"
+    },
+    "legend": {
+      "labelFont": "Arial",
+      "titleFont": "Arial",
+      "labelColor": "#263f35",
+      "titleColor": "#263f35"
+    }
+  }
+}

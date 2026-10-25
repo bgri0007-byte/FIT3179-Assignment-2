@@ -1,404 +1,3478 @@
-/* =========================================================
-   WHERE AUSTRALIA PLAYS — STYLESHEET
-   Sections: Base, Hero, Chapters, Cards, Featured layout,
-             Map controls, Insights, Responsive layouts.
-   ========================================================= */
+/* =========================================
+   WHERE AUSTRALIA PLAYS
+   Global styling
+   ========================================= */
 
-/* 01. BASE ------------------------------------------------ */
+:root {
+  --ink: #263f35;
+  --ink-muted: #56665d;
+  --cream: #f5f3ea;
+  --sage: #e2ead9;
+  --sage-dark: #527a66;
+  --gold: #d8a24c;
+  --white: #ffffff;
+  --border: #e0e5df;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  padding: 0;
-  max-width: none;
-  background-color: #f5f3ea;
-  color: #263f35;
-  font-family: Arial, sans-serif;
-  line-height: 1.7;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
 }
 
 h1,
 h2,
 h3 {
-  color: #263f35;
-  font-family: Georgia, serif;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
-h1 {
-  margin-bottom: 24px;
-  font-size: 3.2rem;
-}
-h2 {
-  margin: 64px 0 20px;
-  font-size: 2rem;
-}
-h3 {
-  margin-top: 40px;
-  font-size: 1.5rem;
-}
 p {
-  max-width: 800px;
-  color: #52645c;
+  color: var(--ink-muted);
 }
 
-/* 02. HERO ------------------------------------------------ */
+strong {
+  color: var(--ink);
+}
+
+small {
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sage-dark);
+  outline-offset: 3px;
+}
+
+/* =========================================
+   TYPOGRAPHY — READING COMFORT
+   1ch is an approximate character width, not an exact count.
+   Keep chart/legend labels unconstrained.
+   ========================================= */
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  line-height: 1.7;
+}
+
+/* Readable long-form paragraphs, without changing map/visual dimensions. */
+.chapter-description,
+.case-study-intro > p,
+.comparison-intro > p,
+.conclusion-point > p,
+.methodology-item > p,
+.chapter-takeaway-text {
+  line-height: 1.7;
+}
+
+/* =========================================
+   HERO
+   ========================================= */
+
 .hero {
-  margin: 0;
-  max-width: none;
-  padding: 64px max(40px, calc((100vw - 1500px) / 2));
-  border-radius: 0;
-  background-color: #e2ead9;
+  position: relative;
+  padding: 110px max(40px, calc((100vw - 1300px) / 2));
+  background: var(--sage);
+  overflow: hidden;
 }
 
 .hero-eyebrow {
-  margin-bottom: 20px;
-  color: #527a66;
-  font-family: Arial, sans-serif;
+  margin-bottom: 18px;
+  color: var(--sage-dark);
   font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-weight: 750;
+  letter-spacing: 0.18em;
 }
 
 .hero h1 {
-  margin: 0 0 24px;
-  font-size: 4rem;
+  max-width: 1000px;
+  margin-bottom: 25px;
+  font-size: clamp(3.4rem, 7vw, 6.8rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
 }
 
 .hero-description {
-  max-width: 650px;
-  color: #426052;
-  font-size: 1.2rem;
-  line-height: 1.7;
+  max-width: 850px;
+  margin-bottom: 0;
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  line-height: 1.8;
 }
 
 .hero-accent {
   display: flex;
-  gap: 8px;
-  margin-top: 32px;
-}
-.hero-accent span {
-  width: 36px;
-  height: 6px;
-  border-radius: 10px;
-}
-.hero-accent span:nth-child(1) {
-  background-color: #d8a24c;
-}
-.hero-accent span:nth-child(2) {
-  background-color: #527a66;
-}
-.hero-accent span:nth-child(3) {
-  background-color: #a9bdd1;
+  gap: 12px;
+  margin-top: 45px;
 }
 
-/* 03. FULL-WIDTH CHAPTERS ---------------------------------- */
+.hero-accent span {
+  width: 45px;
+  height: 8px;
+  border-radius: 10px;
+  background: var(--sage-dark);
+}
+
+.hero-accent span:nth-child(2) {
+  background: var(--gold);
+}
+
+.hero-accent span:nth-child(3) {
+  background: #9bb7b4;
+}
+
+/* =========================================
+   CHAPTERS
+   ========================================= */
+
 .atlas-chapters {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  width: 100%;
 }
 
 .atlas-chapter {
-  box-sizing: border-box;
-  width: 100%;
-  min-width: 0;
-  margin: 0;
-  padding: 64px max(40px, calc((100vw - 1500px) / 2));
-  border-radius: 0;
+  padding: 75px max(40px, calc((100vw - 1500px) / 2));
+}
+
+#chapter-overview {
+  background: #e7ede3;
 }
 
 #chapter-geography {
-  background-color: #e7ede3;
-}
-#chapter-characteristics {
-  background-color: #f1e8d9;
-}
-#chapter-shade {
-  background-color: #e5edf2;
+  background: #f1e8d9;
 }
 
-.atlas-chapter + .atlas-chapter {
-  border-top: 1px solid rgba(38, 63, 53, 0.18);
+#chapter-characteristics {
+  background: #e5edf2;
+}
+
+#chapter-shade {
+  background: #e9ede5;
+}
+
+#chapter-open-space {
+  background: #f0e8dc;
 }
 
 .chapter-intro {
   display: flex;
   align-items: flex-start;
-  gap: 24px;
-  margin-bottom: 28px;
-  padding-bottom: 22px;
-  border-bottom: 2px solid #d8e2d6;
+  gap: 25px;
+  margin-bottom: 40px;
 }
 
 .chapter-number {
-  display: flex;
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  background-color: #d8a24c;
-  color: #263f35;
-  font-family: Georgia, serif;
-  font-size: 1.8rem;
-  font-weight: bold;
+  color: var(--sage-dark);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.07em;
 }
 
 .chapter-eyebrow {
-  margin: 0 0 8px;
-  color: #527a66;
+  margin-bottom: 8px;
+  color: var(--sage-dark);
   font-size: 0.75rem;
-  font-weight: bold;
-  letter-spacing: 2px;
+  font-weight: 750;
+  letter-spacing: 0.16em;
 }
 
 .chapter-intro h2 {
-  margin: 0 0 12px;
-  font-size: 2.4rem;
-}
-.chapter-description {
-  margin: 0;
-  max-width: 760px;
-  font-size: 1rem;
-  line-height: 1.65;
+  margin-bottom: 14px;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
 }
 
-/* 04. CHART GRIDS & CARDS ---------------------------------- */
+.chapter-description {
+  max-width: 900px;
+  margin-bottom: 0;
+  font-size: 1.12rem;
+  line-height: 1.8;
+}
+
+/* =========================================
+   CHART GRIDS
+   ========================================= */
+
 .chapter-charts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
   align-items: start;
-}
-
-/* Default three-chart chapter layout; Chapter 2 overrides below. */
-#chapter-characteristics .chapter-charts {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
 }
 
 .chart-card {
-  margin: 32px 0;
-  padding: 28px 32px;
+  min-width: 0;
+  padding: 30px;
+  border: 1px solid rgba(38, 63, 53, 0.07);
   border-radius: 16px;
-  background-color: #fff;
-  box-shadow: 0 4px 18px rgba(38, 63, 53, 0.06);
+  background: var(--white);
+  box-shadow: 0 5px 24px rgba(38, 63, 53, 0.045);
 }
 
 .chart-card h2,
 .chart-card h3 {
-  margin-top: 0;
+  margin-bottom: 16px;
+  color: var(--ink);
+  font-size: clamp(1.25rem, 1.7vw, 1.55rem);
+  font-weight: 750;
+  letter-spacing: -0.02em;
 }
+
 .chart-card p {
-  margin-bottom: 24px;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 
-.chapter-charts .chart-card {
+/* Editorial measure for chart introductions, not chart contents. */
+.chart-card > p:not(.chapter-eyebrow),
+.chapter-three-feature-card > p:not(.chapter-eyebrow) {
+  max-width: 950px;
+}
+
+.chart-card > p:last-child {
+  margin-bottom: 0;
+}
+
+.chart-wide {
+  grid-column: 1 / -1;
+}
+
+/* Chapter 1: linked map and density chart */
+
+.chapter-overview-layout {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.interaction-hint {
+  margin-top: 18px;
+  color: var(--sage-dark);
+  font-size: 0.85rem !important;
+  font-style: italic;
+}
+
+/* =========================================
+   VEGA VISUALISATIONS
+   ========================================= */
+
+.chart-card > div[id] {
+  width: 100%;
   min-width: 0;
-  margin: 0;
-  padding: 24px;
-  overflow: hidden;
 }
 
-.chapter-charts .chart-card h2 {
-  margin: 0 0 16px;
-  font-size: 1.4rem;
-}
-.chapter-charts .chart-card p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-/* Map containers must have measurable widths for Vega-Lite's
-   "width": "container" sizing to work reliably. */
-#australia_map {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-#playground_map {
-  width: 100%;
-  max-width: 700px;
-}
-#act_playground_area {
-  width: 100%;
-  min-width: 0;
-}
-#playground_classifications {
+.chart-card .vega-embed {
   display: block;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 22px 0;
+}
+
+.chart-card .vega-embed > svg,
+.chart-card .vega-embed > canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.chart-card .vega-embed details {
+  display: none;
+}
+
+#australia_map,
+#region_playground_density,
+#region_data_completeness,
+#playground_map,
+#act_playground_density,
+#playground_classifications,
+#act_playground_area,
+#act_playground_distribution,
+#act_playground_shade,
+#act_shade_size_heatmap,
+#manningham_open_space_map,
+#manningham_suburb_open_space,
+#hobart_playground_map,
+#hobart_facility_frequency,
+#hobart_facilities_treemap {
+  width: 100%;
   min-width: 0;
 }
 
-/* 05. CHAPTER 2 — FEATURED MAP ----------------------------- */
-#chapter-characteristics .chapter-two-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  gap: 24px;
-  align-items: stretch;
-}
+/* =========================================
+   NARRATIVE INSIGHTS
+   ========================================= */
 
-#chapter-characteristics .chart-featured {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  height: 100%;
-  grid-column: 1;
-  grid-row: 1 / 3;
-}
-
-#chapter-characteristics .chart-classifications {
-  box-sizing: border-box;
-  grid-column: 2;
-  grid-row: 1;
-}
-
-#chapter-characteristics .chart-distribution {
-  box-sizing: border-box;
-  grid-column: 2;
-  grid-row: 2;
-}
-
-/* 06. VEGA-LITE FILTER CONTROLS ---------------------------- */
-/* Vega inserts .vega-bindings inside the chart container.
-   Flex order places the controls above the SVG, not below it. */
-#playground_map,
-#act_playground_area {
-  display: flex;
-  flex-direction: column;
-}
-
-#playground_map .vega-bindings,
-#act_playground_area .vega-bindings {
-  order: -1;
-  margin-bottom: 16px;
-  padding: 10px 14px;
-  border-radius: 10px;
-  background-color: #e8eee6;
-  color: #263f35;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-}
-
-#playground_map .vega-bind,
-#act_playground_area .vega-bind {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 600;
-}
-
-#playground_map .vega-bind select,
-#act_playground_area .vega-bind select {
-  box-sizing: border-box;
-  width: 260px;
-  max-width: 100%;
-  min-height: 44px;
-  padding: 6px 16px;
-  border: 1px solid #b8c8bb;
-  border-radius: 8px;
-  appearance: auto;
-  background-color: #fff;
-  color: #263f35;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  font-weight: normal;
-  cursor: pointer;
-}
-
-#playground_map .vega-bind select option,
-#act_playground_area .vega-bind select option {
-  background-color: #fff;
-  color: #263f35;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-}
-
-/* 07. FEATURED MAP INSIGHT --------------------------------- */
-#chapter-characteristics .chart-featured .map-insight {
-  margin-top: auto;
-  padding: 24px;
-  border-left: 5px solid #d8a24c;
-  border-radius: 12px;
-  background-color: #e7ede3;
+.map-insight {
+  margin: 25px 0 10px;
+  padding: 22px 24px;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 10px 10px 0;
+  background: #f8f5eb;
 }
 
 .insight-label {
   display: block;
   margin-bottom: 10px;
-  color: #527a66;
-  font-size: 0.75rem;
-  font-weight: bold;
-  letter-spacing: 2px;
+  color: #8b6a2c;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
 }
 
-/* Specificity keeps these headings distinct from chart-card paragraph text. */
-.chapter-charts .chart-card .insight-headline {
-  margin: 0 0 10px;
-  color: #263f35;
-  font-family: Georgia, serif;
-  font-size: 1.65rem;
-  font-weight: bold;
-  line-height: 1.3;
+.map-insight .insight-headline {
+  margin-bottom: 12px;
+  color: var(--ink);
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+.map-insight .insight-detail {
+  max-width: 1050px;
+  margin-bottom: 0;
+  font-size: 0.88rem;
 }
 
 .highlight-text {
-  color: #b37d25;
+  color: #b57b22;
 }
 
-.chapter-charts .chart-card .insight-detail {
-  margin: 0;
-  color: #52645c;
+.chapter-takeaway .insight-detail {
+  max-width: 1050px;
+}
+
+/* =========================================
+   HOBART CASE STUDY
+   ========================================= */
+
+.chart-kicker {
+  margin-bottom: 8px;
+  color: var(--sage-dark);
+  font-size: 0.72rem !important;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+#hobart_playground_map .vega-embed,
+#hobart_facility_frequency .vega-embed,
+#hobart_facilities_treemap .vega-embed {
+  width: 100%;
+  max-width: 100%;
+}
+
+#chapter-shade .chart-kicker {
+  margin-bottom: 8px;
+}
+
+#chapter-shade .chart-wide {
+  grid-column: 1 / -1;
+}
+
+/* =========================================
+   HOBART TREEMAP LEGENDS
+   ========================================= */
+
+.treemap-legends {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  margin: 25px 0 30px;
+  padding: 25px;
+  background: #f5f7f3;
+  border: 1px solid #e0e8df;
+  border-radius: 12px;
+}
+
+.treemap-legend-group {
+  min-width: 0;
+}
+
+.treemap-legend-group h4 {
+  margin: 0 0 10px;
+  color: var(--ink);
   font-size: 0.95rem;
+  font-weight: 750;
+}
+
+.treemap-legend-group p {
+  margin: 0 0 15px;
+  color: var(--ink-muted);
+  font-size: 0.85rem;
   line-height: 1.6;
 }
 
-/* 08. RESPONSIVE LAYOUTS ----------------------------------- */
+.facility-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.facility-tags span {
+  padding: 7px 12px;
+  border: 1px solid #d7e4d8;
+  border-radius: 6px;
+  background: #e8f0e7;
+  color: #355b46;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.treemap-colour-legend {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.treemap-colour-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.treemap-colour-item > span {
+  display: block;
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.treemap-colour-item small {
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+}
+
+.treemap-legend-caption {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT
+   ========================================= */
+
 @media (max-width: 1100px) {
-  .chapter-charts,
-  #chapter-characteristics .chapter-charts {
+  .chapter-two-layout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}
 
-@media (max-width: 900px) {
-  #chapter-characteristics .chapter-two-layout {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto;
-  }
-
-  #chapter-characteristics .chart-featured,
-  #chapter-characteristics .chart-classifications,
-  #chapter-characteristics .chart-distribution {
-    grid-column: 1;
+  .chart-featured {
+    grid-column: 1 / -1;
     grid-row: auto;
   }
+
+  .chart-classifications,
+  .chart-distribution {
+    grid-column: auto;
+  }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   .hero {
-    padding: 40px 20px;
+    padding: 85px 28px;
   }
+
   .atlas-chapter {
-    padding: 40px 20px;
+    padding: 60px 28px;
   }
+
   .chapter-charts,
-  #chapter-characteristics .chapter-charts {
+  .chapter-overview-layout,
+  .chapter-two-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .chart-wide,
+  .chart-featured,
+  .chart-classifications,
+  .chart-distribution {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .chart-card {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 750px) {
+  .treemap-legends {
     grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 18px;
   }
-  .chapter-number {
-    width: 48px;
-    height: 48px;
-    font-size: 1.4rem;
+}
+
+@media (max-width: 520px) {
+  .hero {
+    padding: 65px 20px;
   }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 11vw, 4rem);
+  }
+
+  .atlas-chapter {
+    padding: 48px 16px;
+  }
+
   .chapter-intro {
-    gap: 16px;
+    gap: 14px;
+    align-items: flex-start;
   }
+
+  .chapter-number {
+    font-size: 2.2rem;
+  }
+
   .chapter-intro h2 {
     font-size: 1.8rem;
   }
-  #playground_map .vega-bind,
-  #act_playground_area .vega-bind {
+
+  .chapter-description {
+    font-size: 0.94rem;
+  }
+
+  .chart-card {
+    padding: 20px 14px;
+    border-radius: 12px;
+  }
+
+  .chart-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .map-insight {
+    margin-top: 20px;
+    padding: 18px;
+  }
+
+  .treemap-legends {
+    padding: 14px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* =========================================
+   HOBART CASE STUDY TRANSITION
+   ========================================= */
+
+.case-study-intro {
+  grid-column: 1 / -1;
+  padding: 34px 38px;
+  border-left: 5px solid var(--sage-dark);
+  border-radius: 0 14px 14px 0;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.case-study-intro h3 {
+  margin: 0 0 16px;
+  color: var(--ink);
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  letter-spacing: -0.025em;
+}
+
+.case-study-intro p {
+  margin-bottom: 12px;
+  color: var(--ink-muted);
+  line-height: 1.8;
+}
+
+.case-study-intro p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================
+   CONCLUSION
+   ========================================= */
+
+.atlas-conclusion {
+  padding: 95px max(40px, calc((100vw - 1400px) / 2));
+  background: var(--ink);
+}
+
+.conclusion-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.atlas-conclusion .chapter-eyebrow {
+  color: #b6d2be;
+}
+
+.atlas-conclusion h2 {
+  margin-bottom: 24px;
+  color: var(--white);
+  font-size: clamp(2.3rem, 4vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.conclusion-lead {
+  margin-bottom: 50px;
+  color: #d7e4d9;
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  line-height: 1.85;
+}
+
+.conclusion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.conclusion-point {
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.conclusion-number {
+  display: block;
+  margin-bottom: 20px;
+  color: #d8b878;
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.conclusion-point h3 {
+  margin-bottom: 15px;
+  color: var(--white);
+  font-size: 1.4rem;
+}
+
+.conclusion-point p {
+  margin-bottom: 0;
+  color: #d4e0d6;
+  font-size: 0.94rem;
+  line-height: 1.8;
+}
+
+.conclusion-takeaway {
+  margin-top: 38px;
+  padding: 26px 30px;
+  border-left: 4px solid var(--gold);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.conclusion-takeaway p {
+  margin: 0;
+  color: #e2ece3;
+  font-size: 1.12rem;
+  line-height: 1.8;
+}
+
+.conclusion-takeaway strong {
+  color: #f1d39b;
+}
+
+/* =========================================
+   METHODOLOGY
+   ========================================= */
+
+.atlas-methodology {
+  padding: 85px max(40px, calc((100vw - 1400px) / 2));
+  background: #f5f3ea;
+}
+
+.methodology-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.atlas-methodology h2 {
+  margin-bottom: 38px;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.methodology-item {
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--white);
+}
+
+.methodology-item h3 {
+  margin-bottom: 16px;
+  color: var(--ink);
+  font-size: 1.3rem;
+}
+
+.methodology-item p {
+  margin-bottom: 14px;
+  color: var(--ink-muted);
+  font-size: 0.94rem;
+  line-height: 1.8;
+}
+
+.methodology-item p:last-child {
+  margin-bottom: 0;
+}
+
+.methodology-note {
+  margin: 30px 0 0;
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+/* =========================================
+   RESPONSIVE STORYTELLING SECTIONS
+   ========================================= */
+
+@media (max-width: 850px) {
+  .atlas-conclusion,
+  .atlas-methodology {
+    padding: 65px 28px;
+  }
+
+  .conclusion-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .methodology-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-study-intro {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .atlas-conclusion,
+  .atlas-methodology {
+    padding: 55px 20px;
+  }
+
+  .conclusion-point,
+  .methodology-item {
+    padding: 23px 20px;
+  }
+
+  .conclusion-takeaway {
+    padding: 20px;
+  }
+}
+
+/* =========================================
+   MANNINGHAM PLAYGROUND FILTER
+   ========================================= */
+
+#playground_map .vega-bindings {
+  margin-top: 12px;
+  padding: 12px 15px;
+  border: 1px solid #e0e5df;
+  border-radius: 10px;
+  background: #f5f7f3;
+}
+
+#playground_map .vega-bind {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #263f35;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+#playground_map .vega-bind select {
+  max-width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #c8d8cc;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #263f35;
+  font-family: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+#playground_map .vega-bind select:focus-visible {
+  outline: 3px solid #527a66;
+  outline-offset: 2px;
+}
+
+/* =========================================
+   CHAPTER TAKEAWAYS
+   ========================================= */
+
+.chapter-takeaway {
+  margin-top: 32px;
+  padding: 30px 36px;
+  border: 1px solid rgba(38, 63, 53, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.chapter-takeaway-label {
+  margin-bottom: 12px;
+  color: var(--sage-dark);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.chapter-takeaway-text {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.85;
+  max-width: 950px;
+}
+
+.chapter-takeaway-text strong {
+  color: var(--sage-dark);
+}
+
+@media (max-width: 520px) {
+  .chapter-takeaway {
+    padding: 24px 20px;
+  }
+}
+
+/* =========================================
+   CHAPTER 2 — CANBERRA COMPARISON
+   ========================================= */
+
+.comparison-intro {
+  margin: 36px 0 8px;
+}
+
+.comparison-intro h3 {
+  margin: 8px 0 12px;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  line-height: 1.25;
+}
+
+.comparison-intro > p:last-child {
+  line-height: 1.75;
+}
+
+.canberra-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.canberra-comparison .chart-card {
+  min-width: 0;
+  margin: 0;
+}
+
+.canberra-comparison .chart-card > p {
+  min-height: 3.5em;
+}
+
+.canberra-comparison .vega-embed,
+.canberra-comparison .vega-embed > div {
+  max-width: 100%;
+}
+
+#act_playground_density,
+#act_population_density,
+#act_playgrounds_per_resident {
+  width: 100%;
+  min-width: 0;
+}
+
+.chapter-method-note {
+  margin-top: 18px;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  opacity: 0.75;
+}
+
+@media (max-width: 900px) {
+  .canberra-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .canberra-comparison .chart-card > p {
+    min-height: 0;
+  }
+}
+
+/* =========================================
+   CHAPTER 2 — FEATURED MAP LAYOUTS
+   ========================================= */
+
+#chapter-geography .manningham-feature {
+  grid-column: 1 / -1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.manningham-feature-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+
+.manningham-map-column,
+.manningham-story-column,
+.population-map-column,
+.population-story-column {
+  min-width: 0;
+}
+
+.manningham-story-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.manningham-story-column .map-insight {
+  margin: 0;
+}
+
+#chapter-geography .population-feature {
+  grid-column: 1 / -1;
+}
+
+.population-feature-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+
+.population-story-column .map-insight {
+  margin: 0;
+}
+
+#playground_map,
+#act_playgrounds_per_resident {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .manningham-feature-layout,
+  .population-feature-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* =========================================
+   MANNINGHAM INTERACTION PROMPT
+   ========================================= */
+
+.explore-prompt {
+  padding: 24px 26px;
+  background: #edf3ee;
+  border-left: 4px solid #507965;
+  border-radius: 0 12px 12px 0;
+}
+
+.explore-prompt-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #426c58;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.explore-prompt-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #d8e7db;
+  color: #315b45;
+  font-size: 1.18rem;
+  letter-spacing: 0;
+}
+
+.explore-prompt p {
+  margin: 0;
+  color: #263f35;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.explore-prompt p strong {
+  font-weight: 750;
+  color: #173d32;
+}
+
+/* =========================================
+   CHAPTER 2 — THREE-MAP COMPARISON
+   ========================================= */
+
+#chapter-geography .canberra-triple-comparison {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  align-items: stretch;
+}
+
+#chapter-geography .canberra-map-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 24px 20px;
+}
+
+#chapter-geography .canberra-map-card .map-number {
+  display: block;
+  margin-bottom: 10px;
+  color: #65816d;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+#chapter-geography .canberra-map-card h3 {
+  margin: 0 0 10px;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  line-height: 1.3;
+}
+
+#chapter-geography .canberra-map-card > p {
+  min-height: 3.6em;
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Centre each map without stretching its SVG */
+#chapter-geography .canberra-map-card #act_playground_density,
+#chapter-geography .canberra-map-card #act_population_density,
+#chapter-geography .canberra-map-card #act_playgrounds_per_resident {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Keep Vega-Lite inside the card */
+#chapter-geography .canberra-map-card .vega-embed {
+  max-width: 100%;
+  width: auto;
+}
+
+#chapter-geography .canberra-map-card svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Full-width insight beneath the three maps */
+#chapter-geography .canberra-comparison-insight {
+  grid-column: 1 / -1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  #chapter-geography .canberra-triple-comparison {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #chapter-geography .canberra-map-card:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  #chapter-geography .canberra-triple-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  #chapter-geography .canberra-map-card:last-child {
+    grid-column: auto;
+  }
+
+  #chapter-geography .canberra-map-card > p {
+    min-height: 0;
+  }
+}
+
+/* =========================================
+   CHAPTER 2 — THREE-MAP COMPARISON REFINEMENTS
+   ========================================= */
+#chapter-geography .comparison-intro,
+#chapter-geography .canberra-triple-comparison,
+#chapter-geography .canberra-comparison-insight {
+  grid-column: 1 / -1;
+}
+#chapter-geography .canberra-map-card {
+  overflow: hidden;
+}
+#chapter-geography .canberra-map-card .vega-embed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+#chapter-geography .canberra-map-card .vega-embed svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+@media (min-width: 1101px) {
+  #chapter-geography .canberra-triple-comparison {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* =========================================
+   CHAPTER 3 — MAP + SUPPORTING CHARTS
+   ========================================= */
+#chapter-characteristics .chapter-three-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 20px;
+  align-items: start;
+  width: 100%;
+}
+#chapter-characteristics .chapter-three-layout .chart-card {
+  width: 100%;
+  min-width: 0;
+}
+#chapter-characteristics .chapter-three-map {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: auto;
+  min-height: 0;
+  align-self: start;
+}
+#chapter-characteristics .chapter-three-map > h3 {
+  margin: 0 0 10px;
+}
+#chapter-characteristics .chapter-three-map > p {
+  margin: 0 0 14px;
+  line-height: 1.6;
+}
+#chapter-characteristics .chapter-three-side {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  min-width: 0;
+  align-self: start;
+}
+#chapter-characteristics .chapter-three-side > .chart-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: auto;
+}
+#chapter-characteristics .chapter-three-side .chapter-eyebrow,
+#chapter-characteristics .chapter-three-side h3,
+#chapter-characteristics
+  .chapter-three-side
+  .chart-card
+  > p:not(.chapter-eyebrow) {
+  margin: 0;
+}
+#chapter-characteristics
+  .chapter-three-side
+  .chart-card
+  > p:not(.chapter-eyebrow) {
+  line-height: 1.6;
+}
+#chapter-characteristics #act_playground_area,
+#chapter-characteristics #playground_classifications,
+#chapter-characteristics #act_playground_distribution {
+  width: 100%;
+  min-width: 0;
+}
+#chapter-characteristics #act_playground_area {
+  flex: 0 0 auto;
+}
+#chapter-characteristics #act_playground_area .vega-embed {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  margin: 12px 0 0;
+}
+#chapter-characteristics .vega-embed svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+#chapter-characteristics .chapter-three-layout .map-insight {
+  width: 100%;
+  margin: 14px 0 0;
+}
+#chapter-characteristics .chapter-three-takeaway {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* =========================================
+   CHAPTER 3 — CANBERRA MAP FILTER
+   ========================================= */
+#act_playground_area .vega-bindings {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 14px 0 0;
+  padding: 12px 16px;
+  border: 1px solid #d4e1d6;
+  border-radius: 10px;
+  background: #edf3ee;
+}
+#act_playground_area .vega-bind {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #315b45;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+#act_playground_area .vega-bind select {
+  appearance: none;
+  min-width: 185px;
+  max-width: 100%;
+  padding: 10px 38px 10px 14px;
+  border: 1px solid #bfd2c3;
+  border-radius: 7px;
+  background: #fff
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23315b45' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+    no-repeat right 13px center;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+#act_playground_area .vega-bind select:hover {
+  border-color: #658b70;
+  background-color: #f9fcfa;
+}
+#act_playground_area .vega-bind select:focus-visible {
+  outline: 2px solid #507965;
+  outline-offset: 3px;
+}
+
+/* =========================================
+   CHAPTER 3 — LIVE SELECTION SUMMARY
+   ========================================= */
+#chapter-characteristics .playground-selection-summary {
+  margin: 14px 0 0;
+  padding: 20px 22px;
+  border: 1px solid #d4e1d6;
+  border-radius: 10px;
+  background: #edf3ee;
+}
+#chapter-characteristics .selection-summary-label {
+  margin: 0 0 14px;
+  color: #426c58;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+#chapter-characteristics .selection-summary-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+#chapter-characteristics .selection-summary-stats span {
+  display: block;
+  color: #173d32;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+#chapter-characteristics .selection-summary-stats p {
+  margin: 8px 0 0;
+  color: #52665e;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+#chapter-characteristics .selection-summary-current {
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid #d4e1d6;
+  color: #52665e;
+  font-size: 0.9rem;
+}
+#chapter-characteristics .selection-summary-current strong {
+  color: #315b45;
+}
+
+/* =========================================
+   CHAPTER 3 — PREPARE CUSTOM HORIZONTAL LEGEND
+   (Activate when its HTML is added.)
+   ========================================= */
+.playground-area-legend {
+  display: grid;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 20px 22px;
+  border: 1px solid #d4e1d6;
+  border-radius: 12px;
+  background: #f0f4f1;
+}
+.playground-area-legend__title {
+  margin: 0;
+  color: #315b45;
+  font-size: 0.83rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.playground-area-legend__items {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  gap: 12px;
+}
+.playground-area-legend__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+.playground-area-legend__circle {
+  display: block;
+  flex: none;
+  border-radius: 50%;
+  background: #4477aa;
+}
+
+/* =========================================
+   FINAL RESPONSIVE RULES
+   ========================================= */
+@media (max-width: 1100px) {
+  #chapter-characteristics .chapter-three-layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 16px;
+  }
+  #chapter-characteristics .chapter-three-side {
+    gap: 16px;
+  }
+}
+@media (max-width: 850px) {
+  #chapter-characteristics .chapter-three-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #chapter-characteristics .chapter-three-side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  #chapter-geography .canberra-triple-comparison {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #chapter-geography .canberra-map-card:last-child {
+    grid-column: auto;
+  }
+  #chapter-geography .canberra-map-card > p {
+    min-height: 0;
+  }
+}
+@media (max-width: 650px) {
+  #chapter-characteristics .chapter-three-side {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #chapter-characteristics .selection-summary-stats {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  #act_playground_area .vega-bindings {
+    width: 100%;
+  }
+  #act_playground_area .vega-bind select {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* =========================================
+   CHAPTER 3 — CUSTOM MAP LEGEND
+   ========================================= */
+
+#chapter-characteristics .chapter-three-map {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: auto;
+}
+
+/* Map */
+#chapter-characteristics #act_playground_area {
+  width: 100%;
+  min-width: 0;
+  flex: 0 0 auto;
+  margin-bottom: 12px;
+}
+
+/* Full-width legend panel */
+#chapter-characteristics .playground-size-panel {
+  width: 100%;
+  box-sizing: border-box;
+  background: #eff3ef;
+  border: 1px solid #d4e1d6;
+  border-radius: 12px;
+  padding: 18px 20px 14px;
+}
+
+/* Legend heading */
+#chapter-characteristics .playground-size-panel-title {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  color: #315b45;
+}
+
+/* Four evenly spaced symbols */
+#chapter-characteristics .playground-size-legend {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  gap: 12px;
+  padding: 10px 0 22px;
+}
+
+/* Individual legend item */
+#chapter-characteristics .playground-size-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 0;
+  color: #263f35;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Circle symbols */
+#chapter-characteristics .playground-size-symbol {
+  display: block;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #4477aa;
+}
+
+/*
+  Diameter derived from Vega-Lite's size scale:
+  area = 20 + (surface_area / 3300) * 680
+  diameter = sqrt(4 * area / PI)
+*/
+
+#chapter-characteristics .playground-size-symbol[data-area="200"] {
+  width: 9px;
+  height: 9px;
+}
+
+#chapter-characteristics .playground-size-symbol[data-area="800"] {
+  width: 15px;
+  height: 15px;
+}
+
+#chapter-characteristics .playground-size-symbol[data-area="1600"] {
+  width: 21px;
+  height: 21px;
+}
+
+#chapter-characteristics .playground-size-symbol[data-area="3300"] {
+  width: 30px;
+  height: 30px;
+}
+
+/* Integrated filter section */
+#chapter-characteristics .playground-size-filter {
+  border-top: 1px solid #d4e1d6;
+  padding-top: 14px;
+  min-height: 42px;
+}
+
+/* Vega dropdown moved into custom panel */
+#chapter-characteristics .playground-size-filter .vega-bindings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+/* Dropdown label and input */
+#chapter-characteristics .playground-size-filter .vega-bind {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  margin: 0;
+  color: #315b45;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#chapter-characteristics .playground-size-filter select {
+  min-width: 165px;
+  max-width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #bfd2c4;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #263f35;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#chapter-characteristics .playground-size-filter select:focus-visible {
+  outline: 2px solid #4477aa;
+  outline-offset: 2px;
+}
+
+/* Insight and selection summary */
+#chapter-characteristics .chapter-three-map > .map-insight {
+  margin: 14px 0 0;
+}
+
+#chapter-characteristics .chapter-three-map > .playground-selection-summary {
+  margin: 14px 0 0;
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1100px) {
+  #chapter-characteristics .playground-size-panel {
+    padding: 16px;
+  }
+
+  #chapter-characteristics .playground-size-legend {
+    gap: 8px;
+  }
+}
+
+/* Narrow layouts */
+@media (max-width: 700px) {
+  #chapter-characteristics .playground-size-item {
+    font-size: 14px;
+  }
+
+  #chapter-characteristics .playground-size-filter .vega-bind {
     flex-wrap: wrap;
+  }
+}
+
+/* =========================================
+   CHAPTER 3 — CARD ALIGNMENT
+   ========================================= */
+
+/* Make both columns share the same overall height */
+#chapter-characteristics .chapter-three-layout {
+  align-items: stretch;
+}
+
+/* Keep the map and legend together */
+#chapter-characteristics #act_playground_area {
+  flex: 0 0 auto;
+}
+
+/* Keep the selection summary immediately beneath the legend */
+#chapter-characteristics .chapter-three-map > .playground-selection-summary {
+  margin: 14px 0 0;
+}
+
+/* Make the supporting column occupy the same full height */
+#chapter-characteristics .chapter-three-side {
+  align-self: stretch;
+  height: 100%;
+}
+
+/* =========================================
+   CHAPTER 3 — DYNAMIC SELECTION PROFILE
+   ========================================= */
+
+/* Keep content naturally stacked, without a large empty gap */
+#chapter-characteristics .chapter-three-layout {
+  align-items: start;
+}
+
+#chapter-characteristics .chapter-three-map {
+  height: auto;
+  align-self: start;
+}
+
+/* Profile container */
+#chapter-characteristics .playground-selection-summary {
+  margin: 14px 0 0;
+  padding: 20px 22px;
+  background: #edf3ee;
+  border: 1px solid #d4e1d6;
+  border-radius: 12px;
+}
+
+/* Header */
+#chapter-characteristics .selection-profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+#chapter-characteristics .selection-summary-label {
+  margin: 0;
+  color: #426c58;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+#chapter-characteristics #selected-playground-range {
+  color: #527a66;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+/* Three-column statistics */
+#chapter-characteristics .selection-summary-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#chapter-characteristics .selection-summary-stats span {
+  display: block;
+  color: #173d32;
+  font-size: clamp(1.5rem, 2.5vw, 2.15rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+#chapter-characteristics .selection-summary-stats p {
+  margin: 7px 0 0;
+  color: #52665e;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+/* Progress section */
+#chapter-characteristics .selection-profile-progress {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #d4e1d6;
+}
+
+#chapter-characteristics .selection-progress-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: #426c58;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+}
+
+#chapter-characteristics .selection-progress-track {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #d6e4d9;
+}
+
+#chapter-characteristics #selected-playground-progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: #4477aa;
+  transition: width 250ms ease;
+}
+
+/* Dynamic insight */
+#chapter-characteristics .chapter-three-map > .playground-dynamic-insight {
+  margin: 14px 0 0;
+}
+
+#chapter-characteristics .playground-dynamic-insight .insight-headline {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 650px) {
+  #chapter-characteristics .selection-summary-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  #chapter-characteristics .selection-summary-stats span {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 420px) {
+  #chapter-characteristics .selection-summary-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #chapter-characteristics #selected-playground-progress-fill {
+    transition: none;
+  }
+}
+
+/* =========================================
+   CHAPTER 3 — FULL-WIDTH FEATURE LAYOUT
+   ========================================= */
+
+/* Entire chapter: feature above supporting charts */
+#chapter-characteristics .chapter-three-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+/* Main Canberra card */
+#chapter-characteristics .chapter-three-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  align-self: auto;
+}
+
+/* Feature heading */
+#chapter-characteristics .chapter-three-feature-heading {
+  margin-bottom: 18px;
+}
+
+#chapter-characteristics .chapter-three-feature-heading h3 {
+  margin: 0 0 8px;
+}
+
+#chapter-characteristics .chapter-three-feature-heading p {
+  margin: 0;
+}
+
+/* Map left, controls right */
+#chapter-characteristics .chapter-three-feature-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* Interactive map */
+#chapter-characteristics .chapter-three-map-visual {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#chapter-characteristics #act_playground_area {
+  width: 100%;
+  min-width: 0;
+  flex: none;
+}
+
+/* Right-hand controls */
+#chapter-characteristics .chapter-three-feature-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* Avoid double margins from existing styling */
+#chapter-characteristics
+  .chapter-three-feature-sidebar
+  > .playground-size-panel,
+#chapter-characteristics
+  .chapter-three-feature-sidebar
+  > .playground-selection-summary,
+#chapter-characteristics
+  .chapter-three-feature-sidebar
+  > .playground-dynamic-insight {
+  width: 100%;
+  margin: 0;
+}
+
+/* Supporting charts side by side */
+#chapter-characteristics .chapter-three-side {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto;
+  gap: 20px;
+  width: 100%;
+  height: auto;
+  align-self: auto;
+}
+
+/* Each supporting chart is a normal card */
+#chapter-characteristics .chapter-three-side > .chart-card {
+  min-width: 0;
+  width: 100%;
+  height: auto;
+}
+
+/* Tablet: stack map and controls */
+@media (max-width: 950px) {
+  #chapter-characteristics .chapter-three-feature-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  #chapter-characteristics .chapter-three-feature-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  #chapter-characteristics
+    .chapter-three-feature-sidebar
+    > .playground-dynamic-insight {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Mobile: everything stacks */
+@media (max-width: 650px) {
+  #chapter-characteristics .chapter-three-feature-sidebar,
+  #chapter-characteristics .chapter-three-side {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #chapter-characteristics .chapter-three-feature-grid {
+    gap: 14px;
+  }
+}
+
+/* =========================================
+   CHAPTER 3 — SUPPORTING CHART ALIGNMENT
+   ========================================= */
+
+/* Give both supporting cards identical vertical structure */
+#chapter-characteristics .chapter-three-side > .chart-card {
+  display: grid;
+  grid-template-rows:
+    auto /* Case study eyebrow */
+    auto /* Heading */
+    auto /* Description */
+    minmax(0, 1fr) /* Chart */
+    auto; /* Insight */
+  align-content: stretch;
+  height: 100%;
+  min-width: 0;
+}
+
+/* Prevent inherited margins from creating uneven spacing */
+#chapter-characteristics .chapter-three-side > .chart-card > h3,
+#chapter-characteristics .chapter-three-side > .chart-card > p {
+  margin-top: 0;
+}
+
+/* Align chart containers within their grid rows */
+#chapter-characteristics #playground_classifications,
+#chapter-characteristics #act_playground_distribution {
+  align-self: start;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Match the insight panels' bottom alignment */
+#chapter-characteristics .chapter-three-side > .chart-card > .map-insight {
+  align-self: end;
+  margin: 0;
+  width: 100%;
+}
+
+/* Ensure both cards stretch to the same row height */
+#chapter-characteristics .chapter-three-side {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 20px;
+}
+
+/* Stack on mobile */
+@media (max-width: 650px) {
+  #chapter-characteristics .chapter-three-side {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reserve identical space for both chart visualisations */
+#chapter-characteristics #playground_classifications,
+#chapter-characteristics #act_playground_distribution {
+  min-height: 270px;
+}
+
+/* Position insight panels directly after the chart region */
+#chapter-characteristics .chapter-three-side > .chart-card {
+  grid-template-rows: auto auto auto 270px auto;
+  align-content: start;
+}
+
+/* Let each insight occupy the final row */
+#chapter-characteristics .chapter-three-side > .chart-card > .map-insight {
+  align-self: stretch;
+}
+
+/* CHAPTER 3 — FILTER DROPDOWN SPACING */
+
+#chapter-characteristics .playground-size-filter .vega-bind {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
+#chapter-characteristics .playground-size-filter .vega-bind-name {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+#chapter-characteristics .playground-size-filter select {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  padding: 5px 24px 5px 9px;
+  border: 1px solid #a8bcae;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* =========================================
+   CHAPTER 4 — SHADE AND FACILITIES
+   ========================================= */
+
+/* Main Chapter 4 grid */
+#chapter-shade .chapter-four-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Prevent charts from overflowing their cards */
+#chapter-shade .chapter-four-layout > * {
+  min-width: 0;
+}
+
+/* =========================================
+   CANBERRA SHADE CARDS
+   ========================================= */
+
+#chapter-shade .chapter-four-shade-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Consistent heading spacing */
+#chapter-shade .chapter-four-shade-card > h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+#chapter-shade .chapter-four-shade-card > p:not(.chapter-eyebrow) {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+/* More generous chart region */
+#chapter-shade .chapter-four-chart-area {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  min-height: 320px;
+  padding: 12px 4px;
+}
+
+/* Allow Vega embeds to use the available width */
+#chapter-shade #act_playground_shade,
+#chapter-shade #act_shade_size_heatmap {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Keep rendered chart containers responsive */
+#chapter-shade .chapter-four-chart-area .vega-embed {
+  max-width: 100%;
+}
+
+/* =========================================
+   CANBERRA TAKEAWAY
+   ========================================= */
+
+#chapter-shade .chapter-four-shade-takeaway {
+  grid-column: 1 / -1;
+
+  padding: 22px 26px;
+
+  background: #f7f3e9;
+  border-left: 3px solid #d99a32;
+  border-radius: 0 10px 10px 0;
+}
+
+#chapter-shade .chapter-four-shade-takeaway .insight-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#chapter-shade .chapter-four-shade-takeaway .insight-headline {
+  margin: 0 0 10px;
+}
+
+#chapter-shade .chapter-four-shade-takeaway .insight-detail {
+  margin: 0;
+  line-height: 1.65;
+}
+
+/* =========================================
+   HOBART SECTION
+   ========================================= */
+
+#chapter-shade .chapter-four-hobart-intro {
+  grid-column: 1 / -1;
+}
+
+#chapter-shade .chapter-four-hobart-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Keep existing chart dimensions intact */
+#chapter-shade #hobart_playground_map,
+#chapter-shade #hobart_facility_frequency {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Push Hobart insight towards the card bottom */
+#chapter-shade .chapter-four-hobart-card > .map-insight {
+  margin-top: auto;
+}
+
+/* Full-width treemap */
+#chapter-shade .chapter-four-treemap-card {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+/* Source notes */
+#chapter-shade .chapter-four-source-note {
+  margin-top: 12px;
+  color: #68766e;
+  line-height: 1.5;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT
+   ========================================= */
+
+@media (max-width: 850px) {
+  #chapter-shade .chapter-four-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #chapter-shade .chapter-four-shade-takeaway,
+  #chapter-shade .chapter-four-hobart-intro,
+  #chapter-shade .chapter-four-treemap-card {
+    grid-column: 1;
+  }
+
+  #chapter-shade .chapter-four-chart-area {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 500px) {
+  #chapter-shade .chapter-four-chart-area {
+    min-height: 240px;
+    padding: 8px 0;
+  }
+
+  #chapter-shade .chapter-four-shade-takeaway {
+    padding: 18px 20px;
+  }
+}
+
+#chapter-shade .chapter-four-shade-takeaway .insight-headline {
+  font-size: 1.3rem;
+  font-weight: 750;
+  line-height: 1.4;
+  color: #263f35;
+  margin-bottom: 10px;
+}
+
+/* =========================================
+   CHAPTER 4 — CANBERRA SHADE OVERVIEW
+   TWO-ROW LAYOUT
+   ========================================= */
+
+/* Main card */
+#chapter-shade .shade-overview-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Main content: chart row above summary */
+#chapter-shade .shade-overview-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  margin-top: 18px;
+  gap: 20px;
+}
+
+/* Keep the doughnut and legend near the top */
+#chapter-shade .shade-chart-layout {
+  flex-shrink: 0;
+}
+
+/* Push the summary panel towards the bottom */
+#chapter-shade .shade-overview-summary {
+  margin-top: auto;
+}
+
+/* Align the heatmap insight with the bottom of its card */
+#chapter-shade .shade-size-insight {
+  margin-top: auto;
+}
+
+/* =========================================
+   TOP ROW — DOUGHNUT + LEGEND
+   ========================================= */
+
+#chapter-shade .shade-chart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(130px, 1fr);
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Doughnut container */
+#chapter-shade .shade-doughnut-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+/* Vega-Lite chart */
+#chapter-shade .shade-doughnut-container #act_playground_shade {
+  width: auto;
+  min-width: 0;
+}
+
+#chapter-shade .shade-doughnut-container .vega-embed {
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+}
+
+/* =========================================
+   CUSTOM BORDERED LEGEND
+   ========================================= */
+
+#chapter-shade .shade-custom-legend {
+  width: 100%;
+  min-width: 0;
+  padding: 16px;
+  background: #f8faf8;
+  border: 1px solid #d4e1d6;
+  border-radius: 10px;
+}
+
+#chapter-shade .shade-legend-title {
+  margin: 0 0 14px;
+  color: #426c58;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+}
+
+#chapter-shade .shade-legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#chapter-shade .shade-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  color: #263f35;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+#chapter-shade .shade-legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+}
+
+/* =========================================
+   BOTTOM ROW — HORIZONTAL SUMMARY
+   ========================================= */
+
+#chapter-shade .shade-overview-summary {
+  width: 100%;
+  min-width: 0;
+  padding: 24px 20px;
+  background: #edf3ee;
+  border: 1px solid #d4e1d6;
+  border-radius: 12px;
+}
+
+#chapter-shade .shade-summary-eyebrow {
+  margin: 0 0 16px;
+  color: #426c58;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+
+/* Two equal summary columns */
+#chapter-shade .shade-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* Summary items */
+#chapter-shade .shade-summary-item {
+  min-width: 0;
+}
+
+/* Divider between summary columns */
+#chapter-shade .shade-summary-item + .shade-summary-item {
+  margin: 0;
+  padding: 0 0 0 20px;
+  border-top: none;
+  border-left: 1px solid #d4e1d6;
+}
+
+#chapter-shade .shade-summary-label {
+  display: block;
+  margin-bottom: 9px;
+  color: #5e7567;
+  font-size: 0.67rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+}
+
+#chapter-shade .shade-summary-value {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #263f35;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+#chapter-shade .shade-summary-dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  flex: 0 0 11px;
+  border-radius: 50%;
+}
+
+#chapter-shade .shade-fair {
+  background: #dba44a;
+}
+
+#chapter-shade .shade-good {
+  background: #4477aa;
+}
+
+#chapter-shade .shade-summary-item > p {
+  margin: 8px 0 0;
+  color: #56665d;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1100px) {
+  #chapter-shade .shade-chart-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  #chapter-shade .shade-custom-legend {
+    max-width: none;
+  }
+
+  #chapter-shade .shade-legend-items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+@media (max-width: 650px) {
+  #chapter-shade .shade-summary-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  #chapter-shade .shade-summary-item + .shade-summary-item {
+    padding: 16px 0 0;
+    border-left: none;
+    border-top: 1px solid #d4e1d6;
+  }
+
+  #chapter-shade .shade-overview-summary {
+    padding: 16px;
+  }
+}
+
+/* =========================================
+   CHAPTER 4 — HOBART LOCATION & FACILITIES
+   ========================================= */
+
+/* Matching card structure */
+#chapter-shade .chapter-four-hobart-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Consistent chart regions */
+#chapter-shade .hobart-map-visual,
+#chapter-shade .hobart-facilities-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  min-height: 300px;
+  padding: 14px 0;
+}
+
+/* Vega-Lite embeds */
+#chapter-shade #hobart_playground_map,
+#chapter-shade #hobart_facility_frequency {
+  width: 100%;
+  min-width: 0;
+}
+
+#chapter-shade .hobart-map-visual .vega-embed,
+#chapter-shade .hobart-facilities-visual .vega-embed {
+  max-width: 100%;
+}
+
+/* =========================================
+   HOBART MAP CONTEXT PANEL
+   ========================================= */
+
+#chapter-shade .hobart-map-context {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+  padding: 16px 18px;
+  background: #edf3ee;
+  border: 1px solid #d4e1d6;
+  border-radius: 10px;
+}
+
+#chapter-shade .hobart-map-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 20px;
+  border-right: 1px solid #d4e1d6;
+}
+
+#chapter-shade .hobart-map-stat strong {
+  color: #263f35;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+#chapter-shade .hobart-map-stat span {
+  color: #5e7567;
+  font-size: 0.7rem;
+}
+
+#chapter-shade .hobart-map-context-text strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #263f35;
+  font-size: 0.9rem;
+}
+
+#chapter-shade .hobart-map-context-text p {
+  margin: 0;
+  color: #56665d;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* =========================================
+   FACILITY FREQUENCY INSIGHT
+   ========================================= */
+
+#chapter-shade .hobart-facilities-insight {
+  margin-top: 0;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 850px) {
+  #chapter-shade .hobart-map-visual,
+  #chapter-shade .hobart-facilities-visual {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 500px) {
+  #chapter-shade .hobart-map-context {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  #chapter-shade .hobart-map-stat {
+    padding-right: 0;
+    padding-bottom: 12px;
+    border-right: none;
+    border-bottom: 1px solid #d4e1d6;
+  }
+}
+
+/* =========================================
+   CHAPTER 4 — HOBART LOCATOR INSET
+   ========================================= */
+
+#chapter-shade .hobart-map-stage {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Main map remains unchanged */
+#chapter-shade .hobart-map-stage #hobart_playground_map {
+  width: 100%;
+}
+
+/* =========================================
+   HOBART — TASMANIA LOCATOR
+   ========================================= */
+
+#chapter-shade .hobart-locator {
+  position: absolute;
+  left: auto;
+  right: 100px;
+  bottom: 18px;
+  z-index: 2;
+
+  width: 125px;
+  padding: 10px;
+
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid #d4e1d6;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(38, 63, 53, 0.08);
+
+  pointer-events: none;
+}
+
+#chapter-shade .hobart-locator-title {
+  margin: 0 0 4px;
+  color: #426c58;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+#chapter-shade #hobart_locator_map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#chapter-shade #hobart_locator_map .vega-embed {
+  max-width: 100%;
+  padding: 0;
+}
+
+#chapter-shade .hobart-locator-caption {
+  margin: 4px 0 0;
+  color: #68766e;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* Treemap zero-amenity explanation */
+
+#chapter-shade .treemap-zero-note {
+  margin: 14px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid #d4e1d6;
+
+  color: #64756a;
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+#chapter-shade .treemap-zero-note strong {
+  color: #426c58;
+  font-weight: 750;
+}
+
+/* =========================================
+   CHAPTER 5 — PUBLIC OPEN SPACE
+   ========================================= */
+
+#chapter-open-space .chapter-five-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* =========================================
+   CHART CARDS
+   ========================================= */
+
+#chapter-open-space .chapter-five-map-card,
+#chapter-open-space .chapter-five-suburb-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+#chapter-open-space .chapter-five-map-visual {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex: 0 0 auto;
+  min-width: 0;
+  min-height: 0;
+  padding: 10px 0 4px;
+}
+
+/* Suburb chart container */
+#chapter-open-space .chapter-five-suburb-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  min-height: 350px;
+  padding: 16px 0;
+}
+
+/* Vega-Lite chart containers */
+#chapter-open-space #manningham_open_space_map,
+#chapter-open-space #manningham_suburb_open_space {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Move filter above map */
+#chapter-open-space #manningham_open_space_map {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+}
+
+/* Vega-Lite embeds */
+#chapter-open-space .chapter-five-map-visual .vega-embed,
+#chapter-open-space .chapter-five-suburb-visual .vega-embed {
+  max-width: 100%;
+}
+
+/* =========================================
+   MAP FILTER
+   ========================================= */
+
+#chapter-open-space #manningham_open_space_map .vega-bindings {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  margin: 0 0 14px;
+  padding: 10px 14px;
+
+  background: #edf3ee;
+  border: 1px solid #d4e1d6;
+  border-radius: 9px;
+}
+
+#chapter-open-space #manningham_open_space_map .vega-bindings label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 0;
+  color: #426c58;
+  font-size: 0.75rem;
+  font-weight: 750;
+}
+
+#chapter-open-space #manningham_open_space_map .vega-bindings select {
+  max-width: 100%;
+  min-width: 0;
+  padding: 7px 10px;
+
+  color: #263f35;
+  background: #ffffff;
+  border: 1px solid #cbd9ce;
+  border-radius: 7px;
+
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+/* =========================================
+   MAP LEGEND
+   ========================================= */
+
+#chapter-open-space .chapter-five-map-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 4px 0 18px;
+}
+
+#chapter-open-space .chapter-five-map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #56665d;
+  font-size: 0.75rem;
+}
+
+#chapter-open-space .chapter-five-legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+}
+
+#chapter-open-space .chapter-five-legend-dot.within {
+  background: #2563eb;
+}
+
+#chapter-open-space .chapter-five-legend-dot.outside {
+  background: #ea580c;
+}
+
+/* =========================================
+   MAP STATISTICS
+   ========================================= */
+
+#chapter-open-space .chapter-five-map-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+
+  padding: 18px 12px;
+  background: #edf3ee;
+  border: 1px solid #d4e1d6;
+  border-radius: 10px;
+}
+
+#chapter-open-space .chapter-five-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+  min-width: 0;
+  padding: 0 10px;
+  text-align: center;
+}
+
+#chapter-open-space .chapter-five-stat + .chapter-five-stat {
+  border-left: 1px solid #d4e1d6;
+}
+
+#chapter-open-space .chapter-five-stat-number {
+  color: #263f35;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+#chapter-open-space .chapter-five-stat-exception .chapter-five-stat-number {
+  color: #d67a20;
+}
+
+#chapter-open-space .chapter-five-stat-label {
+  color: #56665d;
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+/* =========================================
+   SUBURB INSIGHT
+   ========================================= */
+
+#chapter-open-space .chapter-five-suburb-insight {
+  padding: 18px 20px;
+  background: #edf3ee;
+  border: 1px solid #d4e1d6;
+  border-radius: 10px;
+}
+
+#chapter-open-space .chapter-five-insight-eyebrow {
+  margin: 0 0 15px;
+  color: #426c58;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+#chapter-open-space .chapter-five-insight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+#chapter-open-space .chapter-five-insight-grid > div {
+  min-width: 0;
+}
+
+#chapter-open-space .chapter-five-insight-grid > div + div {
+  padding-left: 20px;
+  border-left: 1px solid #d4e1d6;
+}
+
+#chapter-open-space .chapter-five-insight-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #5e7567;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+}
+
+#chapter-open-space .chapter-five-insight-grid strong {
+  color: #263f35;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+#chapter-open-space .chapter-five-insight-grid p {
+  margin: 6px 0 0;
+  color: #56665d;
+  font-size: 0.82rem;
+}
+
+/* =========================================
+   CHAPTER TAKEAWAY
+   ========================================= */
+
+#chapter-open-space .chapter-five-takeaway {
+  grid-column: 1 / -1;
+  padding: 22px 26px;
+
+  background: #f7f3e9;
+  border-left: 3px solid #d99a32;
+  border-radius: 0 10px 10px 0;
+}
+
+#chapter-open-space .chapter-five-takeaway .insight-headline {
+  margin: 10px 0;
+  color: #263f35;
+  font-size: 1.3rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+#chapter-open-space .chapter-five-takeaway .insight-detail {
+  margin: 0;
+  color: #56665d;
+  line-height: 1.6;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 850px) {
+  #chapter-open-space .chapter-five-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #chapter-open-space .chapter-five-takeaway {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 550px) {
+  #chapter-open-space .chapter-five-map-summary {
+    padding: 14px 6px;
+  }
+
+  #chapter-open-space .chapter-five-stat {
+    padding: 0 6px;
+  }
+
+  #chapter-open-space .chapter-five-stat-number {
+    font-size: 1.4rem;
+  }
+
+  #chapter-open-space .chapter-five-map-legend {
+    gap: 10px 16px;
+  }
+
+  #chapter-open-space #manningham_open_space_map .vega-bindings {
+    padding: 10px;
+  }
+
+  #chapter-open-space #manningham_open_space_map .vega-bindings label {
+    flex-wrap: wrap;
+  }
+
+  #chapter-open-space .chapter-five-insight-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  #chapter-open-space .chapter-five-insight-grid > div + div {
+    padding: 14px 0 0;
+    border-left: none;
+    border-top: 1px solid #d4e1d6;
+  }
+}
+
+/* =========================================
+   CHAPTER 5 — TYPOGRAPHY REFINEMENT
+   ========================================= */
+
+/* Chart headings */
+#chapter-open-space .chart-card h3 {
+  font-size: clamp(20px, 1.7vw, 24px);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+/* Chart descriptions */
+#chapter-open-space .chart-card > p:not(.chapter-eyebrow) {
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* Map filter */
+#chapter-open-space #manningham_open_space_map .vega-bindings label,
+#chapter-open-space #manningham_open_space_map .vega-bindings select {
+  font-size: 15px;
+}
+
+/* Map legend */
+#chapter-open-space .chapter-five-map-legend span {
+  font-size: 15px;
+}
+
+/* Summary statistics */
+#chapter-open-space .chapter-five-stat-number {
+  font-size: 32px;
+}
+
+#chapter-open-space .chapter-five-stat-label {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Suburb insight */
+#chapter-open-space .chapter-five-insight-eyebrow,
+#chapter-open-space .chapter-five-insight-label {
+  font-size: 14px;
+}
+
+#chapter-open-space .chapter-five-insight-grid strong {
+  font-size: 24px;
+}
+
+#chapter-open-space .chapter-five-insight-grid p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Final takeaway */
+#chapter-open-space .chapter-five-takeaway .insight-headline {
+  font-size: 24px;
+  line-height: 1.45;
+}
+
+#chapter-open-space .chapter-five-takeaway .insight-detail {
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* Responsive adjustments */
+@media (max-width: 550px) {
+  #chapter-open-space .chart-card h3 {
+    font-size: 22px;
+  }
+
+  #chapter-open-space .chart-card > p:not(.chapter-eyebrow) {
+    font-size: 17px;
+  }
+
+  #chapter-open-space .chapter-five-takeaway .insight-headline {
+    font-size: 20px;
+  }
+}
+
+/* =========================================
+   TYPOGRAPHY — NATURAL CONTENT WIDTHS
+   Paragraphs fill their layout columns; grids and cards set the width.
+   ========================================= */
+
+.hero-subtitle {
+  max-width: 850px;
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   CHAPTER 2 — CONSISTENT TAKEAWAY TYPOGRAPHY
+   ========================================= */
+
+#chapter-geography .canberra-comparison-insight .insight-label,
+#chapter-geography .chapter-takeaway-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  line-height: 1.4;
+}
+
+/* Main insight headline */
+#chapter-geography .canberra-comparison-insight .insight-headline {
+  font-size: 1.375rem;
+  font-weight: 750;
+  line-height: 1.45;
+  color: #263f35;
+  max-width: 1100px;
+}
+
+/* Supporting text in both panels */
+#chapter-geography .canberra-comparison-insight .insight-detail,
+#chapter-geography .chapter-takeaway-text {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #263f35;
+  max-width: 950px;
+}
+
+/* Consistent bold emphasis */
+#chapter-geography .canberra-comparison-insight .insight-detail strong,
+#chapter-geography .chapter-takeaway-text strong {
+  font-size: inherit;
+  font-weight: 750;
+  color: #263f35;
+}
+
+/* Preserve orange emphasis in the headline */
+#chapter-geography .canberra-comparison-insight .highlight-text {
+  color: #bf7b16;
+  font-weight: 800;
+}
+
+/* Smaller methodological information */
+#chapter-geography .chapter-method-note {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #68776e;
+}
+
+#chapter-geography .chapter-takeaway-headline {
+  margin: 12px 0 8px;
+  color: #263f35;
+  font-size: 1.375rem;
+  font-weight: 750;
+  line-height: 1.45;
+  max-width: 1100px;
+}
+
+#chapter-geography .chapter-takeaway-headline .highlight-text {
+  color: #bf7b16;
+  font-weight: 800;
+}
+
+#chapter-characteristics .chapter-three-takeaway .chapter-takeaway-headline {
+  margin: 10px 0 12px;
+  color: #263f35;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+#chapter-characteristics .chapter-three-takeaway .chapter-takeaway-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* Chapter 4: Heatmap supporting insight */
+
+#chapter-shade .shade-size-card {
+  display: flex;
+  flex-direction: column;
+}
+
+#chapter-shade .shade-size-card .chapter-four-chart-area {
+  flex: 1;
+  min-height: 320px;
+}
+
+#chapter-shade .shade-size-insight {
+  margin-top: 18px;
+}
+
+#chapter-shade .shade-size-insight .insight-headline {
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+
+/* Chapter 5 takeaway text alignment */
+.chapter-five-takeaway .insight-detail {
+  max-width: 1050px;
+  width: 100%;
+}
+
+/* Bold text in the dark conclusion */
+.atlas-conclusion strong {
+  color: #ffffff;
+}
+
+/* Keep the final takeaway highlighted in gold */
+.atlas-conclusion .conclusion-takeaway strong {
+  color: #e8ba70;
+}
+
+/* Canberra population comparison introduction */
+.comparison-intro > p:not(.chapter-eyebrow) {
+  max-width: 900px;
+}
+
+/* Takeaway headlines */
+.chapter-takeaway .insight-headline {
+  max-width: 1100px;
+}
+
+/* Takeaway body text */
+.chapter-takeaway .insight-detail {
+  max-width: 950px;
+}
+
+/* Takeaway methodology notes */
+.chapter-takeaway .chapter-method-note {
+  max-width: 950px;
+}
+
+/* Hobart case study introduction */
+.chapter-four-hobart-intro > p:not(.chapter-eyebrow) {
+  max-width: 950px;
+}
+
+/* =========================================
+   PROJECT FOOTER
+   ========================================= */
+
+.atlas-footer {
+  background: #f5f4eb;
+  color: #263f35;
+  padding: 0;
+}
+
+.footer-inner {
+  width: min(100% - 72px, 1440px);
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  padding-bottom: 45px;
+}
+
+.footer-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #517c69;
+  margin: 0 0 20px;
+}
+
+.footer-column h3 {
+  font-size: 1rem;
+  margin: 0 0 16px;
+}
+
+.footer-column p,
+.footer-sources {
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.footer-column p {
+  margin: 0 0 14px;
+}
+
+.footer-sources {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.footer-sources li {
+  margin-bottom: 8px;
+}
+
+.footer-acknowledgement {
+  color: #607168;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid #d9ded5;
+  padding-top: 24px;
+  font-size: 0.75rem;
+  color: #607168;
+}
+
+.footer-bottom a {
+  color: #517c69;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  .footer-inner {
+    width: calc(100% - 40px);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* =========================================
+   WHERE AUSTRALIA PLAYS — FOOTER
+   ========================================= */
+
+.atlas-footer {
+  background: #f5f4eb;
+  color: #263f35;
+}
+
+/* Closing statement */
+
+.footer-opening {
+  background: #e4ecdf;
+  padding: 75px 6%;
+  border-top: 4px solid #517c69;
+}
+
+.footer-eyebrow,
+.footer-section-number {
+  display: block;
+  color: #517c69;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.footer-opening h2 {
+  max-width: 900px;
+  margin: 20px 0;
+  font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.footer-title-accent {
+  color: #b58136;
+}
+
+.footer-opening-text {
+  max-width: 760px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.footer-accent-bars {
+  display: flex;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.footer-accent-bars span {
+  width: 44px;
+  height: 5px;
+  border-radius: 10px;
+}
+
+.footer-accent-bars span:nth-child(1) {
+  background: #517c69;
+}
+
+.footer-accent-bars span:nth-child(2) {
+  background: #d9a34e;
+}
+
+.footer-accent-bars span:nth-child(3) {
+  background: #9fb8b0;
+}
+
+/* Main footer content */
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 55px 80px;
+  padding: 65px 6%;
+}
+
+.footer-section h3 {
+  margin: 15px 0 20px;
+  font-size: 1.6rem;
+}
+
+.footer-section p {
+  max-width: 600px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.footer-data {
+  grid-column: 1 / -1;
+  border-top: 1px solid #d9ded5;
+  padding-top: 45px;
+}
+
+.footer-data > p {
+  max-width: 850px;
+}
+
+.footer-source-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  margin-top: 28px;
+}
+
+.footer-source-group {
+  background: #ffffff;
+  padding: 28px 32px;
+  border: 1px solid #d9ded5;
+  border-radius: 14px;
+  border-left: 4px solid #517c69;
+}
+
+.footer-source-group h4 {
+  margin: 0 0 16px;
+  font-size: 1rem;
+}
+
+.footer-source-group ul {
+  margin: 0;
+  padding-left: 20px;
+  line-height: 2;
+}
+
+.footer-source-group li {
+  padding-left: 4px;
+}
+
+.footer-source-group a {
+  color: #3d7059;
+  text-underline-offset: 3px;
+}
+
+.footer-source-group a:hover {
+  color: #b58136;
+}
+
+/* Bottom sign-off */
+
+.atlas-footer .footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: #263f35;
+  color: #e8eee6;
+  padding: 25px 6%;
+  font-size: 0.75rem;
+  letter-spacing: 0.025em;
+}
+
+.atlas-footer .footer-bottom a {
+  color: #e8ba70;
+  text-decoration: none;
+}
+
+.atlas-footer .footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive layout */
+
+@media (max-width: 768px) {
+  .footer-opening {
+    padding: 55px 6%;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 45px 6%;
+  }
+
+  .footer-data {
+    grid-column: auto;
+  }
+
+  .footer-source-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .footer-source-group {
+    padding: 24px;
+  }
+
+  .atlas-footer .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 }

@@ -1,0 +1,172 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Percentage of 43 Hobart playgrounds recording each of six amenities.",
+  "width": "container",
+  "height": 300,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/Parks_Playgrounds_2014.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.properties.Seating",
+      "as": "Seating"
+    },
+    {
+      "calculate": "datum.properties.Toilets",
+      "as": "Toilets"
+    },
+    {
+      "calculate": "datum.properties.Shade_trees",
+      "as": "Shade trees"
+    },
+    {
+      "calculate": "datum.properties.Barbecues",
+      "as": "Barbecues"
+    },
+    {
+      "calculate": "datum.properties.Universal_access",
+      "as": "Universal access"
+    },
+    {
+      "calculate": "datum.properties.Shelter",
+      "as": "Shelter"
+    },
+    {
+      "fold": [
+        "Seating",
+        "Toilets",
+        "Shade trees",
+        "Barbecues",
+        "Universal access",
+        "Shelter"
+      ],
+      "as": ["facility", "recorded"]
+    },
+    {
+      "filter": "datum.recorded == 'Yes'"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "count"
+        }
+      ],
+      "groupby": ["facility"]
+    },
+    {
+      "calculate": "datum.count / 43",
+      "as": "percentage"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 3,
+        "color": "#c6d8ca"
+      },
+      "encoding": {
+        "y": {
+          "field": "facility",
+          "type": "nominal",
+          "sort": "-x",
+          "axis": {
+            "title": null,
+            "labelFontSize": 12,
+            "labelLimit": 130,
+            "ticks": false,
+            "domain": false
+          }
+        },
+        "x": {
+          "field": "percentage",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 1]
+          },
+          "axis": {
+            "title": "Share of playgrounds",
+            "format": ".0%",
+            "grid": true
+          }
+        },
+        "x2": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 160,
+        "color": "#497d63"
+      },
+      "encoding": {
+        "y": {
+          "field": "facility",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "percentage",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "facility",
+            "title": "Facility"
+          },
+          {
+            "field": "count",
+            "title": "Playgrounds"
+          },
+          {
+            "field": "percentage",
+            "title": "Share",
+            "format": ".1%"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 11,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#263f35"
+      },
+      "encoding": {
+        "y": {
+          "field": "facility",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "percentage",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "count",
+          "type": "quantitative",
+          "format": "d"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

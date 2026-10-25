@@ -1,49 +1,121 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Horizontal bar chart comparing the number of playgrounds in each Manningham classification.",
-
   "width": "container",
-  "height": 250,
-
+  "height": 220,
+  "padding": {
+    "top": 5,
+    "right": 10,
+    "bottom": 5,
+    "left": 5
+  },
+  "background": null,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
   "data": {
     "url": "data/playgrounds_combined_manningham.csv"
   },
-
   "transform": [
     {
       "filter": "datum.council === 'Manningham'"
     }
   ],
-
-  "mark": {
-    "type": "bar"
-  },
-
   "encoding": {
-    "x": {
-      "aggregate": "count",
-      "type": "quantitative",
-      "title": "Number of playgrounds"
-    },
-
     "y": {
       "field": "classification",
       "type": "nominal",
-      "title": "Playground classification",
-      "sort": "-x"
-    },
-
-    "tooltip": [
-      {
-        "field": "classification",
-        "type": "nominal",
-        "title": "Playground type"
-      },
-      {
-        "aggregate": "count",
-        "type": "quantitative",
-        "title": "Number of playgrounds"
+      "title": null,
+      "sort": "-x",
+      "axis": {
+        "labelFont": "Segoe UI",
+        "labelFontSize": 12,
+        "labelColor": "#263F35",
+        "labelLimit": 160,
+        "labelPadding": 10,
+        "ticks": false,
+        "domain": false
       }
-    ]
+    },
+    "x": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Number of playgrounds",
+      "scale": {
+        "zero": true,
+        "nice": true
+      },
+      "axis": {
+        "titleFont": "Segoe UI",
+        "titleFontSize": 12,
+        "titleColor": "#263F35",
+        "titlePadding": 12,
+        "labelFont": "Segoe UI",
+        "labelFontSize": 11,
+        "labelColor": "#64748B",
+        "grid": true,
+        "gridColor": "#E7ECE9",
+        "gridOpacity": 1,
+        "tickColor": "#D5DDD8",
+        "domain": false,
+        "tickMinStep": 1
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 4
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "datum.classification === 'Small Playground'",
+            "value": "#315B45"
+          },
+          "value": "#4477AA"
+        },
+        "tooltip": [
+          {
+            "field": "classification",
+            "type": "nominal",
+            "title": "Playground type"
+          },
+          {
+            "aggregate": "count",
+            "type": "quantitative",
+            "title": "Number of playgrounds",
+            "format": ",d"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 7,
+        "font": "Segoe UI",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#263F35"
+      },
+      "encoding": {
+        "text": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "format": ",d"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
   }
 }
