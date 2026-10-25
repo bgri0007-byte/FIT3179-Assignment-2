@@ -91,7 +91,7 @@ body {
 
 .hero {
   position: relative;
-  padding: 110px max(40px, calc((100vw - 1300px) / 2));
+  padding: 110px max(40px, 6vw);
   background: var(--sage);
   overflow: hidden;
 }
